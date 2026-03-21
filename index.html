@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edubamo Study Portal</title>
+<style>
+/* --- Core Styling --- */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f0;color:#1a1a18;font-size:15px;overflow-x:hidden;}
+.hero{background:#1a1a18;color:#fff;padding:24px 16px 20px}
+.hero-sub{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px}
+.hero h1{font-size:22px;font-weight:600;margin-bottom:10px}
+
+nav{background:#fff;border-bottom:1px solid #e4e2da;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:0;z-index:99;visibility:hidden;}
+nav a{flex-shrink:0;text-decoration:none;color:#888;font-size:13px;font-weight:600;padding:13px 16px;border-bottom:2px solid transparent;white-space:nowrap}
+nav a.on{color:#1a1a18;border-bottom-color:#1a1a18}
+
+section{padding:16px;display:none}
+section.on{display:block}
+.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:12px}
+.card{background:#fff;border:1px solid #e4e2da;border-radius:14px;padding:14px;margin-bottom:10px}
+.dname{font-size:16px;font-weight:600;color:#1a1a18;margin-bottom:3px}
+.dtag{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;margin-bottom:10px}
+.row{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start}
+.lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#db2777;min-width:70px;flex-shrink:0;padding-top:2px}
+.val{font-size:13px;color:#1a1a18;line-height:1.5;flex:1}
+
+/* --- MAIN PAGE & ANIMATION --- */
+#main-page{text-align:center;padding:40px 16px; background-color:#fce7f3; min-height:100vh;}
+.greeting-msg{font-size:20px;font-weight:600;color:#1a1a18;margin-top:20px;line-height:1.4;}
+.sub-greeting{font-size:14px;font-weight:400;color:#6b7280;margin-top:8px;font-style:italic;}
+
+.character-proxy{
+  width:110px;height:110px;
+  background:#fff;color:#db2777;
+  border-radius:50%;border:4px solid #fbcfe8;
+  display:flex;align-items:center;justify-content:center;
+  font-size:45px;margin:0 auto;
+  box-shadow:0 8px 16px rgba(219,39,119,0.15);
+  opacity:0;transform:translateY(20px);
+  animation:characterIn 0.8s ease-out 0.2s forwards;
+}
+@keyframes characterIn{ 0%{opacity:0;transform:translateY(20px);} 100%{opacity:1;transform:translateY(0);} }
+
+.topic-selector{display:flex;flex-direction:column;gap:12px;margin-top:40px;max-width:320px;margin-left:auto;margin-right:auto;}
+.topic-btn{
+  background:#fff;border:1px solid #fbcfe8;padding:16px;
+  border-radius:12px;font-size:15px;font-weight:600;
+  color:#1a1a18;cursor:pointer;
+  transition:all 0.2s;text-align:left;
+  display:flex;justify-content:space-between;align-items:center;
+  box-shadow:0 4px 6px rgba(0,0,0,0.02);
+}
+.topic-btn:hover{background:#fdf2f8;}
+.topic-btn-arrow{color:#db2777;}
+
+/* --- Component Specific Styles --- */
+.practice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
+.hub-btn{background:#fff;border:1px solid #e4e2da;border-radius:14px;padding:24px 16px;text-align:center;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 4px rgba(0,0,0,0.02);}
+.hub-btn:active{background:#f5f4f0;transform:scale(0.98);}
+.hub-btn-icon{font-size:28px;margin-bottom:8px;}
+.hub-btn-txt{font-size:14px;font-weight:600;color:#1a1a18;}
+
+.fc-count{text-align:center;font-size:13px;color:#888;margin-bottom:10px}
+.fc{background:#fff;border:1px solid #e4e2da;border-radius:16px;min-height:200px;padding:22px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;margin-bottom:12px;position:relative;transition:all .2s;}
+.fc.flipped{background:#f8fafc;border-color:#cbd5e1;cursor:default;}
+.fc-badge{position:absolute;top:10px;right:12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#aaa}
+.fc-q{font-size:15px;font-weight:600;color:#1a1a18;line-height:1.5}
+.fc-a{font-size:14px;color:#1a1a18;line-height:1.65;white-space:pre-line;text-align:left;display:none}
+.fc.flipped .fc-q{display:none}
+.fc.flipped .fc-a{display:block}
+.fc-hint{font-size:12px;color:#aaa;margin-top:12px;font-style:italic}
+
+.qnum{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#888;margin-bottom:8px}
+.qtext{font-size:15px;font-weight:600;color:#1a1a18;line-height:1.5;margin-bottom:14px}
+.sata-hint{font-size:12px;color:#db2777;background:#fce7f3;padding:4px 8px;border-radius:6px;display:inline-block;margin-bottom:10px;font-weight:600}
+.opt{display:block;width:100%;text-align:left;padding:12px 14px;margin-bottom:8px;border-radius:10px;border:1px solid #e4e2da;background:#f5f4f0;font-size:14px;color:#1a1a18;cursor:pointer;line-height:1.4;-webkit-appearance:none}
+.opt.selected{background:#e2e8f0;border-color:#94a3b8;}
+.opt.ok{background:#dcfce7;border-color:#86efac;color:#166534;font-weight:600}
+.opt.no{background:#fee2e2;border-color:#fca5a5;color:#991b1b}
+.rat{font-size:13px;color:#555;background:#f5f4f0;border-radius:10px;padding:11px 13px;line-height:1.6;margin-top:4px;margin-bottom:8px;display:none}
+.nxt, .submit-btn{width:100%;padding:13px;border-radius:10px;border:none;background:#1a1a18;color:#fff;font-size:15px;font-weight:600;cursor:pointer;display:none;margin-top:4px;-webkit-appearance:none}
+
+.btnrow{display:flex;gap:8px;margin-bottom:4px;flex-direction:column;}
+.btnrow.inline{flex-direction:row;}
+.btn{width:100%;padding:14px;border-radius:10px;border:1px solid #e4e2da;background:#fff;font-size:14px;font-weight:600;color:#1a1a18;cursor:pointer;text-align:center;}
+.btn.dark{background:#1a1a18;color:#fff;border-color:#1a1a18}
+.btn.missed{background:#fee2e2;color:#991b1b;border-color:#fca5a5;display:none;}
+.btn.gotit{background:#dcfce7;color:#166534;border-color:#86efac;display:none;}
+.fc.flipped ~ .btnrow .btn.missed, .fc.flipped ~ .btnrow .btn.gotit {display:block;}
+.fc.flipped ~ .btnrow .btn.tap-hint {display:none;}
+.score{text-align:center;padding:28px 0;display:none}
+.score-big{font-size:60px;font-weight:700;color:#1a1a18;line-height:1}
+
+.tip{background:#fff;border:1px solid #e4e2da;border-radius:14px;padding:14px;margin-bottom:10px}
+.tit{font-size:13px;font-weight:700;color:#1a1a18;margin-bottom:9px}
+.trow{font-size:13px;color:#555;line-height:2}
+.trow b{color:#1a1a18}
+</style>
+</head>
+<body>
+
+<section id="main-page" class="on">
+  <div class="character-proxy">
+    👩🏽‍⚕️
+    </div>
+  
+  <div class="greeting-msg">"Welcome Edubamo,<br>the Love of Godiva's Life"</div>
+  <div class="sub-greeting">"Hope this helps even a little"</div>
+  
+  <div class="topic-selector">
+    <div class="sec-lbl" style="text-align:left; color:#db2777;">Select a study topic</div>
+    <button class="topic-btn" onclick="loadTopic('antifungals')">Antifungal Pharmacology<span class="topic-btn-arrow">→</span></button>
+    </div>
+</section>
+
+<nav id="topic-nav">
+  <a href="#" onclick="backToMain();return false" style="color:#db2777;padding-right:12px;">Back</a>
+  <a href="#" class="on" id="nav-summary" onclick="showHub('summary',this);return false">Summary</a>
+  <a href="#" onclick="showHub('quiz',this);return false">Quiz</a>
+  <a href="#" onclick="showHub('flash',this);return false">Flashcards</a>
+  <a href="#" onclick="showHub('ref',this);return false">Quick Ref</a>
+  <a href="#" onclick="showHub('practice-hub',this);return false">Practice Hub</a>
+</nav>
+
+<section id="summary"><div class="sec-lbl">Summary notes</div><div id="summary-data-container"></div></section>
+<section id="ref"><div class="sec-lbl">Quick reference</div><div id="ref-data-container"></div></section>
+
+<section id="flash">
+  <div id="fc-active-area">
+    <div class="sec-lbl" id="fc-session-lbl">Session 1 (Cards 1-30)</div>
+    <div class="fc-count" id="fcp">Card 1 of 30</div>
+    <div class="fc" id="fccard" onclick="flipFC()">
+      <div class="fc-badge" id="fclbl">Question</div>
+      <div class="fc-q" id="fcq"></div>
+      <div class="fc-a" id="fca"></div>
+      <div class="fc-hint">tap to reveal answer</div>
+    </div>
+    <div class="btnrow inline">
+      <button class="btn tap-hint" style="pointer-events:none; border:none; background:none; color:#888; width:100%;">Tap card to flip</button>
+      <button class="btn missed" onclick="scoreCard(false)">❌ Missed it</button>
+      <button class="btn gotit" onclick="scoreCard(true)">✅ Got it</button>
+    </div>
+  </div>
+  <div id="fc-end-area" style="display:none; text-align:center; padding-top:20px;">
+    <h2 style="margin-bottom: 10px;">Session Complete</h2>
+    <p id="fc-end-msg" style="color:#555; margin-bottom: 20px; font-size:14px;"></p>
+    <div class="btnrow" id="fc-end-btns"></div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sec-lbl">Quiz Session (20 Questions)</div>
+  <div id="qbody-quiz">
+    <div class="card">
+      <div class="qnum" id="qnum-quiz"></div>
+      <div id="sata-indicator-quiz" class="sata-hint" style="display:none;">Select All That Apply</div>
+      <div class="qtext" id="qtext-quiz"></div>
+      <div id="qopts-quiz"></div>
+      <button class="submit-btn" id="qsubmit-quiz" onclick="submitSATA('quiz')">Submit Answer</button>
+      <div class="rat" id="qrat-quiz"></div>
+      <button class="nxt" id="qnxt-quiz" onclick="nextQ('quiz')"></button>
+    </div>
+  </div>
+  <div class="score" id="scorearea-quiz">
+    <div class="score-big" id="spct-quiz"></div>
+    <p id="smsg-quiz" style="color:#555; margin-bottom: 20px; font-size:14px;"></p>
+    <div class="btnrow" id="score-btns-quiz"></div>
+  </div>
+</section>
+
+<section id="practice-hub">
+  <div class="sec-lbl">Critical Thinking & Deep Dive</div>
+  <div class="practice-grid">
+    <div class="hub-btn" onclick="openPracticeCategory('nclex')">
+      <div class="hub-btn-icon">🏥</div>
+      <div class="hub-btn-txt">NCLEX Boards</div>
+    </div>
+    <div class="hub-btn" onclick="openPracticeCategory('sata')">
+      <div class="hub-btn-icon">✅</div>
+      <div class="hub-btn-txt">SATA Drills</div>
+    </div>
+    <div class="hub-btn" onclick="openPracticeCategory('hard')">
+      <div class="hub-btn-icon">🧠</div>
+      <div class="hub-btn-txt">Hard Practice</div>
+    </div>
+    <div class="hub-btn" onclick="showHub('detailed-notes')">
+      <div class="hub-btn-icon">📚</div>
+      <div class="hub-btn-txt">Detailed Notes</div>
+    </div>
+  </div>
+</section>
+
+<section id="practice">
+  <div class="sec-lbl" id="practice-title">Practice Session</div>
+  <div id="qbody-practice">
+    <div class="card">
+      <div class="qnum" id="qnum-practice"></div>
+      <div id="sata-indicator-practice" class="sata-hint" style="display:none;">Select All That Apply</div>
+      <div class="qtext" id="qtext-practice"></div>
+      <div id="qopts-practice"></div>
+      <button class="submit-btn" id="qsubmit-practice" onclick="submitSATA('practice')">Submit Answer</button>
+      <div class="rat" id="qrat-practice"></div>
+      <button class="nxt" id="qnxt-practice" onclick="nextQ('practice')"></button>
+    </div>
+  </div>
+  <div id="practice-end" style="display:none; text-align:center; padding-top:40px;">
+    <h2>Practice Complete!</h2>
+    <p style="color:#555; margin-top:10px; margin-bottom:20px;">Great job working through these scenarios.</p>
+    <button class="btn dark" onclick="showHub('practice-hub')">Back to Practice Hub</button>
+  </div>
+</section>
+
+<section id="detailed-notes">
+  <div class="sec-lbl">In-Depth Clinical Review</div>
+  <div id="detailed-notes-container"></div>
+  <button class="btn" style="margin-top:20px;" onclick="showHub('practice-hub')">← Back to Hub</button>
+</section>
+
+<script src="data.js"></script>
+
+<script>
+let currentTopic = '';
+
+// --- AUTO-SAVE SESSION STATE ---
+function saveCurrentState() {
+  if (!currentTopic) return;
+  const state = {
+    topic: currentTopic,
+    activeSection: document.querySelector('section.on')?.id,
+    quizState: { queue: QE_VARS['quiz'].queue, qi: QE_VARS['quiz'].qi, qs: QE_VARS['quiz'].qs, missed: QE_VARS['quiz'].missed },
+    practiceState: { queue: QE_VARS['practice'].queue, qi: QE_VARS['practice'].qi, qs: QE_VARS['practice'].qs }
+  };
+  sessionStorage.setItem('edubamo_active_session', JSON.stringify(state));
+}
+
+// Restore active session on refresh
+window.onload = function() {
+  let savedSession = sessionStorage.getItem('edubamo_active_session');
+  if (savedSession && typeof PDF_TOPIC_DATA !== 'undefined') {
+    let state = JSON.parse(savedSession);
+    if (state.topic && PDF_TOPIC_DATA[state.topic]) {
+       currentTopic = state.topic;
+       let topicData = PDF_TOPIC_DATA[currentTopic];
+       
+       document.getElementById('main-page').style.display = 'none';
+       document.getElementById('topic-nav').style.visibility = 'visible';
+       document.getElementById('summary-data-container').innerHTML = topicData.summaryHtml;
+       document.getElementById('ref-data-container').innerHTML = topicData.refHtml;
+       document.getElementById('detailed-notes-container').innerHTML = topicData.detailedNotesHtml;
+       
+       if (state.quizState && state.quizState.queue.length > 0) {
+          QE_VARS['quiz'].queue = state.quizState.queue; QE_VARS['quiz'].qi = state.quizState.qi;
+          QE_VARS['quiz'].qs = state.quizState.qs; QE_VARS['quiz'].missed = state.quizState.missed || [];
+       }
+       if (state.practiceState && state.practiceState.queue.length > 0) {
+          QE_VARS['practice'].queue = state.practiceState.queue; QE_VARS['practice'].qi = state.practiceState.qi;
+          QE_VARS['practice'].qs = state.practiceState.qs;
+       }
+
+       if (state.activeSection) {
+          let navLink = document.querySelector(`nav a[onclick*="${state.activeSection}"]`);
+          if(!navLink && (state.activeSection === 'detailed-notes' || state.activeSection === 'practice')) {
+              navLink = document.querySelector(`nav a[onclick*="practice-hub"]`);
+          }
+          showHub(state.activeSection, navLink);
+          
+          if (state.activeSection === 'quiz') {
+              if (QE_VARS['quiz'].qi < QE_VARS['quiz'].queue.length) renderQ('quiz');
+              else showScoreQuiz();
+          }
+          if (state.activeSection === 'practice') {
+              if (QE_VARS['practice'].qi < QE_VARS['practice'].queue.length) renderQ('practice');
+              else {
+                 document.getElementById('qbody-practice').style.display = 'none';
+                 document.getElementById('practice-end').style.display = 'block';
+              }
+          }
+       }
+    }
+  }
+}
+
+// --- LOCAL STORAGE MANAGER ---
+function saveMissedData() {
+  if (!currentTopic) return;
+  try { localStorage.setItem(`edubamo_fc_${currentTopic}`, JSON.stringify(fcMissed)); } catch (e) {}
+  saveCurrentState();
+}
+
+function loadMissedData() {
+  if (!currentTopic) return;
+  try {
+    let savedFC = localStorage.getItem(`edubamo_fc_${currentTopic}`);
+    if (savedFC) fcMissed = JSON.parse(savedFC);
+  } catch (e) {}
+}
+
+// --- NAVIGATION MANAGER ---
+function loadTopic(topicId) {
+  let topicData = PDF_TOPIC_DATA[topicId];
+  if (!topicData) return;
+  currentTopic = topicId;
+  
+  document.getElementById('main-page').style.display = 'none';
+  document.getElementById('topic-nav').style.visibility = 'visible';
+  
+  document.getElementById('summary-data-container').innerHTML = topicData.summaryHtml;
+  document.getElementById('ref-data-container').innerHTML = topicData.refHtml;
+  document.getElementById('detailed-notes-container').innerHTML = topicData.detailedNotesHtml;
+  
+  fcMissed = []; QE_VARS['quiz'].missed = []; loadMissedData();
+  
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('on'));
+  document.getElementById('nav-summary').classList.add('on');
+  showHub('summary');
+  
+  startFCSession(); startQuestionEngine('quiz');
+}
+
+function backToMain() {
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('on'));
+  document.getElementById('topic-nav').style.visibility = 'hidden';
+  document.getElementById('main-page').style.display = 'block';
+  sessionStorage.removeItem('edubamo_active_session');
+}
+
+function showHub(hubId, el) {
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('on'));
+  if (el) {
+    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('on'));
+    el.classList.add('on');
+  } else if (hubId === 'practice-hub' || hubId === 'detailed-notes' || hubId === 'practice') {
+    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('on'));
+    document.querySelector('nav a[onclick*="practice-hub"]').classList.add('on');
+  }
+  document.getElementById(hubId).classList.add('on');
+  window.scrollTo(0,0);
+  saveCurrentState();
+}
+
+// --- FLASHCARD ENGINE ---
+let fcQueue = []; let fcMissed = []; let fcIndex = 0;
+
+function startFCSession(isShuffle = false, reviewMissedOnly = false) {
+  document.getElementById('fc-active-area').style.display = 'block';
+  document.getElementById('fc-end-area').style.display = 'none';
+  
+  if (reviewMissedOnly) {
+    fcQueue = [...fcMissed]; fcMissed = []; document.getElementById('fc-session-lbl').textContent = "Reviewing Missed";
+  } else {
+    let pool = PDF_TOPIC_DATA[currentTopic].flashcards;
+    fcQueue = isShuffle ? shuffle([...pool]) : [...pool];
+    fcQueue = fcQueue.slice(0, 30); fcMissed = []; 
+    document.getElementById('fc-session-lbl').textContent = isShuffle ? "Random Session" : "Session (Cards 1-30)";
+  }
+  saveMissedData(); fcIndex = 0; renderFC();
+}
+
+function renderFC() {
+  if (fcIndex >= fcQueue.length) { endFCSession(); return; }
+  let c = fcQueue[fcIndex];
+  document.getElementById('fcp').textContent = `Card ${fcIndex + 1} of ${fcQueue.length}`;
+  document.getElementById('fcq').textContent = c.q; document.getElementById('fca').textContent = c.a;
+  document.getElementById('fccard').classList.remove('flipped');
+}
+
+function flipFC() { document.getElementById('fccard').classList.add('flipped'); }
+function scoreCard(knewIt) { if (!knewIt) { fcMissed.push(fcQueue[fcIndex]); saveMissedData(); } fcIndex++; renderFC(); }
+
+function endFCSession() {
+  document.getElementById('fc-active-area').style.display = 'none';
+  document.getElementById('fc-end-area').style.display = 'block';
+  let msg = document.getElementById('fc-end-msg'); let btns = document.getElementById('fc-end-btns'); btns.innerHTML = '';
+  if (fcMissed.length > 0) {
+    msg.textContent = `Session over. You missed ${fcMissed.length} cards.`;
+    btns.innerHTML += `<button class="btn dark" onclick="startFCSession(false, true)">Review Missed (${fcMissed.length})</button>`;
+  } else { msg.textContent = "Perfect session! No cards missed."; }
+  btns.innerHTML += `<button class="btn" onclick="startFCSession(true, false)">Shuffle & Restart</button>`;
+}
+
+function shuffle(array) {
+  let arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; }
+  return arr;
+}
+
+// --- QUIZ & PRACTICE ENGINE ---
+const QE_VARS = {
+  "quiz": { queue: [], qi: 0, qs: 0, qAnswered: false, sataSelections: new Set(), missed: [] },
+  "practice": { queue: [], qi: 0, qs: 0, qAnswered: false, sataSelections: new Set() } 
+};
+
+function openPracticeCategory(category) {
+  let dataPool = [];
+  if (category === 'sata') dataPool = PDF_TOPIC_DATA[currentTopic].practiceSata || [];
+  if (category === 'nclex') dataPool = PDF_TOPIC_DATA[currentTopic].practiceNclex || [];
+  if (category === 'hard') dataPool = PDF_TOPIC_DATA[currentTopic].practiceHard || [];
+  
+  document.getElementById('practice-title').textContent = category.toUpperCase() + " Practice";
+  QE_VARS['practice'].queue = shuffle([...dataPool]);
+  QE_VARS['practice'].qi = 0; QE_VARS['practice'].qs = 0; QE_VARS['practice'].qAnswered = false;
+  
+  document.getElementById('qbody-practice').style.display = 'block';
+  document.getElementById('practice-end').style.display = 'none';
+  showHub('practice'); renderQ('practice');
+}
+
+function startQuestionEngine(type, isShuffle = false, reviewMissedOnly = false) {
+  if (type !== 'quiz') return; 
+  let state = QE_VARS[type];
+  if (reviewMissedOnly) { state.queue = [...state.missed]; state.missed = []; } 
+  else {
+    let pool = PDF_TOPIC_DATA[currentTopic].quizQuestions;
+    state.queue = isShuffle ? shuffle([...pool]).slice(0, 20) : [...pool].slice(0, 20);
+    state.missed = [];
+  }
+  state.qi = 0; state.qs = 0; state.qAnswered = false;
+  document.getElementById(`qbody-${type}`).style.display = 'block';
+  document.getElementById('scorearea-quiz').style.display = 'none';
+  saveCurrentState(); renderQ(type);
+}
+
+function renderQ(type) {
+  let state = QE_VARS[type];
+  if (state.qi >= state.queue.length) { 
+    if(type==='quiz') showScoreQuiz(); 
+    else { document.getElementById('qbody-practice').style.display = 'none'; document.getElementById('practice-end').style.display = 'block'; }
+    return; 
+  }
+  state.qAnswered = false; state.sataSelections.clear();
+  let q = state.queue[state.qi];
+  let isSATA = q.type === 'sata';
+  
+  document.getElementById(`qnum-${type}`).textContent = `Question ${state.qi + 1} of ${state.queue.length}`;
+  document.getElementById(`sata-indicator-${type}`).style.display = isSATA ? 'inline-block' : 'none';
+  document.getElementById(`qtext-${type}`).textContent = q.q;
+  document.getElementById(`qrat-${type}`).style.display = 'none';
+  document.getElementById(`qnxt-${type}`).style.display = 'none';
+  document.getElementById(`qsubmit-${type}`).style.display = isSATA ? 'block' : 'none';
+  
+  let od = document.getElementById(`qopts-${type}`); od.innerHTML = '';
+  q.o.forEach((optText, index) => {
+    let b = document.createElement('button'); b.className = 'opt'; b.textContent = optText;
+    b.onclick = () => { handleOptionClick(type, b, index, isSATA, q); };
+    od.appendChild(b);
+  });
+  saveCurrentState();
+}
+
+function handleOptionClick(type, btn, index, isSATA, qData) {
+  let state = QE_VARS[type];
+  if (state.qAnswered) return;
+  if (isSATA) {
+    if (state.sataSelections.has(index)) { state.sataSelections.delete(index); btn.classList.remove('selected'); } 
+    else { state.sataSelections.add(index); btn.classList.add('selected'); }
+  } else { state.qAnswered = true; evaluateMCQ(type, index, qData); }
+}
+
+function evaluateMCQ(type, selectedIndex, qData) {
+  let state = QE_VARS[type]; let btns = document.querySelectorAll(`#qopts-${type} .opt`);
+  let isCorrect = selectedIndex === qData.c;
+  btns.forEach((b, i) => {
+    b.style.pointerEvents = 'none';
+    if (i === qData.c) b.classList.add('ok'); else if (i === selectedIndex) b.classList.add('no');
+  });
+  if (isCorrect) { state.qs++; } else if (type === 'quiz') { state.missed.push(qData); }
+  showRationaleQE(type, qData.r);
+}
+
+function submitSATA(type) {
+  let state = QE_VARS[type];
+  if (state.qAnswered) return; state.qAnswered = true;
+  document.getElementById(`qsubmit-${type}`).style.display = 'none'; 
+  
+  let qData = state.queue[state.qi]; let correctArr = qData.c;
+  let btns = document.querySelectorAll(`#qopts-${type} .opt`);
+  let isPerfect = state.sataSelections.size === correctArr.length && correctArr.every(val => state.sataSelections.has(val));
+  
+  if (isPerfect) { state.qs++; } else if (type === 'quiz') { state.missed.push(qData); }
+  
+  btns.forEach((b, i) => {
+    b.style.pointerEvents = 'none';
+    let shouldBeSelected = correctArr.includes(i); let wasSelected = state.sataSelections.has(i);
+    if (shouldBeSelected) b.classList.add('ok'); 
+    if (wasSelected && !shouldBeSelected) b.classList.add('no'); 
+  });
+  showRationaleQE(type, qData.r);
+}
+
+function showRationaleQE(type, ratText) {
+  let state = QE_VARS[type];
+  let r = document.getElementById(`qrat-${type}`); r.innerHTML = ratText; r.style.display = 'block';
+  let nxtBtn = document.getElementById(`qnxt-${type}`); nxtBtn.style.display = 'block';
+  nxtBtn.textContent = state.qi < state.queue.length - 1 ? 'Next Question →' : 'Finish';
+  saveCurrentState();
+}
+
+function nextQ(type) { let state = QE_VARS[type]; state.qi++; renderQ(type); }
+
+function showScoreQuiz() {
+  document.getElementById('qbody-quiz').style.display = 'none';
+  let state = QE_VARS['quiz']; let pct = Math.round((state.qs / state.queue.length) * 100);
+  document.getElementById('spct-quiz').textContent = pct + '%';
+  let msg = document.getElementById('smsg-quiz'); let btns = document.getElementById('score-btns-quiz'); btns.innerHTML = '';
+  
+  if (state.missed.length > 0) {
+    msg.textContent = `You got ${state.qs} out of ${state.queue.length}. You missed ${state.missed.length} questions.`;
+    btns.innerHTML += `<button class="btn dark" onclick="startQuestionEngine('quiz', false, true)">Review Missed (${state.missed.length})</button>`;
+  } else { msg.textContent = "Perfect score! You didn't miss any questions."; }
+  
+  btns.innerHTML += `<button class="btn" onclick="startQuestionEngine('quiz', true, false)">Shuffle & Take Another 20</button>`;
+  document.getElementById('scorearea-quiz').style.display = 'block';
+  saveCurrentState();
+}
+</script>
+</body>
+</html>
