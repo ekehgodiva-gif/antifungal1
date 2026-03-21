@@ -1,519 +1,1077 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edubamo Study Portal</title>
-<style>
-/* --- Core Styling --- */
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f0;color:#1a1a18;font-size:15px;overflow-x:hidden;}
-.hero{background:#1a1a18;color:#fff;padding:24px 16px 20px}
-.hero-sub{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px}
-.hero h1{font-size:22px;font-weight:600;margin-bottom:10px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edubamo Study Portal</title>
+  <style>
+    /* --- THEME VARIABLES & CORE --- */
+    :root {
+      --bg: #fdf2f8;
+      --text-main: #1a1a18;
+      --text-muted: #6b7280;
+      --primary: #db2777;
+      --card-bg: rgba(255, 255, 255, 0.65);
+      --card-border: rgba(255, 255, 255, 0.4);
+      --glass-blur: blur(12px);
+      --btn-bg: #fff;
+      --btn-hover: #fce7f3;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+    }
 
-nav{background:#fff;border-bottom:1px solid #e4e2da;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:0;z-index:99;visibility:hidden;}
-nav a{flex-shrink:0;text-decoration:none;color:#888;font-size:13px;font-weight:600;padding:13px 16px;border-bottom:2px solid transparent;white-space:nowrap}
-nav a.on{color:#1a1a18;border-bottom-color:#1a1a18}
+    body.dark {
+      --bg: #2d142c;
+      --text-main: #fce7f3;
+      --text-muted: #f472b6;
+      --primary: #f472b6;
+      --card-bg: rgba(74, 28, 64, 0.4);
+      --card-border: rgba(244, 114, 182, 0.2);
+      --btn-bg: #4a1c40;
+      --btn-hover: #602453;
+    }
 
-section{padding:16px;display:none}
-section.on{display:block}
-.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:12px}
-.card{background:#fff;border:1px solid #e4e2da;border-radius:14px;padding:14px;margin-bottom:10px}
-.dname{font-size:16px;font-weight:600;color:#1a1a18;margin-bottom:3px}
-.dtag{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;margin-bottom:10px}
-.row{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start}
-.lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#db2777;min-width:70px;flex-shrink:0;padding-top:2px}
-.val{font-size:13px;color:#1a1a18;line-height:1.5;flex:1}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
 
-/* --- MAIN PAGE & ANIMATION --- */
-#main-page{text-align:center;padding:40px 16px; background-color:#fce7f3; min-height:100vh;}
-.greeting-msg{font-size:20px;font-weight:600;color:#1a1a18;margin-top:20px;line-height:1.4;}
-.sub-greeting{font-size:14px;font-weight:400;color:#6b7280;margin-top:8px;font-style:italic;}
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-size: 15px;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
 
-.character-proxy{
-  width:110px;height:110px;
-  background:#fff;color:#db2777;
-  border-radius:50%;border:4px solid #fbcfe8;
-  display:flex;align-items:center;justify-content:center;
-  font-size:45px;margin:0 auto;
-  box-shadow:0 8px 16px rgba(219,39,119,0.15);
-  opacity:0;transform:translateY(20px);
-  animation:characterIn 0.8s ease-out 0.2s forwards;
-}
-@keyframes characterIn{ 0%{opacity:0;transform:translateY(20px);} 100%{opacity:1;transform:translateY(0);} }
+    /* --- HEADER & TOP CONTROLS --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+    }
 
-.topic-selector{display:flex;flex-direction:column;gap:12px;margin-top:40px;max-width:320px;margin-left:auto;margin-right:auto;}
-.topic-btn{
-  background:#fff;border:1px solid #fbcfe8;padding:16px;
-  border-radius:12px;font-size:15px;font-weight:600;
-  color:#1a1a18;cursor:pointer;
-  transition:all 0.2s;text-align:left;
-  display:flex;justify-content:space-between;align-items:center;
-  box-shadow:0 4px 6px rgba(0,0,0,0.02);
-}
-.topic-btn:hover{background:#fdf2f8;}
-.topic-btn-arrow{color:#db2777;}
+    .top-btn {
+      background: var(--card-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--card-border);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--primary);
+      position: relative;
+    }
 
-/* --- Component Specific Styles --- */
-.practice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
-.hub-btn{background:#fff;border:1px solid #e4e2da;border-radius:14px;padding:24px 16px;text-align:center;cursor:pointer;transition:all 0.2s;box-shadow:0 2px 4px rgba(0,0,0,0.02);}
-.hub-btn:active{background:#f5f4f0;transform:scale(0.98);}
-.hub-btn-icon{font-size:28px;margin-bottom:8px;}
-.hub-btn-txt{font-size:14px;font-weight:600;color:#1a1a18;}
+    .unread-badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background: #ef4444;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      display: none;
+    }
 
-.fc-count{text-align:center;font-size:13px;color:#888;margin-bottom:10px}
-.fc{background:#fff;border:1px solid #e4e2da;border-radius:16px;min-height:200px;padding:22px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;margin-bottom:12px;position:relative;transition:all .2s;}
-.fc.flipped{background:#f8fafc;border-color:#cbd5e1;cursor:default;}
-.fc-badge{position:absolute;top:10px;right:12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#aaa}
-.fc-q{font-size:15px;font-weight:600;color:#1a1a18;line-height:1.5}
-.fc-a{font-size:14px;color:#1a1a18;line-height:1.65;white-space:pre-line;text-align:left;display:none}
-.fc.flipped .fc-q{display:none}
-.fc.flipped .fc-a{display:block}
-.fc-hint{font-size:12px;color:#aaa;margin-top:12px;font-style:italic}
+    .unread-text {
+      position: absolute;
+      top: 45px;
+      right: 0;
+      font-size: 10px;
+      background: #ef4444;
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-weight: bold;
+      display: none;
+    }
 
-.qnum{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#888;margin-bottom:8px}
-.qtext{font-size:15px;font-weight:600;color:#1a1a18;line-height:1.5;margin-bottom:14px}
-.sata-hint{font-size:12px;color:#db2777;background:#fce7f3;padding:4px 8px;border-radius:6px;display:inline-block;margin-bottom:10px;font-weight:600}
-.opt{display:block;width:100%;text-align:left;padding:12px 14px;margin-bottom:8px;border-radius:10px;border:1px solid #e4e2da;background:#f5f4f0;font-size:14px;color:#1a1a18;cursor:pointer;line-height:1.4;-webkit-appearance:none}
-.opt.selected{background:#e2e8f0;border-color:#94a3b8;}
-.opt.ok{background:#dcfce7;border-color:#86efac;color:#166534;font-weight:600}
-.opt.no{background:#fee2e2;border-color:#fca5a5;color:#991b1b}
-.rat{font-size:13px;color:#555;background:#f5f4f0;border-radius:10px;padding:11px 13px;line-height:1.6;margin-top:4px;margin-bottom:8px;display:none}
-.nxt, .submit-btn{width:100%;padding:13px;border-radius:10px;border:none;background:#1a1a18;color:#fff;font-size:15px;font-weight:600;cursor:pointer;display:none;margin-top:4px;-webkit-appearance:none}
+    /* --- VIEWS --- */
+    .view {
+      display: none;
+      padding: 0 16px 40px;
+      animation: fadeIn 0.3s ease;
+    }
 
-.btnrow{display:flex;gap:8px;margin-bottom:4px;flex-direction:column;}
-.btnrow.inline{flex-direction:row;}
-.btn{width:100%;padding:14px;border-radius:10px;border:1px solid #e4e2da;background:#fff;font-size:14px;font-weight:600;color:#1a1a18;cursor:pointer;text-align:center;}
-.btn.dark{background:#1a1a18;color:#fff;border-color:#1a1a18}
-.btn.missed{background:#fee2e2;color:#991b1b;border-color:#fca5a5;display:none;}
-.btn.gotit{background:#dcfce7;color:#166534;border-color:#86efac;display:none;}
-.fc.flipped ~ .btnrow .btn.missed, .fc.flipped ~ .btnrow .btn.gotit {display:block;}
-.fc.flipped ~ .btnrow .btn.tap-hint {display:none;}
-.score{text-align:center;padding:28px 0;display:none}
-.score-big{font-size:60px;font-weight:700;color:#1a1a18;line-height:1}
+    .view.active {
+      display: block;
+    }
 
-.tip{background:#fff;border:1px solid #e4e2da;border-radius:14px;padding:14px;margin-bottom:10px}
-.tit{font-size:13px;font-weight:700;color:#1a1a18;margin-bottom:9px}
-.trow{font-size:13px;color:#555;line-height:2}
-.trow b{color:#1a1a18}
-</style>
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- MAIN PAGE --- */
+    .character-proxy {
+      width: 90px;
+      height: 90px;
+      background: var(--card-bg);
+      color: var(--primary);
+      border-radius: 50%;
+      border: 3px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto;
+      box-shadow: 0 8px 16px rgba(219, 39, 119, 0.1);
+      backdrop-filter: var(--glass-blur);
+    }
+
+    .greeting {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .sub-greeting {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-main);
+      font-size: 15px;
+      margin: 24px 0 16px;
+      outline: none;
+      backdrop-filter: var(--glass-blur);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .search-bar::placeholder {
+      color: var(--text-muted);
+    }
+
+    .topic-card {
+      background: var(--card-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--card-border);
+      padding: 16px;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+      transition: transform 0.1s;
+    }
+
+    .topic-card:active {
+      transform: scale(0.98);
+    }
+
+    .topic-info h3 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .topic-info p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .bookmark-btn {
+      font-size: 20px;
+      color: var(--primary);
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    /* --- TOPIC SPLIT (NOTES VS QUESTIONS) --- */
+    .back-btn {
+      color: var(--primary);
+      font-weight: 600;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .big-split-btn {
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 30px 20px;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(219, 39, 119, 0.1);
+      transition: all 0.2s;
+    }
+
+    .big-split-btn:active {
+      transform: scale(0.97);
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* --- HORIZONTAL NAV --- */
+    .nav-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 8px;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-pill {
+      padding: 10px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .nav-pill.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* --- GLASS CARDS (For Notes) --- */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .glass-card h4 {
+      font-size: 16px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .glass-card p {
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .glass-card .hl {
+      background: rgba(219, 39, 119, 0.1);
+      color: var(--primary);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* --- FLASHCARDS & QUIZZES --- */
+    .fc-card {
+      min-height: 220px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      position: relative;
+      perspective: 1000px;
+      background: transparent;
+      border: none;
+    }
+
+    .fc-card-inner {
+      position: relative;
+      width: 100%;
+      min-height: 220px;
+      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transform-style: preserve-3d;
+      border-radius: 20px;
+    }
+
+    .fc-card.flipped .fc-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .fc-front, .fc-back {
+      position: absolute;
+      width: 100%;
+      min-height: 220px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      border: 1px solid var(--card-border);
+    }
+
+    .fc-front {
+      background: var(--card-bg);
+    }
+
+    .fc-back {
+      background: var(--btn-bg);
+      transform: rotateY(180deg);
+    }
+
+    .fc-card.flipped {
+      cursor: default;
+    }
+
+    .fc-q {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .fc-a {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .fc-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    .qtext {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .opt {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 14px;
+      margin-bottom: 8px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: var(--btn-bg);
+      color: var(--text-main);
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .opt.selected {
+      border-color: var(--primary);
+      background: rgba(219, 39, 119, 0.05);
+    }
+
+    .opt.ok {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .opt.no {
+      background: var(--danger-bg);
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .rat {
+      font-size: 13px;
+      color: var(--text-main);
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 14px;
+      line-height: 1.6;
+      margin-top: 8px;
+      margin-bottom: 12px;
+      display: none;
+      border-left: 4px solid var(--primary);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-missed {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: var(--danger);
+      display: none;
+    }
+
+    .btn-gotit {
+      background: var(--success-bg);
+      color: var(--success);
+      border-color: var(--success);
+      display: none;
+    }
+
+    /* btn-row visibility now handled by JS flipFC() since DOM structure changed */
+
+    .score-screen {
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    .score-big {
+      font-size: 60px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .stat-text {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* --- PRAYER MODAL & HEARTS --- */
+    #prayer-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .prayer-card {
+      background: var(--bg);
+      padding: 30px 20px;
+      border-radius: 20px;
+      text-align: center;
+      width: 100%;
+      max-width: 350px;
+      position: relative;
+      border: 2px solid var(--primary);
+    }
+
+    .prayer-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .heart-particle {
+      position: absolute;
+      pointer-events: none;
+      font-size: 24px;
+      animation: floatUp 2s ease-out forwards;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(1.5);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<section id="main-page" class="on">
-  <div class="character-proxy">
-    👩🏽‍⚕️
+  <header>
+    <div class="top-btn" onclick="toggleTheme()" id="theme-btn">🌙</div>
+    <div class="top-btn" onclick="openPrayer()">
+      💌
+      <div class="unread-badge" id="prayer-badge"></div>
+      <div class="unread-text" id="prayer-txt">Please read me today!</div>
     </div>
-  
-  <div class="greeting-msg">"Welcome Edubamo,<br>the Love of Godiva's Life"</div>
-  <div class="sub-greeting">"Hope this helps even a little"</div>
-  
-  <div class="topic-selector">
-    <div class="sec-lbl" style="text-align:left; color:#db2777;">Select a study topic</div>
-    <button class="topic-btn" onclick="loadTopic('antifungals')">Antifungal Pharmacology<span class="topic-btn-arrow">→</span></button>
+  </header>
+
+  <div id="view-main" class="view active">
+    <div class="character-proxy">👩🏽‍⚕️</div>
+    <div class="greeting">Welcome Edubamo,<br>the Love of Godiva's Life</div>
+    <div class="sub-greeting">Hope this helps even a little</div>
+
+    <input type="text" class="search-bar" id="search-input" placeholder="Search topics or PDFs..."
+      onkeyup="renderTopics()">
+
+    <div id="topic-list"></div>
+  </div>
+
+  <div id="view-split" class="view">
+    <div class="back-btn" onclick="navTo('view-main')">← Back to Home</div>
+    <h2 id="split-title" style="margin-bottom: 20px; text-align:center;"></h2>
+    <div class="big-split-btn" onclick="navTo('view-notes')">📚 Study Notes</div>
+    <div class="big-split-btn" onclick="navTo('view-questions')">📝 Practice & Quizzes</div>
+  </div>
+
+  <div id="view-notes" class="view">
+    <div class="back-btn" onclick="navTo('view-split')">← Back to Options</div>
+    <div class="nav-scroll">
+      <div class="nav-pill active" onclick="switchNotes('summary', this)">Summary</div>
+      <div class="nav-pill" onclick="switchNotes('ref', this)">Quick Reference</div>
+      <div class="nav-pill" onclick="switchNotes('detailed', this)">Detailed Notes</div>
     </div>
-</section>
+    <div id="notes-content"></div>
+  </div>
 
-<nav id="topic-nav">
-  <a href="#" onclick="backToMain();return false" style="color:#db2777;padding-right:12px;">Back</a>
-  <a href="#" class="on" id="nav-summary" onclick="showHub('summary',this);return false">Summary</a>
-  <a href="#" onclick="showHub('quiz',this);return false">Quiz</a>
-  <a href="#" onclick="showHub('flash',this);return false">Flashcards</a>
-  <a href="#" onclick="showHub('ref',this);return false">Quick Ref</a>
-  <a href="#" onclick="showHub('practice-hub',this);return false">Practice Hub</a>
-</nav>
-
-<section id="summary"><div class="sec-lbl">Summary notes</div><div id="summary-data-container"></div></section>
-<section id="ref"><div class="sec-lbl">Quick reference</div><div id="ref-data-container"></div></section>
-
-<section id="flash">
-  <div id="fc-active-area">
-    <div class="sec-lbl" id="fc-session-lbl">Session 1 (Cards 1-30)</div>
-    <div class="fc-count" id="fcp">Card 1 of 30</div>
-    <div class="fc" id="fccard" onclick="flipFC()">
-      <div class="fc-badge" id="fclbl">Question</div>
-      <div class="fc-q" id="fcq"></div>
-      <div class="fc-a" id="fca"></div>
-      <div class="fc-hint">tap to reveal answer</div>
+  <div id="view-questions" class="view">
+    <div class="back-btn" onclick="navTo('view-split')">← Back to Options</div>
+    <div class="nav-scroll">
+      <div class="nav-pill active" onclick="switchQuestions('flash', this)">Flashcards</div>
+      <div class="nav-pill" onclick="switchQuestions('quiz', this)">Quizzes</div>
+      <div class="nav-pill" onclick="switchQuestions('practice-menu', this)">Practice Questions</div>
     </div>
-    <div class="btnrow inline">
-      <button class="btn tap-hint" style="pointer-events:none; border:none; background:none; color:#888; width:100%;">Tap card to flip</button>
-      <button class="btn missed" onclick="scoreCard(false)">❌ Missed it</button>
-      <button class="btn gotit" onclick="scoreCard(true)">✅ Got it</button>
+
+    <div id="qsec-flash">
+      <div style="text-align:center; color:var(--text-muted); margin-bottom:10px;" id="fc-count"></div>
+      <div class="fc-card" id="fccard" onclick="flipFC()">
+        <div class="fc-card-inner">
+          <div class="fc-front">
+            <div class="fc-q" id="fcq"></div>
+            <div class="fc-hint">tap to reveal</div>
+          </div>
+          <div class="fc-back">
+            <div class="fc-a" id="fca"></div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <div class="btn btn-tap"
+          style="color:var(--text-muted); background:transparent; border:none; pointer-events:none;">Tap card to flip
+        </div>
+        <button class="btn btn-missed" onclick="scoreFC(false)">❌ Missed it</button>
+        <button class="btn btn-gotit" onclick="scoreFC(true)">✅ Got it</button>
+      </div>
+    </div>
+
+    <div id="qsec-quiz" style="display:none;">
+      <div style="color:var(--text-muted); margin-bottom:10px; font-weight:bold; font-size:12px;" id="quiz-count"></div>
+      <div class="glass-card">
+        <div class="qtext" id="quiz-q"></div>
+        <div id="quiz-opts"></div>
+        <div class="rat" id="quiz-rat"></div>
+        <button class="btn btn-primary" id="quiz-nxt" style="display:none; width:100%; margin-top:10px;"
+          onclick="nextQuiz()">Next Question →</button>
+      </div>
+    </div>
+
+    <div id="qsec-practice-menu" style="display:none;">
+      <div class="glass-card" style="text-align:center; cursor:pointer;" onclick="startPractice('nclex')">
+        <h4>🏥 NCLEX Style Boards</h4>
+        <p>Prioritization and Delegation</p>
+      </div>
+      <div class="glass-card" style="text-align:center; cursor:pointer;" onclick="startPractice('sata')">
+        <h4>✅ SATA Drills</h4>
+        <p>Select All That Apply</p>
+      </div>
+      <div class="glass-card" style="text-align:center; cursor:pointer;" onclick="startPractice('hard')">
+        <h4>🧠 Hard Questions</h4>
+        <p>Advanced Clinical Scenarios</p>
+      </div>
+    </div>
+
+    <div id="qsec-practice-active" style="display:none;">
+      <div class="back-btn" onclick="switchQuestions('practice-menu', document.querySelectorAll('.nav-pill')[2])"
+        style="font-size:12px;">← Back to Practice Menu</div>
+      <div style="color:var(--primary); margin-bottom:10px; font-weight:bold; font-size:12px;" id="prac-count"></div>
+      <div class="glass-card">
+        <div class="qtext" id="prac-q"></div>
+        <div id="prac-opts"></div>
+        <button class="btn btn-primary" id="prac-submit" style="display:none; width:100%; margin-top:10px;"
+          onclick="submitPrac()">Submit Answer</button>
+        <div class="rat" id="prac-rat"></div>
+        <button class="btn btn-primary" id="prac-nxt" style="display:none; width:100%; margin-top:10px;"
+          onclick="nextPrac()">Next →</button>
+      </div>
+    </div>
+
+    <div id="qsec-score" class="score-screen" style="display:none;">
+      <div class="score-big" id="score-pct"></div>
+      <div class="stat-text" id="score-txt"></div>
+      <div id="score-btns" style="display:flex; flex-direction:column; gap:10px;"></div>
+    </div>
+
+  </div>
+
+  <div id="prayer-modal">
+    <div class="prayer-card">
+      <div class="prayer-text" id="prayer-content"></div>
+      <button class="btn btn-primary" onclick="closePrayer()">Close</button>
     </div>
   </div>
-  <div id="fc-end-area" style="display:none; text-align:center; padding-top:20px;">
-    <h2 style="margin-bottom: 10px;">Session Complete</h2>
-    <p id="fc-end-msg" style="color:#555; margin-bottom: 20px; font-size:14px;"></p>
-    <div class="btnrow" id="fc-end-btns"></div>
-  </div>
-</section>
 
-<section id="quiz">
-  <div class="sec-lbl">Quiz Session (20 Questions)</div>
-  <div id="qbody-quiz">
-    <div class="card">
-      <div class="qnum" id="qnum-quiz"></div>
-      <div id="sata-indicator-quiz" class="sata-hint" style="display:none;">Select All That Apply</div>
-      <div class="qtext" id="qtext-quiz"></div>
-      <div id="qopts-quiz"></div>
-      <button class="submit-btn" id="qsubmit-quiz" onclick="submitSATA('quiz')">Submit Answer</button>
-      <div class="rat" id="qrat-quiz"></div>
-      <button class="nxt" id="qnxt-quiz" onclick="nextQ('quiz')"></button>
-    </div>
-  </div>
-  <div class="score" id="scorearea-quiz">
-    <div class="score-big" id="spct-quiz"></div>
-    <p id="smsg-quiz" style="color:#555; margin-bottom: 20px; font-size:14px;"></p>
-    <div class="btnrow" id="score-btns-quiz"></div>
-  </div>
-</section>
+  <script src="config.js"></script>
+  <script src="antifungals.js"></script>
+  <script src="prayer.js"></script>
 
-<section id="practice-hub">
-  <div class="sec-lbl">Critical Thinking & Deep Dive</div>
-  <div class="practice-grid">
-    <div class="hub-btn" onclick="openPracticeCategory('nclex')">
-      <div class="hub-btn-icon">🏥</div>
-      <div class="hub-btn-txt">NCLEX Boards</div>
-    </div>
-    <div class="hub-btn" onclick="openPracticeCategory('sata')">
-      <div class="hub-btn-icon">✅</div>
-      <div class="hub-btn-txt">SATA Drills</div>
-    </div>
-    <div class="hub-btn" onclick="openPracticeCategory('hard')">
-      <div class="hub-btn-icon">🧠</div>
-      <div class="hub-btn-txt">Hard Practice</div>
-    </div>
-    <div class="hub-btn" onclick="showHub('detailed-notes')">
-      <div class="hub-btn-icon">📚</div>
-      <div class="hub-btn-txt">Detailed Notes</div>
-    </div>
-  </div>
-</section>
+  <script>
+    /* =========================================
+       APP LOGIC & STATE
+    ========================================= */
+    let currentTopic = null;
+    let activeEngine = null; // 'fc', 'quiz', 'practice'
 
-<section id="practice">
-  <div class="sec-lbl" id="practice-title">Practice Session</div>
-  <div id="qbody-practice">
-    <div class="card">
-      <div class="qnum" id="qnum-practice"></div>
-      <div id="sata-indicator-practice" class="sata-hint" style="display:none;">Select All That Apply</div>
-      <div class="qtext" id="qtext-practice"></div>
-      <div id="qopts-practice"></div>
-      <button class="submit-btn" id="qsubmit-practice" onclick="submitSATA('practice')">Submit Answer</button>
-      <div class="rat" id="qrat-practice"></div>
-      <button class="nxt" id="qnxt-practice" onclick="nextQ('practice')"></button>
-    </div>
-  </div>
-  <div id="practice-end" style="display:none; text-align:center; padding-top:40px;">
-    <h2>Practice Complete!</h2>
-    <p style="color:#555; margin-top:10px; margin-bottom:20px;">Great job working through these scenarios.</p>
-    <button class="btn dark" onclick="showHub('practice-hub')">Back to Practice Hub</button>
-  </div>
-</section>
+    // Engines State
+    const STATE = {
+      fc: { q: [], missed: [], i: 0 },
+      quiz: { q: [], missed: [], i: 0, qs: 0, answered: false },
+      prac: { type: '', q: [], i: 0, qs: 0, answered: false, sata: new Set() }
+    };
 
-<section id="detailed-notes">
-  <div class="sec-lbl">In-Depth Clinical Review</div>
-  <div id="detailed-notes-container"></div>
-  <button class="btn" style="margin-top:20px;" onclick="showHub('practice-hub')">← Back to Hub</button>
-</section>
+    // --- INIT & THEME ---
+    window.onload = () => {
+      if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+      updateThemeIcon();
+      checkPrayer();
+      renderTopics();
+      restoreSession();
+    };
 
-<script src="data.js"></script>
-
-<script>
-let currentTopic = '';
-
-// --- AUTO-SAVE SESSION STATE ---
-function saveCurrentState() {
-  if (!currentTopic) return;
-  const state = {
-    topic: currentTopic,
-    activeSection: document.querySelector('section.on')?.id,
-    quizState: { queue: QE_VARS['quiz'].queue, qi: QE_VARS['quiz'].qi, qs: QE_VARS['quiz'].qs, missed: QE_VARS['quiz'].missed },
-    practiceState: { queue: QE_VARS['practice'].queue, qi: QE_VARS['practice'].qi, qs: QE_VARS['practice'].qs }
-  };
-  sessionStorage.setItem('edubamo_active_session', JSON.stringify(state));
-}
-
-// Restore active session on refresh
-window.onload = function() {
-  let savedSession = sessionStorage.getItem('edubamo_active_session');
-  if (savedSession && typeof PDF_TOPIC_DATA !== 'undefined') {
-    let state = JSON.parse(savedSession);
-    if (state.topic && PDF_TOPIC_DATA[state.topic]) {
-       currentTopic = state.topic;
-       let topicData = PDF_TOPIC_DATA[currentTopic];
-       
-       document.getElementById('main-page').style.display = 'none';
-       document.getElementById('topic-nav').style.visibility = 'visible';
-       document.getElementById('summary-data-container').innerHTML = topicData.summaryHtml;
-       document.getElementById('ref-data-container').innerHTML = topicData.refHtml;
-       document.getElementById('detailed-notes-container').innerHTML = topicData.detailedNotesHtml;
-       
-       if (state.quizState && state.quizState.queue.length > 0) {
-          QE_VARS['quiz'].queue = state.quizState.queue; QE_VARS['quiz'].qi = state.quizState.qi;
-          QE_VARS['quiz'].qs = state.quizState.qs; QE_VARS['quiz'].missed = state.quizState.missed || [];
-       }
-       if (state.practiceState && state.practiceState.queue.length > 0) {
-          QE_VARS['practice'].queue = state.practiceState.queue; QE_VARS['practice'].qi = state.practiceState.qi;
-          QE_VARS['practice'].qs = state.practiceState.qs;
-       }
-
-       if (state.activeSection) {
-          let navLink = document.querySelector(`nav a[onclick*="${state.activeSection}"]`);
-          if(!navLink && (state.activeSection === 'detailed-notes' || state.activeSection === 'practice')) {
-              navLink = document.querySelector(`nav a[onclick*="practice-hub"]`);
-          }
-          showHub(state.activeSection, navLink);
-          
-          if (state.activeSection === 'quiz') {
-              if (QE_VARS['quiz'].qi < QE_VARS['quiz'].queue.length) renderQ('quiz');
-              else showScoreQuiz();
-          }
-          if (state.activeSection === 'practice') {
-              if (QE_VARS['practice'].qi < QE_VARS['practice'].queue.length) renderQ('practice');
-              else {
-                 document.getElementById('qbody-practice').style.display = 'none';
-                 document.getElementById('practice-end').style.display = 'block';
-              }
-          }
-       }
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      updateThemeIcon();
     }
-  }
-}
+    function updateThemeIcon() { document.getElementById('theme-btn').innerText = document.body.classList.contains('dark') ? '☀️' : '🌙'; }
 
-// --- LOCAL STORAGE MANAGER ---
-function saveMissedData() {
-  if (!currentTopic) return;
-  try { localStorage.setItem(`edubamo_fc_${currentTopic}`, JSON.stringify(fcMissed)); } catch (e) {}
-  saveCurrentState();
-}
+    // --- PRAYER/MESSAGE SYSTEM ---
+    function checkPrayer() {
+      if (!window.APP_CONFIG) return;
+      if (localStorage.getItem('last_prayer_id') !== APP_CONFIG.prayer.id) {
+        document.getElementById('prayer-badge').style.display = 'block';
+        document.getElementById('prayer-txt').style.display = 'block';
+      }
+    }
+    function openPrayer() {
+      if (!window.APP_CONFIG) return;
+      document.getElementById('prayer-badge').style.display = 'none';
+      document.getElementById('prayer-txt').style.display = 'none';
+      localStorage.setItem('last_prayer_id', APP_CONFIG.prayer.id);
+      document.getElementById('prayer-content').innerHTML = APP_CONFIG.prayer.message;
+      document.getElementById('prayer-modal').style.display = 'flex';
 
-function loadMissedData() {
-  if (!currentTopic) return;
-  try {
-    let savedFC = localStorage.getItem(`edubamo_fc_${currentTopic}`);
-    if (savedFC) fcMissed = JSON.parse(savedFC);
-  } catch (e) {}
-}
+      // Heart Animation
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+          let h = document.createElement('div');
+          h.className = 'heart-particle';
+          h.innerText = '💖';
+          h.style.left = Math.random() * 80 + 10 + '%';
+          h.style.top = '60%';
+          document.getElementById('prayer-modal').appendChild(h);
+          setTimeout(() => h.remove(), 2000);
+        }, i * 100);
+      }
+    }
+    function closePrayer() { document.getElementById('prayer-modal').style.display = 'none'; }
 
-// --- NAVIGATION MANAGER ---
-function loadTopic(topicId) {
-  let topicData = PDF_TOPIC_DATA[topicId];
-  if (!topicData) return;
-  currentTopic = topicId;
-  
-  document.getElementById('main-page').style.display = 'none';
-  document.getElementById('topic-nav').style.visibility = 'visible';
-  
-  document.getElementById('summary-data-container').innerHTML = topicData.summaryHtml;
-  document.getElementById('ref-data-container').innerHTML = topicData.refHtml;
-  document.getElementById('detailed-notes-container').innerHTML = topicData.detailedNotesHtml;
-  
-  fcMissed = []; QE_VARS['quiz'].missed = []; loadMissedData();
-  
-  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('on'));
-  document.getElementById('nav-summary').classList.add('on');
-  showHub('summary');
-  
-  startFCSession(); startQuestionEngine('quiz');
-}
+    // --- NAVIGATION & VIEWS ---
+    function navTo(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
+      window.scrollTo(0, 0);
+      saveSession(viewId);
+    }
 
-function backToMain() {
-  document.querySelectorAll('section').forEach(s=>s.classList.remove('on'));
-  document.getElementById('topic-nav').style.visibility = 'hidden';
-  document.getElementById('main-page').style.display = 'block';
-  sessionStorage.removeItem('edubamo_active_session');
-}
+    // --- MAIN PAGE: RENDER TOPICS ---
+    function renderTopics() {
+      if (!window.PDF_TOPIC_DATA) return;
+      const list = document.getElementById('topic-list');
+      const term = document.getElementById('search-input').value.toLowerCase();
+      let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
 
-function showHub(hubId, el) {
-  document.querySelectorAll('section').forEach(s=>s.classList.remove('on'));
-  if (el) {
-    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('on'));
-    el.classList.add('on');
-  } else if (hubId === 'practice-hub' || hubId === 'detailed-notes' || hubId === 'practice') {
-    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('on'));
-    document.querySelector('nav a[onclick*="practice-hub"]').classList.add('on');
-  }
-  document.getElementById(hubId).classList.add('on');
-  window.scrollTo(0,0);
-  saveCurrentState();
-}
+      const allKeys = Object.keys(PDF_TOPIC_DATA);
+      const favouriteKeys = allKeys.filter(k => bookmarks.includes(k) && PDF_TOPIC_DATA[k].title.toLowerCase().includes(term));
+      const otherKeys = allKeys.filter(k => !bookmarks.includes(k) && PDF_TOPIC_DATA[k].title.toLowerCase().includes(term));
 
-// --- FLASHCARD ENGINE ---
-let fcQueue = []; let fcMissed = []; let fcIndex = 0;
+      function buildCard(key, isBookmarked) {
+        return `<div class="topic-card" onclick="openTopic('${key}')">
+          <div class="topic-info">
+            <h3>${PDF_TOPIC_DATA[key].title}</h3>
+            <p>${PDF_TOPIC_DATA[key].desc}</p>
+          </div>
+          <div class="bookmark-btn" onclick="toggleBookmark(event, '${key}')">
+            ${isBookmarked ? '🩷' : '🤍'}
+          </div>
+        </div>`;
+      }
 
-function startFCSession(isShuffle = false, reviewMissedOnly = false) {
-  document.getElementById('fc-active-area').style.display = 'block';
-  document.getElementById('fc-end-area').style.display = 'none';
-  
-  if (reviewMissedOnly) {
-    fcQueue = [...fcMissed]; fcMissed = []; document.getElementById('fc-session-lbl').textContent = "Reviewing Missed";
-  } else {
-    let pool = PDF_TOPIC_DATA[currentTopic].flashcards;
-    fcQueue = isShuffle ? shuffle([...pool]) : [...pool];
-    fcQueue = fcQueue.slice(0, 30); fcMissed = []; 
-    document.getElementById('fc-session-lbl').textContent = isShuffle ? "Random Session" : "Session (Cards 1-30)";
-  }
-  saveMissedData(); fcIndex = 0; renderFC();
-}
+      list.innerHTML = '';
 
-function renderFC() {
-  if (fcIndex >= fcQueue.length) { endFCSession(); return; }
-  let c = fcQueue[fcIndex];
-  document.getElementById('fcp').textContent = `Card ${fcIndex + 1} of ${fcQueue.length}`;
-  document.getElementById('fcq').textContent = c.q; document.getElementById('fca').textContent = c.a;
-  document.getElementById('fccard').classList.remove('flipped');
-}
+      // Favourites section — only shown if at least one bookmarked topic exists
+      if (favouriteKeys.length > 0) {
+        list.innerHTML += `<div style="font-size:12px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.08em; margin: 8px 4px 10px;">🩷 Favourites</div>`;
+        favouriteKeys.forEach(key => { list.innerHTML += buildCard(key, true); });
+        list.innerHTML += `<div style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin: 16px 4px 10px;">All Topics</div>`;
+      }
 
-function flipFC() { document.getElementById('fccard').classList.add('flipped'); }
-function scoreCard(knewIt) { if (!knewIt) { fcMissed.push(fcQueue[fcIndex]); saveMissedData(); } fcIndex++; renderFC(); }
+      // All topics section
+      otherKeys.forEach(key => { list.innerHTML += buildCard(key, false); });
 
-function endFCSession() {
-  document.getElementById('fc-active-area').style.display = 'none';
-  document.getElementById('fc-end-area').style.display = 'block';
-  let msg = document.getElementById('fc-end-msg'); let btns = document.getElementById('fc-end-btns'); btns.innerHTML = '';
-  if (fcMissed.length > 0) {
-    msg.textContent = `Session over. You missed ${fcMissed.length} cards.`;
-    btns.innerHTML += `<button class="btn dark" onclick="startFCSession(false, true)">Review Missed (${fcMissed.length})</button>`;
-  } else { msg.textContent = "Perfect session! No cards missed."; }
-  btns.innerHTML += `<button class="btn" onclick="startFCSession(true, false)">Shuffle & Restart</button>`;
-}
+      // Empty state when search finds nothing
+      if (favouriteKeys.length === 0 && otherKeys.length === 0) {
+        list.innerHTML = `<div style="text-align:center; color:var(--text-muted); margin-top:40px; font-size:14px;">No topics found for "<b>${term}</b>"</div>`;
+      }
+    }
 
-function shuffle(array) {
-  let arr = [...array];
-  for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; }
-  return arr;
-}
+    function toggleBookmark(e, key) {
+      e.stopPropagation();
+      let b = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+      if (b.includes(key)) b = b.filter(i => i !== key);
+      else b.push(key);
+      localStorage.setItem('bookmarks', JSON.stringify(b));
+      renderTopics();
+    }
 
-// --- QUIZ & PRACTICE ENGINE ---
-const QE_VARS = {
-  "quiz": { queue: [], qi: 0, qs: 0, qAnswered: false, sataSelections: new Set(), missed: [] },
-  "practice": { queue: [], qi: 0, qs: 0, qAnswered: false, sataSelections: new Set() } 
-};
+    // --- OPEN TOPIC ---
+    function openTopic(key) {
+      currentTopic = key;
+      document.getElementById('split-title').innerText = PDF_TOPIC_DATA[key].title;
+      navTo('view-split');
 
-function openPracticeCategory(category) {
-  let dataPool = [];
-  if (category === 'sata') dataPool = PDF_TOPIC_DATA[currentTopic].practiceSata || [];
-  if (category === 'nclex') dataPool = PDF_TOPIC_DATA[currentTopic].practiceNclex || [];
-  if (category === 'hard') dataPool = PDF_TOPIC_DATA[currentTopic].practiceHard || [];
-  
-  document.getElementById('practice-title').textContent = category.toUpperCase() + " Practice";
-  QE_VARS['practice'].queue = shuffle([...dataPool]);
-  QE_VARS['practice'].qi = 0; QE_VARS['practice'].qs = 0; QE_VARS['practice'].qAnswered = false;
-  
-  document.getElementById('qbody-practice').style.display = 'block';
-  document.getElementById('practice-end').style.display = 'none';
-  showHub('practice'); renderQ('practice');
-}
+      // Reset Engines
+      STATE.fc.missed = JSON.parse(localStorage.getItem(`fc_missed_${key}`) || '[]');
+      STATE.quiz.missed = JSON.parse(localStorage.getItem(`quiz_missed_${key}`) || '[]');
+      startFC();
+      startQuiz();
+    }
 
-function startQuestionEngine(type, isShuffle = false, reviewMissedOnly = false) {
-  if (type !== 'quiz') return; 
-  let state = QE_VARS[type];
-  if (reviewMissedOnly) { state.queue = [...state.missed]; state.missed = []; } 
-  else {
-    let pool = PDF_TOPIC_DATA[currentTopic].quizQuestions;
-    state.queue = isShuffle ? shuffle([...pool]).slice(0, 20) : [...pool].slice(0, 20);
-    state.missed = [];
-  }
-  state.qi = 0; state.qs = 0; state.qAnswered = false;
-  document.getElementById(`qbody-${type}`).style.display = 'block';
-  document.getElementById('scorearea-quiz').style.display = 'none';
-  saveCurrentState(); renderQ(type);
-}
+    // --- NOTES SECTION ---
+    function switchNotes(type, el) {
+      document.querySelectorAll('#view-notes .nav-pill').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      let data = PDF_TOPIC_DATA[currentTopic];
+      let html = '';
+      if (type === 'summary') html = data.summaryHtml;
+      if (type === 'ref') html = data.refHtml;
+      if (type === 'detailed') html = data.detailedNotesHtml;
+      document.getElementById('notes-content').innerHTML = html;
+    }
 
-function renderQ(type) {
-  let state = QE_VARS[type];
-  if (state.qi >= state.queue.length) { 
-    if(type==='quiz') showScoreQuiz(); 
-    else { document.getElementById('qbody-practice').style.display = 'none'; document.getElementById('practice-end').style.display = 'block'; }
-    return; 
-  }
-  state.qAnswered = false; state.sataSelections.clear();
-  let q = state.queue[state.qi];
-  let isSATA = q.type === 'sata';
-  
-  document.getElementById(`qnum-${type}`).textContent = `Question ${state.qi + 1} of ${state.queue.length}`;
-  document.getElementById(`sata-indicator-${type}`).style.display = isSATA ? 'inline-block' : 'none';
-  document.getElementById(`qtext-${type}`).textContent = q.q;
-  document.getElementById(`qrat-${type}`).style.display = 'none';
-  document.getElementById(`qnxt-${type}`).style.display = 'none';
-  document.getElementById(`qsubmit-${type}`).style.display = isSATA ? 'block' : 'none';
-  
-  let od = document.getElementById(`qopts-${type}`); od.innerHTML = '';
-  q.o.forEach((optText, index) => {
-    let b = document.createElement('button'); b.className = 'opt'; b.textContent = optText;
-    b.onclick = () => { handleOptionClick(type, b, index, isSATA, q); };
-    od.appendChild(b);
-  });
-  saveCurrentState();
-}
+    // --- QUESTIONS SECTION (TABS) ---
+    function switchQuestions(tab, el) {
+      document.querySelectorAll('#view-questions .nav-pill').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      ['flash', 'quiz', 'practice-menu', 'practice-active', 'score'].forEach(id => {
+        document.getElementById(`qsec-${id}`).style.display = 'none';
+      });
 
-function handleOptionClick(type, btn, index, isSATA, qData) {
-  let state = QE_VARS[type];
-  if (state.qAnswered) return;
-  if (isSATA) {
-    if (state.sataSelections.has(index)) { state.sataSelections.delete(index); btn.classList.remove('selected'); } 
-    else { state.sataSelections.add(index); btn.classList.add('selected'); }
-  } else { state.qAnswered = true; evaluateMCQ(type, index, qData); }
-}
+      if (tab === 'practice-menu') document.getElementById('qsec-practice-menu').style.display = 'block';
+      else {
+        document.getElementById(`qsec-${tab}`).style.display = 'block';
+        if (tab === 'flash') renderFC();
+        if (tab === 'quiz') renderQuiz();
+      }
+    }
 
-function evaluateMCQ(type, selectedIndex, qData) {
-  let state = QE_VARS[type]; let btns = document.querySelectorAll(`#qopts-${type} .opt`);
-  let isCorrect = selectedIndex === qData.c;
-  btns.forEach((b, i) => {
-    b.style.pointerEvents = 'none';
-    if (i === qData.c) b.classList.add('ok'); else if (i === selectedIndex) b.classList.add('no');
-  });
-  if (isCorrect) { state.qs++; } else if (type === 'quiz') { state.missed.push(qData); }
-  showRationaleQE(type, qData.r);
-}
+    // --- UTILITY ---
+    function shuffle(arr) { let a = [...arr]; for (let i = a.length - 1; i > 0; i--) { let j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]]; } return a; }
 
-function submitSATA(type) {
-  let state = QE_VARS[type];
-  if (state.qAnswered) return; state.qAnswered = true;
-  document.getElementById(`qsubmit-${type}`).style.display = 'none'; 
-  
-  let qData = state.queue[state.qi]; let correctArr = qData.c;
-  let btns = document.querySelectorAll(`#qopts-${type} .opt`);
-  let isPerfect = state.sataSelections.size === correctArr.length && correctArr.every(val => state.sataSelections.has(val));
-  
-  if (isPerfect) { state.qs++; } else if (type === 'quiz') { state.missed.push(qData); }
-  
-  btns.forEach((b, i) => {
-    b.style.pointerEvents = 'none';
-    let shouldBeSelected = correctArr.includes(i); let wasSelected = state.sataSelections.has(i);
-    if (shouldBeSelected) b.classList.add('ok'); 
-    if (wasSelected && !shouldBeSelected) b.classList.add('no'); 
-  });
-  showRationaleQE(type, qData.r);
-}
+    /* =========================================
+       FLASHCARD ENGINE
+    ========================================= */
+    function startFC(reviewMissed = false) {
+      let pool = PDF_TOPIC_DATA[currentTopic].flashcards;
+      if (reviewMissed) { STATE.fc.q = [...STATE.fc.missed]; STATE.fc.missed = []; }
+      else { STATE.fc.q = shuffle(pool).slice(0, 30); STATE.fc.missed = []; }
+      STATE.fc.i = 0;
+      saveProgress(); renderFC();
+    }
+    function renderFC() {
+      if (STATE.fc.i >= STATE.fc.q.length) return endFC();
+      document.getElementById('fc-count').innerText = `Card ${STATE.fc.i + 1} of ${STATE.fc.q.length}`;
+      document.getElementById('fcq').innerText = STATE.fc.q[STATE.fc.i].q;
+      document.getElementById('fca').innerText = STATE.fc.q[STATE.fc.i].a;
+      document.getElementById('fccard').classList.remove('flipped');
+      // Reset button visibility for new card
+      document.querySelector('.btn-tap').style.display = '';
+      document.querySelector('.btn-missed').style.display = 'none';
+      document.querySelector('.btn-gotit').style.display = 'none';
+    }
+    function flipFC() {
+      let card = document.getElementById('fccard');
+      if (card.classList.contains('flipped')) return;
+      card.classList.add('flipped');
+      // Show score buttons, hide tap prompt
+      document.querySelector('.btn-tap').style.display = 'none';
+      document.querySelector('.btn-missed').style.display = 'block';
+      document.querySelector('.btn-gotit').style.display = 'block';
+    }
+    function scoreFC(knewIt) {
+      if (!knewIt) STATE.fc.missed.push(STATE.fc.q[STATE.fc.i]);
+      STATE.fc.i++; saveProgress(); renderFC();
+    }
+    function endFC() {
+      document.getElementById('qsec-flash').style.display = 'none';
+      let pct = Math.round(((STATE.fc.q.length - STATE.fc.missed.length) / STATE.fc.q.length) * 100) || 0;
+      showScoreScreen(pct, STATE.fc.missed.length, 'fc');
+    }
 
-function showRationaleQE(type, ratText) {
-  let state = QE_VARS[type];
-  let r = document.getElementById(`qrat-${type}`); r.innerHTML = ratText; r.style.display = 'block';
-  let nxtBtn = document.getElementById(`qnxt-${type}`); nxtBtn.style.display = 'block';
-  nxtBtn.textContent = state.qi < state.queue.length - 1 ? 'Next Question →' : 'Finish';
-  saveCurrentState();
-}
+    /* =========================================
+       QUIZ ENGINE
+    ========================================= */
+    function startQuiz(reviewMissed = false) {
+      let pool = PDF_TOPIC_DATA[currentTopic].quizQuestions;
+      if (reviewMissed) { STATE.quiz.q = [...STATE.quiz.missed]; STATE.quiz.missed = []; }
+      else { STATE.quiz.q = shuffle(pool).slice(0, 20); STATE.quiz.missed = []; }
+      STATE.quiz.i = 0; STATE.quiz.qs = 0;
+      saveProgress(); renderQuiz();
+    }
+    function renderQuiz() {
+      if (STATE.quiz.i >= STATE.quiz.q.length) return endQuiz();
+      STATE.quiz.answered = false;
+      let q = STATE.quiz.q[STATE.quiz.i];
 
-function nextQ(type) { let state = QE_VARS[type]; state.qi++; renderQ(type); }
+      document.getElementById('quiz-count').innerText = `Question ${STATE.quiz.i + 1} of ${STATE.quiz.q.length}`;
+      document.getElementById('quiz-q').innerText = q.q;
+      document.getElementById('quiz-rat').style.display = 'none';
+      document.getElementById('quiz-nxt').style.display = 'none';
 
-function showScoreQuiz() {
-  document.getElementById('qbody-quiz').style.display = 'none';
-  let state = QE_VARS['quiz']; let pct = Math.round((state.qs / state.queue.length) * 100);
-  document.getElementById('spct-quiz').textContent = pct + '%';
-  let msg = document.getElementById('smsg-quiz'); let btns = document.getElementById('score-btns-quiz'); btns.innerHTML = '';
-  
-  if (state.missed.length > 0) {
-    msg.textContent = `You got ${state.qs} out of ${state.queue.length}. You missed ${state.missed.length} questions.`;
-    btns.innerHTML += `<button class="btn dark" onclick="startQuestionEngine('quiz', false, true)">Review Missed (${state.missed.length})</button>`;
-  } else { msg.textContent = "Perfect score! You didn't miss any questions."; }
-  
-  btns.innerHTML += `<button class="btn" onclick="startQuestionEngine('quiz', true, false)">Shuffle & Take Another 20</button>`;
-  document.getElementById('scorearea-quiz').style.display = 'block';
-  saveCurrentState();
-}
-</script>
+      let od = document.getElementById('quiz-opts'); od.innerHTML = '';
+      q.o.forEach((opt, idx) => {
+        let b = document.createElement('button'); b.className = 'opt'; b.innerText = opt;
+        b.onclick = () => evalQuiz(idx, q);
+        od.appendChild(b);
+      });
+    }
+    function evalQuiz(sel, q) {
+      if (STATE.quiz.answered) return;
+      STATE.quiz.answered = true;
+      let btns = document.querySelectorAll('#quiz-opts .opt');
+      btns.forEach((b, idx) => {
+        b.style.pointerEvents = 'none';
+        if (idx === q.c) b.classList.add('ok');
+        else if (idx === sel) b.classList.add('no');
+      });
+      if (sel === q.c) STATE.quiz.qs++;
+      else STATE.quiz.missed.push(q);
+
+      let rat = document.getElementById('quiz-rat');
+      rat.innerHTML = q.r; rat.style.display = 'block';
+      document.getElementById('quiz-nxt').style.display = 'block';
+      saveProgress();
+    }
+    function nextQuiz() { STATE.quiz.i++; renderQuiz(); }
+    function endQuiz() {
+      document.getElementById('qsec-quiz').style.display = 'none';
+      let pct = Math.round((STATE.quiz.qs / STATE.quiz.q.length) * 100) || 0;
+      showScoreScreen(pct, STATE.quiz.missed.length, 'quiz');
+    }
+
+    /* =========================================
+       PRACTICE ENGINE (SATA, NCLEX, HARD)
+    ========================================= */
+    function startPractice(type) {
+      STATE.prac.type = type;
+      let pool = type === 'sata' ? PDF_TOPIC_DATA[currentTopic].practiceSata : (type === 'nclex' ? PDF_TOPIC_DATA[currentTopic].practiceNclex : PDF_TOPIC_DATA[currentTopic].practiceHard);
+      STATE.prac.q = shuffle(pool);
+      STATE.prac.i = 0; STATE.prac.qs = 0;
+      document.getElementById('qsec-practice-menu').style.display = 'none';
+      document.getElementById('qsec-practice-active').style.display = 'block';
+      saveProgress(); renderPrac();
+    }
+    function renderPrac() {
+      if (STATE.prac.i >= STATE.prac.q.length) return endPrac();
+      STATE.prac.answered = false; STATE.prac.sata.clear();
+      let q = STATE.prac.q[STATE.prac.i];
+      let isSATA = q.type === 'sata';
+
+      document.getElementById('prac-count').innerText = `${STATE.prac.type.toUpperCase()} - Q${STATE.prac.i + 1}/${STATE.prac.q.length}`;
+      document.getElementById('prac-q').innerHTML = (isSATA ? '<span class="hl">SATA</span> ' : '') + q.q;
+      document.getElementById('prac-rat').style.display = 'none';
+      document.getElementById('prac-nxt').style.display = 'none';
+      document.getElementById('prac-submit').style.display = isSATA ? 'block' : 'none';
+
+      let od = document.getElementById('prac-opts'); od.innerHTML = '';
+      q.o.forEach((opt, idx) => {
+        let b = document.createElement('button'); b.className = 'opt'; b.innerText = opt;
+        b.onclick = () => handlePracOpt(b, idx, isSATA, q);
+        od.appendChild(b);
+      });
+    }
+    function handlePracOpt(btn, idx, isSATA, q) {
+      if (STATE.prac.answered) return;
+      if (isSATA) {
+        if (STATE.prac.sata.has(idx)) { STATE.prac.sata.delete(idx); btn.classList.remove('selected'); }
+        else { STATE.prac.sata.add(idx); btn.classList.add('selected'); }
+      } else {
+        STATE.prac.answered = true; evalPracMCQ(idx, q);
+      }
+    }
+    function evalPracMCQ(sel, q) {
+      let btns = document.querySelectorAll('#prac-opts .opt');
+      btns.forEach((b, i) => {
+        b.style.pointerEvents = 'none';
+        if (i === q.c) b.classList.add('ok'); else if (i === sel) b.classList.add('no');
+      });
+      if (sel === q.c) STATE.prac.qs++;
+      finishPracQ(q.r);
+    }
+    function submitPrac() {
+      if (STATE.prac.answered) return;
+      STATE.prac.answered = true; document.getElementById('prac-submit').style.display = 'none';
+      let q = STATE.prac.q[STATE.prac.i]; let corr = q.c;
+      let btns = document.querySelectorAll('#prac-opts .opt');
+
+      let perf = STATE.prac.sata.size === corr.length && corr.every(v => STATE.prac.sata.has(v));
+      if (perf) STATE.prac.qs++;
+
+      btns.forEach((b, i) => {
+        b.style.pointerEvents = 'none';
+        if (corr.includes(i)) b.classList.add('ok');
+        if (STATE.prac.sata.has(i) && !corr.includes(i)) b.classList.add('no');
+      });
+      finishPracQ(q.r);
+    }
+    function finishPracQ(r) {
+      let rat = document.getElementById('prac-rat');
+      rat.innerHTML = r; rat.style.display = 'block';
+      document.getElementById('prac-nxt').style.display = 'block';
+      saveProgress();
+    }
+    function nextPrac() { STATE.prac.i++; renderPrac(); }
+    function endPrac() {
+      document.getElementById('qsec-practice-active').style.display = 'none';
+      let pct = Math.round((STATE.prac.qs / STATE.prac.q.length) * 100) || 0;
+      showScoreScreen(pct, 0, 'prac');
+    }
+
+    /* =========================================
+       SCORE SCREEN & PERSISTENCE
+    ========================================= */
+    function showScoreScreen(pct, missed, type) {
+      document.getElementById('qsec-score').style.display = 'block';
+      document.getElementById('score-pct').innerText = pct + '%';
+      let txt = document.getElementById('score-txt');
+      let btns = document.getElementById('score-btns'); btns.innerHTML = '';
+
+      if (type === 'prac') {
+        txt.innerText = "Practice Session Complete!";
+        btns.innerHTML += `<button class="btn btn-primary" onclick="switchQuestions('practice-menu', document.querySelectorAll('.nav-pill')[2])">Back to Practice Menu</button>`;
+      } else {
+        txt.innerText = missed > 0 ? `You missed ${missed} questions.` : "Perfect! No mistakes.";
+        if (missed > 0) {
+          btns.innerHTML += `<button class="btn btn-primary" onclick="restartFromScore('${type}', true)">Review Missed (${missed})</button>`;
+        }
+        btns.innerHTML += `<button class="btn" onclick="restartFromScore('${type}', false)">Shuffle & Restart</button>`;
+      }
+    }
+
+    // Fix: re-show the correct section before restarting so the content is visible
+    function restartFromScore(type, reviewMissed) {
+      document.getElementById('qsec-score').style.display = 'none';
+      if (type === 'fc') {
+        document.getElementById('qsec-flash').style.display = 'block';
+        startFC(reviewMissed);
+      } else {
+        document.getElementById('qsec-quiz').style.display = 'block';
+        startQuiz(reviewMissed);
+      }
+    }
+
+    // Session Saving (for refresh)
+    function saveSession(viewId) { sessionStorage.setItem('active_view', viewId); }
+    function saveProgress() {
+      if (!currentTopic) return;
+      localStorage.setItem(`fc_missed_${currentTopic}`, JSON.stringify(STATE.fc.missed));
+      localStorage.setItem(`quiz_missed_${currentTopic}`, JSON.stringify(STATE.quiz.missed));
+      sessionStorage.setItem('state_fc', JSON.stringify(STATE.fc));
+      sessionStorage.setItem('state_quiz', JSON.stringify(STATE.quiz));
+      sessionStorage.setItem('state_prac', JSON.stringify(STATE.prac));
+      sessionStorage.setItem('current_topic', currentTopic);
+    }
+    function restoreSession() {
+      let v = sessionStorage.getItem('active_view');
+      let t = sessionStorage.getItem('current_topic');
+      if (v && v !== 'view-main' && t) {
+        currentTopic = t;
+        document.getElementById('split-title').innerText = PDF_TOPIC_DATA[t].title;
+
+        // Restore states
+        if (sessionStorage.getItem('state_fc')) STATE.fc = JSON.parse(sessionStorage.getItem('state_fc'));
+        if (sessionStorage.getItem('state_quiz')) STATE.quiz = JSON.parse(sessionStorage.getItem('state_quiz'));
+        if (sessionStorage.getItem('state_prac')) {
+          STATE.prac = JSON.parse(sessionStorage.getItem('state_prac'));
+          STATE.prac.sata = new Set(); // Set cannot survive JSON — always re-create fresh
+        }
+
+        navTo(v);
+
+        // Default open tabs if restoring deep
+        if (v === 'view-notes') switchNotes('summary', document.querySelectorAll('#view-notes .nav-pill')[0]);
+        if (v === 'view-questions') {
+          let activeQ = document.querySelector('#view-questions .nav-pill.active');
+          if (activeQ) activeQ.click(); else switchQuestions('flash', document.querySelectorAll('#view-questions .nav-pill')[0]);
+        }
+      }
+    }
+  </script>
 </body>
+
 </html>
