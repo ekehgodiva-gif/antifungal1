@@ -391,280 +391,480 @@ window.PDF_TOPIC_DATA["antifungals"] = {
       q: "A patient with fungal meningitis requires an azole antifungal. Which medication is most appropriate due to its ability to reach the CSF in high concentrations?",
       o: ["Itraconazole", "Ketoconazole", "Fluconazole", "Voriconazole"],
       c: 2,
-      r: "<b>Fluconazole:</b> Unique among all azoles for its ability to cross the blood-brain barrier and achieve therapeutic CSF concentrations. It is the drug of choice for cryptococcal meningitis. All other azoles cannot penetrate the CSF adequately."
+      r: [
+        "Incorrect. Itraconazole cannot cross the blood-brain barrier — it has poor CSF penetration and is used for systemic blastomycosis instead.",
+        "Incorrect. Ketoconazole does not penetrate the CSF and is primarily known for antiandrogenic side effects (gynecomastia, impotence).",
+        "Correct! Fluconazole is the ONLY azole that crosses the blood-brain barrier and achieves therapeutic CSF concentrations — making it the drug of choice for cryptococcal meningitis.",
+        "Incorrect. Voriconazole is the drug of choice for invasive aspergillosis, not meningitis — it lacks reliable CSF penetration."
+      ]
     },
     {
       type: "mcq",
       q: "What is the primary mechanism of action of Amphotericin B?",
       o: ["Inhibition of fungal mitosis by disrupting the mitotic spindle", "Binding to ergosterol to form pores that allow leakage of cellular contents", "Inhibition of β-1,3-glucan synthase to disrupt cell wall synthesis", "Inhibition of squalene epoxidase to block ergosterol biosynthesis"],
       c: 1,
-      r: "<b>Binding ergosterol → pores:</b> Amphotericin B is a polyene macrolide that physically binds ergosterol in the fungal membrane, forming pores that allow cellular contents to leak out. This direct membrane destruction makes it fungicidal with the broadest antifungal spectrum."
+      r: [
+        "Incorrect. Disrupting the mitotic spindle is the mechanism of Griseofulvin, not Amphotericin B.",
+        "Correct! Amphotericin B is a polyene macrolide that physically binds ergosterol in the fungal membrane, forming pores that allow cellular contents to leak out — making it fungicidal with the broadest antifungal spectrum.",
+        "Incorrect. Inhibiting β-1,3-glucan synthase is the mechanism of Caspofungin (an echinocandin), which targets the cell wall.",
+        "Incorrect. Inhibiting squalene epoxidase is the mechanism of Terbinafine (an allylamine)."
+      ]
     },
     {
       type: "mcq",
       q: "A patient receiving IV Amphotericin B experiences chills, fever, and dyspnea 3 hours into treatment. The nurse identifies this as:",
       o: ["Long-term nephrotoxicity", "A normal, non-threatening side effect of all antifungals", "An acute reaction caused by the release of IL and TNF", "A sign of immediate liver failure"],
       c: 2,
-      r: "<b>Cytokine release (IL and TNF):</b> Acute 'shake and bake' reactions — fever, chills, rigors, dyspnea — occur 2–5 hours after IV Amphotericin B due to cytokine (IL and TNF) release. Premedication with acetaminophen, antihistamines, and meperidine can reduce severity."
+      r: [
+        "Incorrect. Nephrotoxicity is a long-term complication (azotemia, ↓GFR, hypokalemia) — not an acute reaction occurring during infusion.",
+        "Incorrect. This is NOT normal or non-threatening — it is a serious acute infusion reaction specific to Amphotericin B, not all antifungals.",
+        "Correct! The 'shake and bake' reaction — fever, chills, rigors, dyspnea — occurs 2–5 hours after IV Amphotericin B due to cytokine release (IL and TNF). Premedicate with acetaminophen, antihistamines, and meperidine.",
+        "Incorrect. Liver failure is not an acute reaction to Amphotericin B. Hepatotoxicity is associated with azoles, not polyenes."
+      ]
     },
     {
       type: "mcq",
       q: "Which antifungal drug is classified as an antimetabolite and is converted to 5-fluorouracil (5-FU) within the fungal cell?",
       o: ["Caspofungin", "Flucytosine", "Griseofulvin", "Terbinafine"],
       c: 1,
-      r: "<b>Flucytosine:</b> A fluorinated pyrimidine prodrug — inactive until fungal cytosine deaminase converts it to 5-FU inside the cell. 5-FU then inhibits nucleic acid synthesis. Human cells lack significant cytosine deaminase activity, providing selectivity."
+      r: [
+        "Incorrect. Caspofungin is an echinocandin that inhibits β-1,3-glucan synthase (cell wall target), not an antimetabolite.",
+        "Correct! Flucytosine is a fluorinated pyrimidine prodrug — fungal cytosine deaminase converts it to 5-FU inside the cell, which then inhibits nucleic acid synthesis. Human cells lack significant cytosine deaminase activity.",
+        "Incorrect. Griseofulvin is a heterocyclic benzofuran that disrupts the mitotic spindle — not an antimetabolite.",
+        "Incorrect. Terbinafine is an allylamine that inhibits squalene epoxidase — not related to nucleic acid synthesis."
+      ]
     },
     {
       type: "mcq",
       q: "A patient is diagnosed with invasive aspergillosis of the lung. Which drug is the treatment of choice?",
       o: ["Nystatin", "Voriconazole", "Ketoconazole", "Flucytosine"],
       c: 1,
-      r: "<b>Voriconazole:</b> The established drug of choice for invasive pulmonary aspergillosis. Remember 'V for Very serious lung infection.' Nystatin is topical only; Ketoconazole is not indicated; Flucytosine is never used alone."
+      r: [
+        "Incorrect. Nystatin is topical only — too toxic for systemic use. It treats oral/vaginal candidiasis, not deep lung infections.",
+        "Correct! Voriconazole is the established drug of choice for invasive pulmonary aspergillosis. Remember: 'V for Very serious lung infection.'",
+        "Incorrect. Ketoconazole is not indicated for aspergillosis and is mostly avoided systemically due to antiandrogenic side effects.",
+        "Incorrect. Flucytosine is never used alone (rapid resistance) and is not a first-line agent for aspergillosis."
+      ]
     },
     {
       type: "mcq",
       q: "Which statement regarding the pharmacokinetics of Griseofulvin is correct?",
       o: ["It is administered topically for systemic infections", "Absorption is significantly decreased when taken with fatty foods", "It concentrates specifically in keratinized tissues like skin, hair, and nails", "It has a very short half-life of only 2 hours"],
       c: 2,
-      r: "<b>Concentrates in keratinized tissue:</b> Griseofulvin accumulates in keratin structures (skin, hair, nails) — exactly where dermatophytes reside. Absorption is actually INCREASED by fatty food (not decreased). Half-life is 24 hours, not 2 hours."
+      r: [
+        "Incorrect. Griseofulvin is given ORALLY, not topically. It is absorbed from the GI tract and distributed to keratinized tissues.",
+        "Incorrect. Absorption is actually INCREASED by fatty food, not decreased. Always advise patients to take it with a fatty meal.",
+        "Correct! Griseofulvin accumulates in keratin structures (skin, hair, nails) — exactly where dermatophytes live. This is why treatment takes months for nails.",
+        "Incorrect. Griseofulvin's half-life is 24 hours, not 2 hours."
+      ]
     },
     {
       type: "mcq",
       q: "A male patient taking Ketoconazole reports new-onset breast enlargement and decreased libido. The nurse explains this is due to:",
       o: ["Hepatotoxicity increasing estrogen levels", "Antiandrogenic effects caused by decreased gonadal steroid synthesis", "Inhibition of the fungal cell wall synthesis", "Transient visual disturbances affecting hormones"],
       c: 1,
-      r: "<b>Antiandrogenic effects:</b> Ketoconazole inhibits gonadal steroid synthesis (not just fungal CYP450 but also human steroidogenic pathways), causing gynecomastia and impotence. Memory anchor: 'KETO KILLS androgens.'"
+      r: [
+        "Incorrect. While azoles can cause hepatotoxicity, liver damage does not directly cause gynecomastia through estrogen elevation.",
+        "Correct! Ketoconazole inhibits CYP450-dependent gonadal steroid synthesis, reducing testosterone production → gynecomastia and impotence. Memory: 'KETO KILLS androgens.'",
+        "Incorrect. Ketoconazole inhibits CYP51 (ergosterol synthesis), not cell wall synthesis. Cell wall inhibition is the mechanism of Caspofungin.",
+        "Incorrect. Visual disturbances are associated with Voriconazole (V = Visual), not Ketoconazole, and are unrelated to hormonal effects."
+      ]
     },
     {
       type: "mcq",
       q: "Caspofungin belongs to which class of antifungal drugs?",
       o: ["Allylamines", "Polyenes", "Echinocandins", "Triazoles"],
       c: 2,
-      r: "<b>Echinocandins:</b> Caspofungin, Anidulafungin, and Micafungin are all Echinocandins. They inhibit β-1,3-glucan synthase, targeting the fungal cell wall — a mechanism unique among antifungals since human cells have no cell wall."
+      r: [
+        "Incorrect. Allylamines include Terbinafine, Naftifine, and Butenafine — they inhibit squalene epoxidase.",
+        "Incorrect. Polyenes include Amphotericin B and Nystatin — they bind ergosterol and form membrane pores.",
+        "Correct! Caspofungin, Anidulafungin, and Micafungin are Echinocandins. They inhibit β-1,3-glucan synthase, targeting the fungal cell wall — unique among antifungals since human cells have no cell wall.",
+        "Incorrect. Triazoles include Fluconazole, Itraconazole, and Voriconazole — they inhibit CYP51 (14α-demethylase)."
+      ]
     },
     {
       type: "mcq",
       q: "What is the mechanism of action of Terbinafine?",
       o: ["Inhibits squalene epoxidase, leading to toxic squalene accumulation", "Binds to the mitotic spindle to stop fungal mitosis", "Inhibits fungal cytochrome P450 (14α-demethylase)", "Disrupts DNA synthesis by acting as a pyrimidine analog"],
       c: 0,
-      r: "<b>Squalene epoxidase inhibition:</b> Terbinafine (an allylamine) inhibits squalene epoxidase, an enzyme in the ergosterol synthesis pathway. Squalene accumulates to toxic levels, increasing membrane permeability and killing the fungal cell (fungicidal)."
+      r: [
+        "Correct! Terbinafine (an allylamine) inhibits squalene epoxidase — squalene accumulates to toxic levels, increasing membrane permeability and killing the fungal cell. This makes it fungicidal.",
+        "Incorrect. Binding microtubules to stop mitosis is the mechanism of Griseofulvin, not Terbinafine.",
+        "Incorrect. Inhibiting CYP51 (14α-demethylase) is the mechanism of Azoles (Fluconazole, Ketoconazole, etc.).",
+        "Incorrect. Acting as a pyrimidine analog is the mechanism of Flucytosine, which is converted to 5-FU inside fungal cells."
+      ]
     },
     {
       type: "mcq",
       q: "Why is Flucytosine almost always used in combination with other antifungal agents?",
       o: ["To prevent hepatotoxicity", "Because it is too weak to work alone", "To prevent the rapid development of fungal resistance", "To increase its absorption in the GI tract"],
       c: 2,
-      r: "<b>Prevent rapid resistance:</b> Fungi develop resistance to Flucytosine very quickly when it is used as monotherapy. Combining it with Amphotericin B is synergistic — Amphotericin B disrupts the membrane, allowing more Flucytosine to enter."
+      r: [
+        "Incorrect. Combination therapy is not about preventing hepatotoxicity — Flucytosine's main toxicity is bone marrow suppression, not liver damage.",
+        "Incorrect. Flucytosine is not weak — it is effective against fungi but resistance develops too rapidly when used alone.",
+        "Correct! Fungi develop resistance to Flucytosine very quickly as monotherapy. Combining with Amphotericin B is synergistic — Ampho B disrupts the membrane, allowing more Flucytosine to enter the cell.",
+        "Incorrect. Flucytosine already has good oral absorption — combination therapy is about preventing resistance, not improving absorption."
+      ]
     },
     {
       type: "mcq",
       q: "Which antifungal medication is strictly limited to topical use because it is too toxic for systemic administration?",
       o: ["Fluconazole", "Amphotericin B", "Nystatin", "Itraconazole"],
       c: 2,
-      r: "<b>Nystatin:</b> Same class and mechanism as Amphotericin B (polyene macrolide), but too toxic for parenteral use. It is NOT weaker — it simply cannot be safely given IV. Used topically for oropharyngeal and vaginal candidiasis."
+      r: [
+        "Incorrect. Fluconazole is a systemic triazole given orally or IV — it is not limited to topical use.",
+        "Incorrect. Amphotericin B IS given systemically (IV) despite its toxicity — it has the broadest spectrum and is essential for severe infections.",
+        "Correct! Nystatin shares Amphotericin B's mechanism (polyene, binds ergosterol, forms pores) but is too toxic for parenteral use. It is NOT weaker — simply unsafe IV. Used topically for oral/vaginal candidiasis.",
+        "Incorrect. Itraconazole is a systemic triazole used orally for blastomycosis and other deep infections."
+      ]
     },
     {
       type: "mcq",
       q: "A nurse reviews lab results for a patient on long-term Amphotericin B therapy. Which finding is a priority concern?",
       o: ["Serum Potassium of 2.8 mEq/L (Hypokalemia)", "Transient blurry vision", "Red discoloration of urine", "Increased appetite"],
       c: 0,
-      r: "<b>Hypokalemia:</b> Amphotericin B nephrotoxicity causes electrolyte wasting — particularly potassium. A K⁺ of 2.8 mEq/L (normal 3.5–5.0) is dangerously low and can cause fatal cardiac arrhythmias. This is the priority concern."
+      r: [
+        "Correct! Amphotericin B nephrotoxicity causes electrolyte wasting — K⁺ of 2.8 mEq/L (normal 3.5–5.0) is dangerously low and can cause fatal cardiac arrhythmias. This is the priority concern.",
+        "Incorrect. Transient visual disturbances are associated with Voriconazole, not Amphotericin B.",
+        "Incorrect. Red urine discoloration is not a known effect of Amphotericin B — it is associated with rifampin and some other drugs.",
+        "Incorrect. Increased appetite is not a documented adverse effect of Amphotericin B therapy."
+      ]
     },
     {
       type: "mcq",
       q: "Which drug works by inhibiting the synthesis of the fungal cell WALL rather than the cell membrane?",
       o: ["Amphotericin B", "Fluconazole", "Caspofungin", "Nystatin"],
       c: 2,
-      r: "<b>Caspofungin:</b> The only commonly tested antifungal targeting the cell wall (β-1,3-glucan synthase). All others — Amphotericin B, Nystatin, and Azoles — target the cell membrane or ergosterol synthesis. Human cells have no cell wall → highly selective."
+      r: [
+        "Incorrect. Amphotericin B targets the cell MEMBRANE by binding ergosterol and forming pores — not the cell wall.",
+        "Incorrect. Fluconazole targets ergosterol SYNTHESIS by inhibiting CYP51 — it affects the membrane pathway, not the cell wall.",
+        "Correct! Caspofungin is the only commonly tested antifungal targeting the cell WALL (β-1,3-glucan synthase). Human cells have no cell wall → highly selective.",
+        "Incorrect. Nystatin targets the cell MEMBRANE (same mechanism as Amphotericin B — binds ergosterol, forms pores)."
+      ]
     },
     {
       type: "mcq",
       q: "A patient is prescribed Voriconazole. The nurse should instruct the patient to expect which unique, transient side effect?",
       o: ["Ringing in the ears (tinnitus)", "Visual disturbances", "Orange-colored sweat", "Extremity numbness"],
       c: 1,
-      r: "<b>Visual disturbances:</b> Voriconazole is specifically associated with transient visual disturbances — blurred vision, altered color perception, photophobia. Remember: 'V for Voriconazole = V for Visual.'"
+      r: [
+        "Incorrect. Tinnitus is not a documented adverse effect of Voriconazole or other azoles.",
+        "Correct! Voriconazole specifically causes transient visual disturbances — blurred vision, altered color perception, photophobia. Memory: 'V for Voriconazole = V for Visual.'",
+        "Incorrect. Orange discoloration of body fluids is associated with rifampin, not Voriconazole.",
+        "Incorrect. Peripheral neuropathy/numbness is not a characteristic adverse effect of Voriconazole."
+      ]
     },
     {
       type: "mcq",
       q: "Which drug is the preferred treatment for onychomycosis because it is more effective and better tolerated than Griseofulvin?",
       o: ["Terbinafine", "Flucytosine", "Ketoconazole", "Nystatin"],
       c: 0,
-      r: "<b>Terbinafine:</b> Drug of choice for dermatophyte onychomycosis — more effective, better tolerated, and requires a shorter treatment course than Griseofulvin. Griseofulvin requires months of therapy due to its dependence on keratin turnover."
+      r: [
+        "Correct! Terbinafine is the drug of choice for dermatophyte onychomycosis — more effective, better tolerated, and requires a shorter treatment course than Griseofulvin.",
+        "Incorrect. Flucytosine is an antimetabolite used for systemic fungal infections (always in combination) — not for nail infections.",
+        "Incorrect. Ketoconazole is not first-line for onychomycosis and has significant antiandrogenic and hepatotoxic side effects.",
+        "Incorrect. Nystatin is topical only and active against Candida — it has no activity against dermatophytes that cause nail infections."
+      ]
     },
     {
       type: "mcq",
       q: "Azole antifungals work by inhibiting which specific enzyme?",
       o: ["Squalene epoxidase", "14α-demethylase (CYP51)", "Thymidylate synthase", "Glucan synthase"],
       c: 1,
-      r: "<b>14α-demethylase (CYP51):</b> Azoles inhibit this fungal CYP450 enzyme, blocking conversion of lanosterol to ergosterol. Without ergosterol, the fungal membrane loses integrity. They also inhibit human hepatic CYP450 — the basis for drug interactions."
+      r: [
+        "Incorrect. Squalene epoxidase is the target of allylamines (Terbinafine, Naftifine), not azoles.",
+        "Correct! Azoles inhibit 14α-demethylase (CYP51), blocking conversion of lanosterol to ergosterol. They also inhibit human hepatic CYP450 — the basis for drug interactions.",
+        "Incorrect. Thymidylate synthase is involved in nucleic acid metabolism — it is relevant to Flucytosine's mechanism (via 5-FU), not azoles.",
+        "Incorrect. Glucan synthase (β-1,3-glucan synthase) is the target of echinocandins (Caspofungin), not azoles."
+      ]
     },
     {
       type: "mcq",
       q: "What is the primary reason for preparing Amphotericin B in a liposomal (lipid-enclosed) form?",
       o: ["To make the drug taste better for oral administration", "To reduce systemic toxicity and improve targeting to fungal cells", "To allow the drug to be excreted more quickly by the kidneys", "To prevent the drug from binding to plasma proteins"],
       c: 1,
-      r: "<b>Reduce toxicity, improve targeting:</b> Lipid microspheres preferentially bind ergosterol in fungal membranes over cholesterol in mammalian membranes. This delivers the drug more selectively to fungi and greatly reduces nephrotoxicity compared to standard formulation."
+      r: [
+        "Incorrect. Amphotericin B cannot be given orally at all (polar compound, not absorbed from GIT) — liposomal form is still IV only.",
+        "Correct! Lipid microspheres preferentially bind ergosterol in fungal membranes over cholesterol in human membranes. This delivers the drug more selectively to fungi and greatly reduces nephrotoxicity.",
+        "Incorrect. The liposomal form does not speed up renal excretion — the drug still has a 15-day half-life and dialysis remains ineffective.",
+        "Incorrect. Amphotericin B is 90% protein-bound regardless of formulation — the liposomal form reduces kidney toxicity, not protein binding."
+      ]
     },
     {
       type: "mcq",
       q: "Which drug is a 'Heterocyclic Benzofuran' that disrupts fungal mitosis?",
       o: ["Griseofulvin", "Amphotericin B", "Clotrimazole", "Flucytosine"],
       c: 0,
-      r: "<b>Griseofulvin:</b> Structurally classified as a heterocyclic benzofuran. It binds microtubules → prevents mitotic spindle formation → arrests fungal mitosis. It concentrates in keratin (skin, hair, nails) and requires long-term oral therapy."
+      r: [
+        "Correct! Griseofulvin is structurally a heterocyclic benzofuran. It binds microtubules → prevents mitotic spindle formation → arrests fungal mitosis. Concentrates in keratin and requires long-term oral therapy.",
+        "Incorrect. Amphotericin B is a polyene macrolide — it binds ergosterol and forms membrane pores, not related to mitosis.",
+        "Incorrect. Clotrimazole is an imidazole azole — it inhibits CYP51 (14α-demethylase), not mitosis.",
+        "Incorrect. Flucytosine is a fluorinated pyrimidine antimetabolite — it inhibits nucleic acid synthesis, not mitosis."
+      ]
     },
     {
       type: "mcq",
       q: "A patient is taking an azole antifungal alongside several other medications. Why is the nurse concerned about drug-drug interactions?",
       o: ["Azoles speed up the metabolism of all other drugs", "Azoles inhibit hepatic CYP450 enzymes, increasing serum concentration of other drugs", "Azoles prevent the absorption of all vitamins", "Azoles cause other drugs to become inactive in the stomach"],
       c: 1,
-      r: "<b>CYP450 inhibition:</b> Azoles inhibit human hepatic CYP450 → slower drug metabolism → toxic accumulation of co-administered drugs (warfarin → bleeding; cyclosporine → toxicity; phenytoin → toxicity). Fluconazole has the least CYP450 inhibition; Ketoconazole the most."
+      r: [
+        "Incorrect. Azoles SLOW DOWN metabolism — they are CYP450 INHIBITORS, not inducers.",
+        "Correct! Azoles inhibit human hepatic CYP450 → slower drug metabolism → toxic accumulation of warfarin (→ bleeding), cyclosporine (→ toxicity), phenytoin (→ toxicity). Fluconazole inhibits least; Ketoconazole the most.",
+        "Incorrect. Azoles do not affect vitamin absorption — the concern is about drug metabolism via CYP450.",
+        "Incorrect. Azoles do not inactivate other drugs in the stomach — the interaction occurs at the hepatic level."
+      ]
     },
     {
       type: "mcq",
       q: "Which of the following is an example of an opportunistic systemic mycosis commonly seen in immunocompromised patients?",
       o: ["Tinea pedis (Athlete's foot)", "Tinea capitis (Scalp ringworm)", "Cryptococcosis", "Vulvovaginal candidiasis"],
       c: 2,
-      r: "<b>Cryptococcosis:</b> A deep (systemic) mycosis caused by Cryptococcus neoformans — primarily in immunocompromised patients. Tinea pedis and capitis are superficial; vulvovaginal candidiasis is also superficial. Systemic mycoses affect internal organs."
+      r: [
+        "Incorrect. Tinea pedis is a superficial dermatophyte infection of the feet — not a systemic mycosis.",
+        "Incorrect. Tinea capitis is a superficial dermatophyte infection of the scalp — not a systemic mycosis.",
+        "Correct! Cryptococcosis is a deep (systemic) mycosis caused by Cryptococcus neoformans — primarily in immunocompromised patients (HIV, transplant). It can cause meningitis treated with Fluconazole.",
+        "Incorrect. Vulvovaginal candidiasis is a superficial mucosal infection — not a systemic mycosis."
+      ]
     },
     {
       type: "mcq",
       q: "A patient is prescribed Itraconazole. The nurse should advise the patient to avoid taking which over-the-counter medication simultaneously?",
       o: ["Ibuprofen", "Omeprazole", "Diphenhydramine", "Guaifenesin"],
       c: 1,
-      r: "<b>Omeprazole (PPI):</b> Itraconazole requires an acidic gastric environment for optimal absorption. Proton pump inhibitors raise gastric pH, significantly reducing Itraconazole absorption and therapeutic efficacy. Advise the patient to separate doses."
+      r: [
+        "Incorrect. Ibuprofen (an NSAID) does not significantly interfere with Itraconazole absorption or efficacy — no clinically significant interaction exists.",
+        "Correct! Omeprazole is a proton pump inhibitor (PPI) that raises gastric pH. Itraconazole requires an acidic stomach for optimal absorption — PPIs significantly reduce its absorption and therapeutic efficacy.",
+        "Incorrect. Diphenhydramine (an antihistamine) does not have a clinically significant interaction with Itraconazole absorption or metabolism.",
+        "Incorrect. Guaifenesin (an expectorant) does not interact with Itraconazole absorption or metabolism — no clinical concern."
+      ]
     },
     {
       type: "mcq",
       q: "Which antifungal agent inhibits the fungal enzyme squalene epoxidase similarly to Terbinafine?",
       o: ["Ketoconazole", "Naftifine", "Amphotericin B", "Anidulafungin"],
       c: 1,
-      r: "<b>Naftifine:</b> Like Terbinafine, Naftifine is an allylamine that inhibits squalene epoxidase, leading to ergosterol deficiency and toxic squalene accumulation. Both are in the allylamine drug class."
+      r: [
+        "Incorrect. Ketoconazole is an imidazole azole that inhibits CYP51 (14α-demethylase) — a completely different enzyme and mechanism from squalene epoxidase.",
+        "Correct! Naftifine is an allylamine, the same drug class as Terbinafine. Both inhibit squalene epoxidase, leading to toxic squalene accumulation and ergosterol deficiency.",
+        "Incorrect. Amphotericin B is a polyene macrolide that directly binds ergosterol already in the membrane — it does not inhibit any biosynthetic enzyme.",
+        "Incorrect. Anidulafungin is an echinocandin that inhibits β-1,3-glucan synthase (cell wall target) — completely unrelated to squalene epoxidase."
+      ]
     },
     {
       type: "mcq",
       q: "A patient with heart failure needs antifungal therapy. Which drug should be used with extreme caution due to potential negative inotropic effects?",
       o: ["Fluconazole", "Itraconazole", "Nystatin", "Clotrimazole"],
       c: 1,
-      r: "<b>Itraconazole:</b> Has been associated with negative inotropic effects and should be avoided or used with extreme caution in patients with ventricular dysfunction or congestive heart failure. Fluconazole is generally safer in this context."
+      r: [
+        "Incorrect. Fluconazole does not have documented negative inotropic effects and is generally safer in patients with heart failure.",
+        "Correct! Itraconazole has been associated with negative inotropic effects and should be avoided or used with extreme caution in patients with ventricular dysfunction or congestive heart failure.",
+        "Incorrect. Nystatin is topical only — it has no systemic absorption and therefore no cardiac effects.",
+        "Incorrect. Clotrimazole is used topically and does not reach systemic circulation — no cardiac effects."
+      ]
     },
     {
       type: "mcq",
       q: "What is the clinical significance of the 'test dose' administered before a full infusion of Amphotericin B?",
       o: ["To determine if the fungus is sensitive to the medication", "To assess the patient's renal clearance of the drug", "To identify potential severe anaphylactic or febrile reactions", "To prime the IV tubing to prevent air embolisms"],
       c: 2,
-      r: "<b>Identify severe reactions:</b> A small test dose (e.g., 1mg IV) is given first to monitor for life-threatening hypersensitivity before the full therapeutic dose is administered. Amphotericin B can cause severe acute systemic reactions."
+      r: [
+        "Incorrect. The test dose does NOT assess fungal sensitivity — that requires culture and sensitivity testing. The test dose monitors the PATIENT's reaction to the drug.",
+        "Incorrect. Renal clearance is not assessed via a test dose. Nephrotoxicity is a long-term concern monitored with serum creatinine and BUN over time.",
+        "Correct! A small test dose (e.g., 1 mg IV over 20–30 minutes) monitors for life-threatening hypersensitivity or severe febrile reactions before the full therapeutic dose is administered.",
+        "Incorrect. Priming IV tubing is a standard nursing procedure for all IV medications — it has nothing to do with the pharmacological purpose of a test dose."
+      ]
     },
     {
       type: "mcq",
       q: "Which antifungal is commonly used as a 'swish and swallow' or 'swish and spit' treatment for oral candidiasis (thrush)?",
       o: ["Griseofulvin", "Voriconazole", "Nystatin", "Flucytosine"],
       c: 2,
-      r: "<b>Nystatin:</b> Not absorbed from the GI tract — making it ideal for local treatment of oral/esophageal fungal infections when held in contact with the mucosa. Safe for this use because it stays local and does not reach systemic circulation."
+      r: [
+        "Incorrect. Griseofulvin is given orally for dermatophyte infections of skin, hair, and nails — it is not used for Candida or local oral treatment.",
+        "Incorrect. Voriconazole is a systemic triazole used IV or orally for invasive aspergillosis — not used as a topical 'swish and swallow' preparation.",
+        "Correct! Nystatin is the classic 'swish and swallow/spit' treatment — not absorbed from the GI tract, providing direct contact with oral mucosa to treat thrush locally and safely.",
+        "Incorrect. Flucytosine is a systemic antimetabolite used in combination with Amphotericin B for serious systemic infections — never used as a topical oral treatment."
+      ]
     },
     {
       type: "mcq",
       q: "A patient on Flucytosine develops a sore throat, fever, and bruising. Which laboratory test should the nurse anticipate immediately?",
       o: ["Serum Albumin", "Complete Blood Count (CBC) with differential", "Prothrombin Time (PT)", "Urinalysis"],
       c: 1,
-      r: "<b>CBC with differential:</b> These symptoms suggest bone marrow suppression — Flucytosine's most serious side effect at high doses. Leukopenia causes infection risk/fever; thrombocytopenia causes bruising; anemia causes fatigue. Monitor trough levels to prevent toxicity."
+      r: [
+        "Incorrect. Serum albumin assesses nutritional status and liver synthetic function — it is not relevant to the acute symptoms of bone marrow suppression.",
+        "Correct! Sore throat + fever + bruising = classic triad of bone marrow suppression. CBC with differential confirms leukopenia (→ infection/fever), thrombocytopenia (→ bruising), and anemia — Flucytosine's most serious adverse effect at high doses.",
+        "Incorrect. PT assesses the coagulation cascade (relevant for warfarin monitoring). The bruising here is from thrombocytopenia (low platelets), not a clotting factor deficiency.",
+        "Incorrect. Urinalysis is not relevant to these symptoms. Nephrotoxicity monitoring would be relevant for Amphotericin B, not Flucytosine."
+      ]
     },
     {
       type: "mcq",
       q: "During Caspofungin administration, the patient develops localized swelling, pruritus, and facial flushing. The nurse recognizes this is likely due to:",
       o: ["A secondary bacterial infection", "Histamine release", "Rapid liver metabolism", "Overdose of the medication"],
       c: 1,
-      r: "<b>Histamine release:</b> Echinocandins like Caspofungin can trigger histamine release during infusion, resulting in flushing, rash, and pruritus — similar to 'Red Man Syndrome.' Slowing the infusion rate can help manage this reaction."
+      r: [
+        "Incorrect. These are acute infusion-related symptoms (flushing, pruritus, swelling) — not signs of bacterial infection, which would present with systemic signs over time.",
+        "Correct! Echinocandins like Caspofungin can trigger histamine release during IV infusion, causing flushing, rash, pruritus, and swelling — similar to 'Red Man Syndrome.' Slowing the infusion rate helps manage this.",
+        "Incorrect. Liver metabolism does not cause acute infusion reactions like flushing and pruritus. Hepatic effects would present as elevated transaminases over time.",
+        "Incorrect. These are histamine-mediated reactions that can occur at therapeutic doses — they are not dose-dependent overdose effects."
+      ]
     },
     {
       type: "mcq",
       q: "Which of the following best describes a key difference between fungal cells and human cells relevant to antifungal therapy?",
       o: ["Human cells contain chitin; fungal cells do not", "Fungal cells contain ergosterol; human cells contain cholesterol", "Fungal cells contain β-1,3-glucan; human cells do not have a cell wall", "Human cells have a rigid wall made of peptidoglycan"],
       c: 2,
-      r: "<b>Fungal cell wall (β-1,3-glucan), no human cell wall:</b> Both B and C are true statements — but C is the basis for Echinocandin selectivity. Humans lack a cell wall entirely, making β-glucan synthesis an ideal selective target. Peptidoglycan is bacterial, not human."
+      r: [
+        "Incorrect. This is reversed — FUNGI contain chitin in their cell walls. Human cells have no cell wall or chitin whatsoever.",
+        "Partially correct but not the BEST answer. While ergosterol vs cholesterol is a real difference, option C describes the more therapeutically exploitable difference — the complete absence of a cell wall in human cells (basis for Echinocandin selectivity).",
+        "Correct! Human cells have NO cell wall at all, while fungi have a β-1,3-glucan-containing cell wall. This absolute difference is the basis for Echinocandin selectivity — the most therapeutically exploitable distinction.",
+        "Incorrect. Peptidoglycan is found in BACTERIAL cell walls, not human cells. Human cells have no cell wall of any kind."
+      ]
     },
     {
       type: "mcq",
       q: "A patient with a tinea skin infection is being treated with a fungistatic agent. This infection represents which classification of mycosis?",
       o: ["Opportunistic infection", "Dermatomycosis", "Subcutaneous mycosis", "Systemic mycosis"],
       c: 1,
-      r: "<b>Dermatomycosis:</b> Tinea/ringworm infections of the skin, hair, and nails are dermatomycoses — superficial fungal infections caused by dermatophytes. These are the most common superficial mycoses, distinct from systemic or subcutaneous infections."
+      r: [
+        "Incorrect. Tinea infections can occur in immunocompetent individuals — they are not opportunistic. Opportunistic mycoses (like Cryptococcosis) primarily affect immunocompromised patients.",
+        "Correct! Tinea infections (ringworm) of the skin, hair, and nails are dermatomycoses — superficial fungal infections caused by dermatophytes, the most common type of superficial mycosis.",
+        "Incorrect. Subcutaneous mycoses involve deeper tissues beneath the skin (e.g., sporotrichosis) — tinea is a superficial dermatophyte infection limited to keratinized tissue.",
+        "Incorrect. Systemic mycoses involve internal organs (e.g., blastomycosis, aspergillosis) — tinea is a superficial infection, not systemic."
+      ]
     },
     {
       type: "mcq",
       q: "Which azole is available in a topical formulation for vulvovaginal candidiasis?",
       o: ["Miconazole", "Voriconazole", "Flucytosine", "Griseofulvin"],
       c: 0,
-      r: "<b>Miconazole:</b> An imidazole azole widely available in creams and vaginal suppositories for local treatment of yeast infections. Voriconazole and Itraconazole are systemic triazoles; Flucytosine is an antimetabolite; Griseofulvin is for dermatophytes."
+      r: [
+        "Correct! Miconazole is an imidazole azole (2 nitrogen atoms) widely available in topical creams and vaginal suppositories for vulvovaginal candidiasis.",
+        "Incorrect. Voriconazole is a systemic triazole used IV/orally for invasive aspergillosis — not available as a topical vaginal formulation.",
+        "Incorrect. Flucytosine is NOT an azole — it is a fluorinated pyrimidine antimetabolite used systemically in combination therapy, never topically for vaginal infections.",
+        "Incorrect. Griseofulvin is NOT an azole — it is a heterocyclic benzofuran used orally for dermatophyte infections. It has no activity against Candida."
+      ]
     },
     {
       type: "mcq",
       q: "What is the primary reason Amphotericin B is referred to as 'Ampho-terrible' in clinical practice?",
       o: ["It is ineffective against most molds", "High incidence of infusion-related reactions and nephrotoxicity", "It must be taken for at least two years to work", "It causes permanent loss of vision"],
       c: 1,
-      r: "<b>Severe toxicity profile:</b> Nearly universal nephrotoxicity (azotemia, hypokalemia, ↓GFR) combined with acute infusion reactions (fever, chills, rigors, dyspnea) makes this drug notoriously difficult to tolerate — hence 'Ampho-terrible.' Despite this, it has the broadest antifungal spectrum."
+      r: [
+        "Incorrect. Amphotericin B actually has the BROADEST antifungal spectrum — it is highly effective against molds, yeasts, and dimorphic fungi. 'Terrible' refers to its toxicity, not its efficacy.",
+        "Correct! 'Ampho-terrible' reflects nearly universal nephrotoxicity (azotemia, hypokalemia, ↓GFR) and acute infusion reactions (fever, chills, rigors — the 'shake and bake' reaction). Despite this, it remains essential for severe systemic infections.",
+        "Incorrect. Treatment duration varies by infection but two years is not required. Amphotericin B courses typically last weeks to months, not years.",
+        "Incorrect. Permanent vision loss is not associated with Amphotericin B. Transient visual disturbances are a side effect of Voriconazole (V = Visual), not Amphotericin B."
+      ]
     },
     {
       type: "mcq",
       q: "A patient is taking Griseofulvin for toenail onychomycosis. What duration of treatment should the nurse inform the patient to expect?",
       o: ["2 to 4 days", "1 to 2 weeks", "Several months (6–12 months)", "Exactly one year"],
       c: 2,
-      r: "<b>Several months:</b> Griseofulvin works by incorporating into new keratin — treatment must continue until all infected nail is replaced by healthy, drug-containing new growth. Toenails grow slowly (3–6 months minimum, up to 12 months)."
+      r: [
+        "Incorrect. Days are far too short — antifungal nail infections require months of treatment. Griseofulvin works by incorporating into new keratin as it grows.",
+        "Incorrect. 1–2 weeks is appropriate for superficial skin tinea, but nail infections require months due to the slow rate of nail growth and keratin turnover.",
+        "Correct! Griseofulvin must be taken until all infected nail is replaced by healthy, drug-containing keratin. Toenails grow very slowly — requiring 6–12 months minimum.",
+        "Incorrect. While some cases may approach a year, the duration is not exactly one year — it depends on infection severity and nail growth rate, typically 6–12 months."
+      ]
     },
     {
       type: "mcq",
       q: "Which antifungal drug works by interfering with fungal mitosis?",
       o: ["Terbinafine", "Griseofulvin", "Fluconazole", "Nystatin"],
       c: 1,
-      r: "<b>Griseofulvin:</b> The only antifungal that targets the mitotic spindle. It binds microtubules → prevents spindle formation → arrests fungal cell division. All others target membrane components, ergosterol synthesis, nucleic acids, or the cell wall."
+      r: [
+        "Incorrect. Terbinafine is an allylamine that inhibits squalene epoxidase — it affects the ergosterol synthesis pathway, not mitosis.",
+        "Correct! Griseofulvin is the ONLY antifungal that targets mitosis — it binds microtubules → prevents spindle formation → arrests fungal cell division. All others target membranes, ergosterol synthesis, nucleic acids, or the cell wall.",
+        "Incorrect. Fluconazole is a triazole that inhibits CYP51 (14α-demethylase), blocking ergosterol synthesis — unrelated to mitosis.",
+        "Incorrect. Nystatin is a polyene macrolide that binds ergosterol and forms membrane pores — it targets the cell membrane, not mitotic machinery."
+      ]
     },
     {
       type: "mcq",
       q: "A nurse caring for a patient on Itraconazole should immediately report which symptom as a sign of potential liver injury?",
       o: ["Increased energy levels", "Dark urine and clay-colored stools", "Dry mouth and thirst", "Increased urination frequency"],
       c: 1,
-      r: "<b>Dark urine and clay-colored stools:</b> Classic signs of obstructive jaundice and hepatic dysfunction — a known risk with systemic azoles. All azoles cause hepatotoxicity and raise serum transaminases. LFTs must be monitored during therapy."
+      r: [
+        "Incorrect. Increased energy is not a sign of liver injury — hepatotoxicity presents with fatigue, malaise, and jaundice, not increased energy.",
+        "Correct! Dark urine (excess conjugated bilirubin) and clay-colored (acholic) stools are classic signs of hepatic dysfunction and obstructive jaundice — all azoles carry hepatotoxicity risk requiring LFT monitoring.",
+        "Incorrect. Dry mouth and thirst suggest dehydration or diabetes — not hepatotoxicity. These are not expected adverse effects of azole therapy.",
+        "Incorrect. Polyuria is not associated with azole hepatotoxicity. Nephrotoxicity with urinary changes is characteristic of Amphotericin B, not azoles."
+      ]
     },
     {
       type: "mcq",
       q: "Which drug is categorized as an Allylamine antifungal?",
       o: ["Terbinafine", "Micafungin", "Clotrimazole", "Amphotericin B"],
       c: 0,
-      r: "<b>Terbinafine:</b> An allylamine — along with Naftifine and Butenafine — that inhibits squalene epoxidase. Micafungin is an echinocandin; Clotrimazole is an imidazole azole; Amphotericin B is a polyene macrolide."
+      r: [
+        "Correct! Terbinafine is an allylamine — along with Naftifine and Butenafine. Allylamines inhibit squalene epoxidase, causing toxic squalene accumulation. Terbinafine is the drug of choice for dermatophyte onychomycosis.",
+        "Incorrect. Micafungin is an echinocandin (same class as Caspofungin and Anidulafungin) — it inhibits β-1,3-glucan synthase in the fungal cell wall.",
+        "Incorrect. Clotrimazole is an imidazole azole (2 nitrogen atoms) — it inhibits CYP51 (14α-demethylase) and is used topically.",
+        "Incorrect. Amphotericin B is a polyene macrolide — it binds ergosterol directly and forms membrane pores, a completely different mechanism from allylamines."
+      ]
     },
     {
       type: "mcq",
       q: "A patient is receiving Amphotericin B. To minimize nephrotoxicity, the nurse should anticipate which intervention?",
       o: ["Restricting fluid intake to 1 liter per day", "Administering a 0.9% Normal Saline bolus before the infusion", "Giving the medication as a rapid IV push", "Ensuring the patient takes an antacid before the dose"],
       c: 1,
-      r: "<b>IV sodium loading (saline bolus):</b> 'Sodium loading' with a 0.9% NS bolus before Amphotericin B is standard practice to hydrate the kidneys and reduce nephrotoxic injury. Rapid infusion INCREASES risk; fluid restriction would worsen kidney damage."
+      r: [
+        "Incorrect. Fluid RESTRICTION would WORSEN nephrotoxicity — adequate hydration is essential to protect the kidneys and maintain renal perfusion.",
+        "Correct! 'Sodium loading' with a 0.9% NS bolus before Amphotericin B infusion is standard nephroprotective practice — it hydrates the kidneys and reduces tubular damage from the drug.",
+        "Incorrect. Rapid IV push is DANGEROUS — Amphotericin B must be infused slowly over 2–6 hours to minimize infusion reactions and cardiac toxicity.",
+        "Incorrect. Antacids are not relevant to Amphotericin B (IV drug). Antacids/PPIs are relevant for oral azoles like Itraconazole which need acidic pH for absorption."
+      ]
     },
     {
       type: "mcq",
       q: "Which antifungal is generally preferred for esophageal candidiasis resistant to Fluconazole?",
       o: ["Nystatin", "Caspofungin", "Griseofulvin", "Terbinafine"],
       c: 1,
-      r: "<b>Caspofungin:</b> An echinocandin indicated for esophageal candidiasis that has failed azole or Amphotericin B therapy. Nystatin is topical only; Griseofulvin is for dermatophytes only; Terbinafine is for skin/nail dermatophytes."
+      r: [
+        "Incorrect. Nystatin is topical only — poorly effective for esophageal infections as it cannot achieve adequate tissue concentrations in the esophageal wall.",
+        "Correct! Caspofungin (an echinocandin) is indicated for esophageal candidiasis that has failed azole or Amphotericin B therapy. It inhibits β-1,3-glucan synthase and is given IV.",
+        "Incorrect. Griseofulvin is effective only against dermatophytes (skin, hair, nails) — it has no activity against Candida species.",
+        "Incorrect. Terbinafine is primarily effective against dermatophytes — it is not indicated for Candida esophageal infections."
+      ]
     },
     {
       type: "mcq",
       q: "Flucytosine is chemically related to which class of drugs?",
       o: ["Antibiotics", "Fluorinated pyrimidines (Chemotherapy)", "Steroids", "Beta-blockers"],
       c: 1,
-      r: "<b>Fluorinated pyrimidines:</b> Flucytosine is a fluorinated pyrimidine antimetabolite — structurally related to the chemotherapy drug 5-fluorouracil (5-FU). This explains its mechanism of action and its bone marrow suppression side effect at high doses."
+      r: [
+        "Incorrect. While some antifungals are derived from bacteria (e.g., Amphotericin B from Streptomyces), Flucytosine is a synthetic antimetabolite — it is not classified as an antibiotic.",
+        "Correct! Flucytosine is a fluorinated pyrimidine antimetabolite structurally related to 5-fluorouracil (5-FU). This explains both its mechanism (nucleic acid synthesis inhibition) and its bone marrow suppression side effect.",
+        "Incorrect. Flucytosine has no structural or functional relationship to steroids. Steroids are relevant to Ketoconazole (which inhibits steroid synthesis, causing antiandrogenic effects).",
+        "Incorrect. Beta-blockers are cardiovascular drugs with no relationship to antifungal therapy or Flucytosine's pyrimidine structure."
+      ]
     },
     {
       type: "mcq",
       q: "Why should a nurse monitor the trough levels of a patient on Flucytosine therapy?",
       o: ["To ensure the patient is not becoming addicted", "To minimize the risk of hematological and GI toxicity", "To assess if the drug is accumulating in fatty tissues", "To monitor for visual disturbances"],
       c: 1,
-      r: "<b>Prevent hematological/GI toxicity:</b> Flucytosine has a narrow therapeutic window — high blood concentrations directly cause bone marrow depression (anemia, leukopenia, thrombocytopenia) and severe GI distress. Therapeutic drug monitoring prevents toxicity."
+      r: [
+        "Incorrect. Flucytosine has no addictive potential — it is not a controlled substance. Trough monitoring is about preventing dose-dependent toxicity, not addiction.",
+        "Correct! Flucytosine has a narrow therapeutic window — elevated trough levels correlate with bone marrow suppression (leukopenia, thrombocytopenia, anemia) and severe GI toxicity. Therapeutic drug monitoring prevents these complications.",
+        "Incorrect. Flucytosine does not accumulate in fatty tissue. Fat-related issues are relevant to Griseofulvin (enhanced absorption with fatty food), not Flucytosine.",
+        "Incorrect. Visual disturbances are associated with Voriconazole (V = Visual), not Flucytosine. Flucytosine's toxicity is hematological, not ophthalmological."
+      ]
     },
     {
       type: "mcq",
       q: "A patient is using Ciclopirox nail lacquer. The nurse explains this medication works by:",
       o: ["Changing the nail color to hide the fungus", "Inhibiting enzymes by chelating trivalent metal cations", "Increasing the pH of the nail bed", "Directly dissolving the fungal cell wall on contact"],
       c: 1,
-      r: "<b>Metal cation chelation:</b> Ciclopirox has a unique mechanism — it chelates trivalent metal cations (like Fe³⁺) that are essential co-factors for critical fungal enzymes. Without these co-factors, key metabolic enzymes are inhibited and the fungus cannot survive."
+      r: [
+        "Incorrect. Ciclopirox is a therapeutic antifungal — it does not merely mask the appearance of fungal infection. It has a specific mechanism of action targeting fungal enzymes.",
+        "Correct! Ciclopirox chelates trivalent metal cations (like Fe³⁺) that are essential co-factors for critical fungal enzymes. Without these co-factors, key metabolic pathways are disrupted and the fungus cannot survive.",
+        "Incorrect. Ciclopirox does not work by altering pH. Its mechanism involves metal ion chelation, not acid-base manipulation of the nail environment.",
+        "Incorrect. Ciclopirox does not dissolve cell walls. Cell wall disruption is the mechanism of echinocandins (Caspofungin), which inhibit β-1,3-glucan synthase enzymatically."
+      ]
     }
   ],
 
@@ -678,28 +878,48 @@ window.PDF_TOPIC_DATA["antifungals"] = {
       q: "A patient with cryptococcal meningitis requires antifungal therapy. Which drug is the most appropriate first-line agent?\n\nA. Amphotericin B — broadest spectrum of activity\nB. Itraconazole — drug of choice for systemic fungal infections\nC. Fluconazole — only azole that achieves good CSF concentration\nD. Voriconazole — best for CNS fungal infections",
       o: ["Amphotericin B — broadest spectrum of activity", "Itraconazole — drug of choice for systemic fungal infections", "Fluconazole — only azole that achieves good CSF concentration", "Voriconazole — best for CNS fungal infections"],
       c: 2,
-      r: "<b>Fluconazole:</b> The only azole capable of crossing the blood-brain barrier and achieving adequate CSF concentrations → drug of choice for cryptococcal meningitis.<br><br>• A: Amphotericin B CANNOT cross the CSF — it is a polar compound with minimal CNS penetration.<br>• B: Itraconazole is the drug of choice for systemic blastomycosis, not meningitis.<br>• D: Voriconazole is preferred for invasive aspergillosis of the lung, not meningitis."
+      r: [
+        "Incorrect. Amphotericin B has the broadest spectrum but CANNOT cross the blood-brain barrier — it is a polar compound with minimal CNS penetration. May be used for induction but not as the primary agent for meningitis.",
+        "Incorrect. Itraconazole is the drug of choice for systemic blastomycosis, not cryptococcal meningitis. It has poor CSF penetration and cannot reach therapeutic concentrations in the CNS.",
+        "Correct! Fluconazole is the ONLY azole capable of crossing the blood-brain barrier and achieving adequate CSF concentrations — making it the drug of choice for cryptococcal meningitis maintenance therapy.",
+        "Incorrect. Voriconazole is preferred for invasive pulmonary aspergillosis, not cryptococcal meningitis. Fluconazole is the established standard for cryptococcal meningitis."
+      ]
     },
     {
       type: "mcq",
       q: "A patient on long-term antifungal therapy develops gynecomastia and impotence. Which drug is most likely responsible?",
       o: ["Fluconazole", "Voriconazole", "Ketoconazole", "Itraconazole"],
       c: 2,
-      r: "<b>Ketoconazole:</b> Uniquely causes antiandrogenic effects by inhibiting CYP450-dependent gonadal steroid synthesis → reduced testosterone → gynecomastia and impotence.<br><br>• A: Fluconazole causes hepatotoxicity and CYP interactions but NOT antiandrogenic effects.<br>• B: Voriconazole's unique adverse effect is transient visual disturbances (V = Visual).<br>• D: Itraconazole does not cause antiandrogenic effects."
+      r: [
+        "Incorrect. Fluconazole can cause hepatotoxicity and CYP450 drug interactions, but it does NOT cause antiandrogenic effects like gynecomastia or impotence.",
+        "Incorrect. Voriconazole's unique adverse effect is transient visual disturbances (V = Visual) — it does not cause hormonal or antiandrogenic side effects.",
+        "Correct! Ketoconazole uniquely inhibits CYP450-dependent gonadal steroid synthesis, reducing testosterone production → gynecomastia and impotence. Memory: 'KETO KILLS androgens.'",
+        "Incorrect. Itraconazole can cause hepatotoxicity and negative inotropic effects (caution in heart failure), but it does not cause antiandrogenic effects."
+      ]
     },
     {
       type: "mcq",
       q: "A nurse is preparing Amphotericin B for IV infusion. The patient asks why it cannot be given as an oral tablet. What is the correct pharmacokinetic explanation?",
       o: ["It is rapidly metabolized in the stomach before absorption", "It is a polar compound that cannot be absorbed from the GIT", "It is destroyed by gastric acid at low pH", "It requires active transport that is absent in the gut"],
       c: 1,
-      r: "<b>Polar compound — not absorbed from GIT:</b> Amphotericin B is a polar compound and cannot be absorbed from the gastrointestinal tract. It is also insoluble in water and must be prepared as a colloidal suspension with sodium deoxycholate for IV administration.<br><br>• A, C, D: Incorrect — the issue is polarity, not gastric metabolism, acid destruction, or active transport.<br>• Additional note: half-life is 15 days and dialysis is INEFFECTIVE for toxicity management."
+      r: [
+        "Incorrect. The issue is not gastric metabolism — Amphotericin B is not broken down by stomach enzymes. The problem is its polar molecular structure, which prevents absorption across the GI mucosa.",
+        "Correct! Amphotericin B is a polar compound that cannot be absorbed from the gastrointestinal tract. It must be prepared as a colloidal suspension with sodium deoxycholate for IV administration. Half-life is 15 days; dialysis is ineffective for toxicity.",
+        "Incorrect. Amphotericin B is not destroyed by gastric acid — its inability to be given orally is due to polarity preventing GI absorption, not acid instability.",
+        "Incorrect. The limitation is not about active transport — Amphotericin B simply cannot cross the GI mucosa due to its polar molecular structure."
+      ]
     },
     {
       type: "mcq",
       q: "Caspofungin differs from most other antifungals because it targets which structure?",
       o: ["Fungal cell membrane ergosterol", "The ergosterol synthesis pathway", "The fungal cell wall (β-1,3-glucan synthase)", "Fungal DNA/RNA synthesis"],
       c: 2,
-      r: "<b>Fungal cell wall — β-1,3-glucan synthase:</b> Caspofungin is an echinocandin — a large cyclic peptide that inhibits β-1,3-glucan synthase, disrupting the fungal cell wall and causing cell death.<br><br>• A: Binding ergosterol in the membrane = mechanism of Amphotericin B and Nystatin.<br>• B: Inhibiting ergosterol synthesis = mechanism of Azoles (and Terbinafine).<br>• D: Inhibiting nucleic acid synthesis = mechanism of Flucytosine."
+      r: [
+        "Incorrect. Binding ergosterol in the cell membrane is the mechanism of polyenes (Amphotericin B and Nystatin), not Caspofungin.",
+        "Incorrect. Inhibiting the ergosterol synthesis pathway is the mechanism of azoles (CYP51 inhibition) and allylamines (squalene epoxidase inhibition), not Caspofungin.",
+        "Correct! Caspofungin is an echinocandin — a large cyclic peptide that inhibits β-1,3-glucan synthase, disrupting the fungal cell wall. Human cells have NO cell wall → highly selective with minimal toxicity.",
+        "Incorrect. Inhibiting nucleic acid synthesis is the mechanism of Flucytosine (converted to 5-FU inside fungal cells by cytosine deaminase), not Caspofungin."
+      ]
     }
   ],
 
@@ -719,7 +939,13 @@ window.PDF_TOPIC_DATA["antifungals"] = {
         "Dialysis is effective in managing its toxicity"
       ],
       c: [0, 2, 3],
-      r: "<b>Correct: A, C, D</b><br><br>• A ✓ — Amphotericin B is derived from Streptomyces Nodosus (a soil bacterium).<br>• B ✗ — It CANNOT be given orally; it is a polar compound not absorbed from the GIT. Must be given IV or intrathecally.<br>• C ✓ — Broadest spectrum of antifungal activity; used for severe systemic infections.<br>• D ✓ — Mechanism: binds ergosterol → forms pores → cellular contents leak → cell death.<br>• E ✗ — Dialysis is INEFFECTIVE for Amphotericin B toxicity — high-yield exam trap (90% protein-bound)."
+      r: [
+        "✓ Correct. Amphotericin B is derived from Streptomyces nodosus, a soil bacterium. It is a naturally occurring polyene macrolide antibiotic.",
+        "✗ Incorrect. Amphotericin B CANNOT be given orally — it is a polar compound not absorbed from the GIT. It must be administered IV or intrathecally.",
+        "✓ Correct. Amphotericin B has the broadest antifungal spectrum of all agents — effective against yeasts, molds, and dimorphic fungi. Reserved for severe systemic infections.",
+        "✓ Correct. Mechanism: binds ergosterol in the fungal membrane → forms transmembrane pores → cellular contents leak out → cell death (fungicidal).",
+        "✗ Incorrect. Dialysis is INEFFECTIVE for Amphotericin B toxicity — the drug is 90% bound to plasma proteins and cannot be removed by dialysis. This is a high-yield exam trap."
+      ]
     },
     {
       type: "sata",
@@ -732,7 +958,13 @@ window.PDF_TOPIC_DATA["antifungals"] = {
         "Voriconazole"
       ],
       c: [1, 3, 4],
-      r: "<b>Correct: B, D, E</b><br><br>• B ✓ — Fluconazole is a triazole (3 nitrogen atoms).<br>• D ✓ — Itraconazole is a triazole (3 nitrogen atoms).<br>• E ✓ — Voriconazole is a triazole (3 nitrogen atoms).<br>• A ✗ — Ketoconazole is an imidazole (2 nitrogen atoms); used systemically.<br>• C ✗ — Clotrimazole is an imidazole (2 nitrogen atoms); used topically only."
+      r: [
+        "✗ Incorrect. Ketoconazole is an IMIDAZOLE (2 nitrogen atoms in the ring), not a triazole. Known for antiandrogenic effects (gynecomastia, impotence).",
+        "✓ Correct. Fluconazole is a triazole (3 nitrogen atoms). It is the only azole with CSF penetration — drug of choice for cryptococcal meningitis.",
+        "✗ Incorrect. Clotrimazole is an IMIDAZOLE (2 nitrogen atoms), not a triazole. Used topically only for candidiasis and tinea.",
+        "✓ Correct. Itraconazole is a triazole (3 nitrogen atoms). Drug of choice for systemic blastomycosis.",
+        "✓ Correct. Voriconazole is a triazole (3 nitrogen atoms). Drug of choice for invasive aspergillosis. Memory: TRIazole = TRI = 3 nitrogens."
+      ]
     },
     {
       type: "sata",
@@ -745,7 +977,13 @@ window.PDF_TOPIC_DATA["antifungals"] = {
         "Bone marrow depression"
       ],
       c: [0, 2, 3],
-      r: "<b>Correct: A, C, D</b><br><br>• A ✓ — All azoles can cause hepatotoxicity and elevated serum transaminases.<br>• B ✗ — Nephrotoxicity (↓GFR, azotemia, hypokalemia) is the hallmark of Amphotericin B, NOT azoles.<br>• C ✓ — Azoles inhibit hepatic CYP450 → increased levels of warfarin, cyclosporine, phenytoin, triazolam. Fluconazole inhibits least; Ketoconazole inhibits most.<br>• D ✓ — Voriconazole specifically causes transient visual disturbances — a unique, high-yield adverse effect.<br>• E ✗ — Bone marrow depression at high doses is associated with Flucytosine, not azoles."
+      r: [
+        "✓ Correct. ALL azoles can cause hepatotoxicity with elevated serum transaminases. Monitor LFTs during therapy — report dark urine, clay-colored stools, jaundice.",
+        "✗ Incorrect. Nephrotoxicity (azotemia, ↓GFR, hypokalemia) is the hallmark of Amphotericin B, NOT azoles. Azoles primarily cause liver damage, not kidney damage.",
+        "✓ Correct. All azoles inhibit hepatic CYP450 → slower metabolism → increased levels of warfarin (bleeding risk), cyclosporine (toxicity), phenytoin, triazolam. Fluconazole inhibits least; Ketoconazole most.",
+        "✓ Correct. Voriconazole specifically causes transient visual disturbances (altered color perception, photophobia, blurred vision) — unique among all azoles. Memory: V = Visual.",
+        "✗ Incorrect. Bone marrow depression at high doses is associated with Flucytosine, not azoles. Flucytosine causes leukopenia, thrombocytopenia, and anemia."
+      ]
     },
     {
       type: "sata",
@@ -758,7 +996,13 @@ window.PDF_TOPIC_DATA["antifungals"] = {
         "It is the drug of choice for invasive aspergillosis"
       ],
       c: [0, 1, 3],
-      r: "<b>Correct: A, B, D</b><br><br>• A ✓ — Griseofulvin is fungistatic; it requires long duration of therapy (months for nails).<br>• B ✓ — It binds to keratin structures and accumulates in skin, hair, and nails — exactly where dermatophytes live.<br>• C ✗ — Binding ergosterol is the mechanism of Amphotericin B and Nystatin. Griseofulvin binds MICROTUBULES and prevents spindle formation.<br>• D ✓ — Absorption is irregular but significantly enhanced by fatty food and microfine particle formulations.<br>• E ✗ — Voriconazole is the drug of choice for invasive aspergillosis of the lung. Griseofulvin is for dermatophyte skin/hair/nail infections."
+      r: [
+        "✓ Correct. Griseofulvin is fungistatic — it arrests fungal cell division but does not kill cells directly. The host immune system clears the infection.",
+        "✓ Correct. Griseofulvin accumulates in keratinized tissues (skin, hair, nails) — exactly where dermatophytes live. Treatment continues until infected tissue is replaced by new drug-laden keratin.",
+        "✗ Incorrect. Binding ergosterol to form membrane pores is the mechanism of polyenes (Amphotericin B, Nystatin). Griseofulvin acts by binding MICROTUBULES, preventing mitotic spindle formation.",
+        "✓ Correct. Griseofulvin's oral absorption is irregular but significantly enhanced by fatty food and microfine particle formulations. Always advise taking with a fatty meal.",
+        "✗ Incorrect. Voriconazole is the drug of choice for invasive aspergillosis. Griseofulvin is used for superficial dermatophyte infections of skin, hair, and nails — not deep/systemic infections."
+      ]
     }
   ],
 
@@ -772,140 +1016,240 @@ window.PDF_TOPIC_DATA["antifungals"] = {
       q: "Azoles exert their antifungal effect by inhibiting which specific enzyme?",
       o: ["Squalene epoxidase", "14-α demethylase (CYP51)", "β-(1,3)-glucan synthase", "Cytosine deaminase"],
       c: 1,
-      r: "<b>14-α demethylase (CYP51):</b> Azoles block CYP51, preventing lanosterol conversion to ergosterol. This depletes ergosterol and disrupts fungal membrane integrity.<br><br>• Squalene epoxidase = target of allylamines (Terbinafine, Naftifine)<br>• β-glucan synthase = targeted by echinocandins (Caspofungin)<br>• Cytosine deaminase = relevant to Flucytosine's mechanism (converts it to 5-FU inside fungal cells)"
+      r: [
+        "Incorrect. Squalene epoxidase is the target of allylamines (Terbinafine, Naftifine, Butenafine), not azoles. Allylamines cause toxic squalene accumulation.",
+        "Correct! Azoles block 14-α demethylase (CYP51), preventing lanosterol conversion to ergosterol. This depletes ergosterol and disrupts fungal membrane integrity — the basis for all azole antifungal activity.",
+        "Incorrect. β-(1,3)-glucan synthase is the target of echinocandins (Caspofungin, Micafungin, Anidulafungin), which disrupt the fungal cell wall.",
+        "Incorrect. Cytosine deaminase is the fungal enzyme that converts Flucytosine to 5-FU — it is not a drug target but rather the activating enzyme for Flucytosine's mechanism."
+      ]
     },
     {
       type: "mcq",
       q: "Amphotericin B's fungicidal activity is primarily due to which molecular event?",
       o: ["Inhibition of ergosterol biosynthesis", "Competitive binding to 14-α demethylase", "Direct binding to ergosterol forming transmembrane pores", "Disruption of β-glucan cross-linking in the cell wall"],
       c: 2,
-      r: "<b>Direct binding to ergosterol → transmembrane pores:</b> Amphotericin B is a polyene that physically binds ergosterol already in the fungal membrane, forming pore complexes that cause leakage of intracellular ions and cell death.<br><br>• It does NOT inhibit ergosterol synthesis — that is the azole mechanism.<br>• Echinocandins target β-glucan.<br>• This direct membrane destruction is why Amphotericin B is fungicidal with the broadest spectrum."
+      r: [
+        "Incorrect. Inhibiting ergosterol biosynthesis is the mechanism of azoles (block CYP51) and allylamines (block squalene epoxidase). Amphotericin B does NOT inhibit synthesis — it binds ergosterol that already exists.",
+        "Incorrect. Competitive binding to 14-α demethylase describes the azole mechanism. Amphotericin B has no interaction with biosynthetic enzymes — it acts directly on the membrane.",
+        "Correct! Amphotericin B physically binds ergosterol already in the fungal membrane, forming pore complexes that cause leakage of intracellular ions (K⁺, Mg²⁺) and small molecules → cell death. This direct membrane destruction makes it fungicidal.",
+        "Incorrect. Disrupting β-glucan in the cell wall is the mechanism of echinocandins (Caspofungin). Amphotericin B targets the cell MEMBRANE, not the cell wall."
+      ]
     },
     {
       type: "mcq",
       q: "Flucytosine selectively harms fungal cells but spares human cells primarily because:",
       o: ["Human cells lack the permease needed to transport flucytosine", "Human cells cannot convert flucytosine to 5-fluorouracil in significant amounts", "Human cells have a higher concentration of cytosine deaminase", "Flucytosine is rapidly excreted before entering human cells"],
       c: 1,
-      r: "<b>Human cells lack significant cytosine deaminase activity:</b> Flucytosine enters fungal cells via fungal-specific permease and is deaminated to 5-FU by fungal cytosine deaminase. Human cells lack appreciable cytosine deaminase activity, so they cannot generate cytotoxic 5-FU concentrations.<br><br>• Note: Option A (lack of permease) is also partially true, but the primary basis for selectivity is the inability to convert flucytosine to its active metabolite 5-FU in significant amounts."
+      r: [
+        "Partially true but not the PRIMARY reason. While fungal cells have specific permeases for flucytosine uptake, the key selectivity factor is the inability of human cells to convert flucytosine to its cytotoxic active form.",
+        "Correct! Human cells lack significant cytosine deaminase activity — the enzyme that converts Flucytosine to 5-FU. Without this conversion, the drug remains in its inactive prodrug form in human cells, sparing them from toxicity.",
+        "Incorrect. The opposite is true — FUNGAL cells have cytosine deaminase, while human cells lack significant activity. Higher human deaminase would mean MORE toxicity, not less.",
+        "Incorrect. Flucytosine's selectivity is not about excretion speed — it has good oral absorption and tissue distribution. The selectivity is based on enzyme-mediated activation within fungal cells."
+      ]
     },
     {
       type: "mcq",
       q: "Terbinafine accumulates to toxic levels in fungal cells through which mechanism?",
       o: ["Inhibition of 14-α demethylase causing ergosterol depletion", "Inhibition of squalene epoxidase causing toxic squalene accumulation", "Direct intercalation into fungal DNA", "Binding to ergosterol and forming membrane channels"],
       c: 1,
-      r: "<b>Squalene epoxidase inhibition → toxic squalene accumulation:</b> Terbinafine is an allylamine that inhibits squalene epoxidase early in the ergosterol pathway. This causes squalene to accumulate to fungitoxic levels while simultaneously depleting ergosterol.<br><br>• Unlike azoles, Terbinafine's toxicity stems from SQUALENE ACCUMULATION — not just ergosterol deficiency. This dual mechanism makes it fungicidal."
+      r: [
+        "Incorrect. Inhibiting 14-α demethylase (CYP51) is the mechanism of azoles, not Terbinafine. While both affect the ergosterol pathway, they target different enzymes at different steps.",
+        "Correct! Terbinafine inhibits squalene epoxidase early in the ergosterol pathway. This causes squalene to accumulate to fungitoxic levels while simultaneously depleting ergosterol — a dual mechanism that makes Terbinafine fungicidal.",
+        "Incorrect. DNA intercalation is not a mechanism of any common antifungal drug. Terbinafine's target is a membrane lipid synthesis enzyme, not nucleic acids.",
+        "Incorrect. Binding ergosterol and forming membrane pores/channels is the mechanism of polyenes (Amphotericin B, Nystatin), not Terbinafine."
+      ]
     },
     {
       type: "mcq",
       q: "Griseofulvin's antifungal action is best described as:",
       o: ["Ergosterol synthesis inhibition at the 14-α demethylase step", "Disruption of the fungal cell wall by inhibiting glucan synthase", "Binding to fungal tubulin, preventing mitotic spindle formation", "Inhibition of nucleic acid synthesis via a pyrimidine analog"],
       c: 2,
-      r: "<b>Binding fungal tubulin → prevents mitotic spindle formation:</b> Griseofulvin binds microtubules and disrupts spindle formation, arresting fungal mitosis. It is fungistatic and requires prolonged treatment.<br><br>• Its action is entirely on the mitotic apparatus — it has NO effect on ergosterol, cell walls, or nucleic acid synthesis.<br>• Memory: Griseofulvin = Spindle Wrecker; requires fatty food for absorption; concentrates in keratin."
+      r: [
+        "Incorrect. Inhibiting 14-α demethylase is the mechanism of azoles (Fluconazole, Ketoconazole, etc.). Griseofulvin has no effect on ergosterol synthesis.",
+        "Incorrect. Inhibiting glucan synthase to disrupt the cell wall is the mechanism of echinocandins (Caspofungin). Griseofulvin targets the mitotic apparatus, not the cell wall.",
+        "Correct! Griseofulvin binds fungal tubulin (microtubules), preventing mitotic spindle formation and arresting cell division. It is the ONLY antifungal with this mechanism — fungistatic, concentrates in keratin, requires fatty food for absorption.",
+        "Incorrect. Inhibiting nucleic acid synthesis via a pyrimidine analog describes Flucytosine (converted to 5-FU by fungal cytosine deaminase). Griseofulvin acts on the mitotic spindle, not nucleic acids."
+      ]
     },
     {
       type: "mcq",
       q: "Which of the following antifungal drug pairs both belong to the polyene class?",
       o: ["Fluconazole and Itraconazole", "Amphotericin B and Nystatin", "Caspofungin and Micafungin", "Terbinafine and Butenafine"],
       c: 1,
-      r: "<b>Amphotericin B and Nystatin:</b> Both are polyene macrolides derived from Streptomyces species. They share the same mechanism of binding ergosterol and forming pores.<br><br>• Fluconazole and Itraconazole = triazoles<br>• Caspofungin and Micafungin = echinocandins<br>• Terbinafine and Butenafine = allylamines"
+      r: [
+        "Incorrect. Fluconazole and Itraconazole are both triazoles (3 nitrogen atoms) — they inhibit CYP51 (14-α demethylase), not polyenes.",
+        "Correct! Amphotericin B and Nystatin are both polyene macrolides derived from Streptomyces species. They share the same mechanism — binding ergosterol and forming transmembrane pores.",
+        "Incorrect. Caspofungin and Micafungin are both echinocandins — they inhibit β-1,3-glucan synthase (cell wall target), not polyenes.",
+        "Incorrect. Terbinafine and Butenafine are both allylamines — they inhibit squalene epoxidase (ergosterol synthesis pathway), not polyenes."
+      ]
     },
     {
       type: "mcq",
       q: "A new antifungal drug is described as a cyclic lipopeptide that inhibits cell wall synthesis. To which class does it belong?",
       o: ["Polyene macrolide", "Triazole", "Echinocandin", "Allylamine"],
       c: 2,
-      r: "<b>Echinocandin:</b> Echinocandins (Caspofungin, Micafungin, Anidulafungin) are large cyclic lipopeptides that inhibit β-(1,3)-glucan synthase, disrupting fungal cell wall integrity.<br><br>• This is the ONLY antifungal class targeting the cell wall rather than the membrane or biosynthetic pathways. Human cells have no cell wall → highly selective with minimal toxicity."
+      r: [
+        "Incorrect. Polyene macrolides (Amphotericin B, Nystatin) bind ergosterol in the cell MEMBRANE and form pores — they do not target cell wall synthesis.",
+        "Incorrect. Triazoles (Fluconazole, Itraconazole, Voriconazole) inhibit CYP51 to block ergosterol synthesis — they target the membrane pathway, not the cell wall.",
+        "Correct! Echinocandins (Caspofungin, Micafungin, Anidulafungin) are large cyclic lipopeptides that inhibit β-1,3-glucan synthase — the ONLY antifungal class targeting the cell wall. Human cells have no cell wall → highly selective.",
+        "Incorrect. Allylamines (Terbinafine, Naftifine) inhibit squalene epoxidase in the ergosterol synthesis pathway — they target membrane lipid formation, not the cell wall."
+      ]
     },
     {
       type: "mcq",
       q: "Fluconazole and Itraconazole are both triazoles. What structural feature distinguishes triazoles from imidazoles?",
       o: ["Triazoles contain three nitrogen atoms in their ring structure", "Triazoles have a benzene ring fused to their azole ring", "Triazoles bind ergosterol directly, not the enzyme", "Triazoles are only available in topical formulations"],
       c: 0,
-      r: "<b>Three nitrogen atoms in the ring structure:</b> The defining chemical difference is the number of nitrogen atoms in the azole ring:<br>• Imidazoles = 2 nitrogen atoms (Ketoconazole, Clotrimazole, Miconazole) — mostly topical<br>• Triazoles = 3 nitrogen atoms (Fluconazole, Itraconazole, Voriconazole) — systemic use<br><br>Both classes inhibit the same CYP51 enzyme. Memory: ImIdazole = 2 I's → 2 nitrogens; TRIazole = TRI → 3 nitrogens."
+      r: [
+        "Correct! The defining chemical difference is the number of nitrogen atoms: Imidazoles = 2 nitrogens (Ketoconazole, Clotrimazole, Miconazole) — mostly topical; Triazoles = 3 nitrogens (Fluconazole, Itraconazole, Voriconazole) — systemic. Memory: TRIazole = TRI = 3.",
+        "Incorrect. A fused benzene ring is not the defining structural difference between triazoles and imidazoles. The distinction is solely based on the number of nitrogen atoms in the azole ring.",
+        "Incorrect. Neither triazoles nor imidazoles bind ergosterol directly. ALL azoles (both subclasses) inhibit the enzyme CYP51. Direct ergosterol binding is the mechanism of polyenes.",
+        "Incorrect. The opposite is true — triazoles are primarily used SYSTEMICALLY (Fluconazole, Itraconazole, Voriconazole), while imidazoles are mostly topical."
+      ]
     },
     {
       type: "mcq",
       q: "Which antifungal is correctly classified as an antimetabolite?",
       o: ["Nystatin", "Griseofulvin", "Flucytosine", "Caspofungin"],
       c: 2,
-      r: "<b>Flucytosine:</b> A fluorinated pyrimidine analog — a prodrug and antimetabolite that mimics a nucleic acid building block. After conversion to 5-FU inside fungal cells, it inhibits thymidylate synthase and disrupts RNA/DNA synthesis.<br><br>• Nystatin = polyene macrolide (binds ergosterol, forms pores)<br>• Griseofulvin = heterocyclic benzofuran (disrupts mitotic spindle)<br>• Caspofungin = echinocandin (inhibits cell wall β-glucan synthase)"
+      r: [
+        "Incorrect. Nystatin is a polyene macrolide — same class as Amphotericin B. It binds ergosterol and forms membrane pores. Not an antimetabolite.",
+        "Incorrect. Griseofulvin is a heterocyclic benzofuran that disrupts the mitotic spindle by binding microtubules. Not an antimetabolite.",
+        "Correct! Flucytosine is a fluorinated pyrimidine analog — a classic antimetabolite and prodrug. After conversion to 5-FU inside fungal cells by cytosine deaminase, it inhibits thymidylate synthase and disrupts RNA/DNA synthesis.",
+        "Incorrect. Caspofungin is an echinocandin — a cyclic lipopeptide that inhibits β-1,3-glucan synthase (cell wall target). Not an antimetabolite."
+      ]
     },
     {
       type: "mcq",
       q: "A patient on long-term Amphotericin B IV develops decreased urine output, rising creatinine, and serum potassium of 2.9 mEq/L. Which mechanism explains the hypokalemia?",
       o: ["Amphotericin B directly inhibits aldosterone secretion", "Renal tubular damage from nephrotoxicity causes excessive potassium wasting", "Hypokalemia results from GI potassium loss due to vomiting", "Amphotericin B chelates potassium ions in the bloodstream"],
       c: 1,
-      r: "<b>Renal tubular damage → potassium wasting:</b> Amphotericin B causes direct renal tubular toxicity, impairing tubular function and resulting in renal potassium wasting. This is a LONG-TERM toxicity, distinct from acute infusion reactions.<br><br>• The nephrotoxicity also causes azotemia and reduced GFR.<br>• Clinical action: IV sodium loading (saline bolus) before infusion helps reduce nephrotoxic injury. Dialysis is ineffective."
+      r: [
+        "Incorrect. Amphotericin B does not directly affect aldosterone secretion. The hypokalemia results from direct renal tubular damage, not hormonal disruption of the RAAS.",
+        "Correct! Amphotericin B causes direct nephrotoxicity with renal tubular damage, impairing the tubules' ability to reabsorb potassium → excessive urinary K⁺ wasting. IV sodium loading (saline bolus) before infusion reduces nephrotoxic injury. Dialysis is ineffective.",
+        "Incorrect. While vomiting can cause electrolyte loss, Amphotericin B-induced hypokalemia is specifically due to RENAL tubular damage and potassium wasting, not GI losses.",
+        "Incorrect. Amphotericin B does not chelate potassium ions. Metal chelation is the mechanism of Ciclopirox (chelates Fe³⁺). Amphotericin B's potassium depletion is renal, not chemical."
+      ]
     },
     {
       type: "mcq",
       q: "Which adverse effect is uniquely associated with Voriconazole and not shared by other triazoles?",
       o: ["Hepatotoxicity", "Inhibition of CYP450 enzymes", "Transient visual disturbances", "Risk of drug-drug interactions with Warfarin"],
       c: 2,
-      r: "<b>Transient visual disturbances:</b> Voriconazole characteristically causes altered color perception, photophobia, and blurred vision — thought to be related to its direct effect on retinal electrophysiology.<br><br>• Hepatotoxicity = class effect of ALL azoles<br>• CYP450 inhibition = class effect of ALL azoles<br>• Warfarin drug interaction = class effect of ALL azoles<br>• Only visual disturbances are UNIQUE to Voriconazole."
+      r: [
+        "Incorrect. Hepatotoxicity is a CLASS effect shared by ALL azoles with elevated serum transaminases. Not unique to Voriconazole.",
+        "Incorrect. CYP450 inhibition is a CLASS effect of ALL azoles — Fluconazole least, Ketoconazole most. Not unique to Voriconazole.",
+        "Correct! Transient visual disturbances (altered color perception, photophobia, blurred vision) are UNIQUE to Voriconazole — thought to be related to its direct effect on retinal electrophysiology. Memory: V = Visual.",
+        "Incorrect. Drug interactions with warfarin occur with ALL azoles due to CYP450 inhibition → increased warfarin levels → elevated INR → bleeding risk. This is a class effect."
+      ]
     },
     {
       type: "mcq",
       q: "A male patient on Ketoconazole develops gynecomastia and decreased libido. The nurse correctly attributes this to:",
       o: ["Ketoconazole blocking estrogen receptors", "Ketoconazole inhibiting adrenal corticosteroid synthesis only", "Ketoconazole inhibiting CYP450-dependent gonadal steroid synthesis, reducing testosterone", "Ketoconazole increasing prolactin secretion from the anterior pituitary"],
       c: 2,
-      r: "<b>CYP450-dependent gonadal steroid synthesis inhibition:</b> Ketoconazole's CYP450 inhibition extends beyond fungal cells — it also inhibits human steroidogenic CYP enzymes, reducing gonadal testosterone synthesis. This antiandrogenic effect causes gynecomastia and impotence.<br><br>• Prolactin is NOT involved.<br>• This is why Ketoconazole is less preferred for systemic use compared to other azoles."
+      r: [
+        "Incorrect. Ketoconazole does NOT block estrogen receptors. The mechanism is inhibition of testosterone PRODUCTION (steroid synthesis). SERMs (like tamoxifen) block estrogen receptors.",
+        "Incorrect. While Ketoconazole can inhibit adrenal steroid synthesis, the gynecomastia and decreased libido are primarily due to GONADAL steroid synthesis inhibition (testosterone), not just adrenal function.",
+        "Correct! Ketoconazole's CYP450 inhibition extends to human steroidogenic CYP enzymes, reducing gonadal testosterone synthesis → antiandrogenic effects → gynecomastia and impotence. This is why Ketoconazole is less preferred for systemic use.",
+        "Incorrect. Ketoconazole does not increase prolactin secretion. Hyperprolactinemia-induced gynecomastia is caused by drugs like antipsychotics (dopamine antagonists), not azole antifungals."
+      ]
     },
     {
       type: "mcq",
       q: "Griseofulvin therapy requires regular monitoring of which organ system during prolonged use?",
       o: ["Kidneys — for nephrotoxicity and electrolyte imbalance", "Liver — for hepatotoxicity and elevated transaminases", "Bone marrow — for dose-dependent suppression", "Eyes — for retinal pigment changes"],
       c: 1,
-      r: "<b>Liver — hepatotoxicity and elevated transaminases:</b> Griseofulvin is hepatotoxic with prolonged use, requiring periodic liver function tests. CNS effects (confusion, fatigue, vertigo) and hypersensitivity reactions are also documented.<br><br>• Nephrotoxicity + electrolyte imbalance = characteristic of Amphotericin B<br>• Bone marrow suppression at high doses = associated with Flucytosine<br>• Retinal changes = not a known Griseofulvin effect"
+      r: [
+        "Incorrect. Nephrotoxicity and electrolyte imbalance are characteristic of Amphotericin B (renal tubular damage, hypokalemia), not Griseofulvin.",
+        "Correct! Griseofulvin is hepatotoxic with prolonged use, requiring periodic LFTs to monitor for elevated transaminases. CNS effects (confusion, fatigue, vertigo) and hypersensitivity skin rash are also documented.",
+        "Incorrect. Dose-dependent bone marrow suppression is associated with Flucytosine (at high doses), not Griseofulvin.",
+        "Incorrect. Retinal changes are not a known adverse effect of Griseofulvin. Visual disturbances are associated with Voriconazole (transient, usually reversible)."
+      ]
     },
     {
       type: "mcq",
       q: "Which statement about Flucytosine's toxicity profile is most accurate?",
       o: ["Flucytosine is highly nephrotoxic and must be dose-adjusted in all patients", "Flucytosine is relatively nontoxic but can cause bone marrow suppression at high doses", "Flucytosine consistently causes acute infusion reactions within the first hour", "Flucytosine causes irreversible hepatic fibrosis with prolonged use"],
       c: 1,
-      r: "<b>Relatively nontoxic — bone marrow suppression at high doses:</b> Flucytosine has a favorable toxicity profile compared to other systemic antifungals. Bone marrow suppression and alopecia tend to occur only at high doses.<br><br>• It is NOT nephrotoxic itself — however, renal impairment from co-administered Amphotericin B can elevate Flucytosine levels, indirectly increasing toxicity risk. Monitor trough levels."
+      r: [
+        "Incorrect. Flucytosine is NOT nephrotoxic itself. However, co-administered Amphotericin B can impair renal function, elevating Flucytosine levels and indirectly increasing toxicity risk.",
+        "Correct! Flucytosine has a favorable toxicity profile — bone marrow suppression (leukopenia, thrombocytopenia, anemia) and alopecia occur primarily at high doses. Monitor trough levels to prevent hematological toxicity.",
+        "Incorrect. Acute infusion reactions (fever, chills, rigors) are characteristic of Amphotericin B, not Flucytosine. Flucytosine is given orally with good absorption.",
+        "Incorrect. Irreversible hepatic fibrosis is not a documented effect of Flucytosine. Hepatotoxicity is more commonly associated with azoles and Griseofulvin."
+      ]
     },
     {
       type: "mcq",
       q: "A patient with AIDS develops cryptococcal meningitis. Which drug is preferred for maintenance therapy, and why?",
       o: ["Amphotericin B — broadest spectrum and penetrates CSF adequately", "Fluconazole — the only azole achieving therapeutic CSF concentrations", "Itraconazole — preferred due to its IV formulation for systemic use", "Voriconazole — drug of choice for all CNS fungal infections"],
       c: 1,
-      r: "<b>Fluconazole — only azole with CSF penetration:</b> Fluconazole is the azole of choice for cryptococcal meningitis maintenance because it is the ONLY azole that reliably crosses the blood-brain barrier.<br><br>• Amphotericin B is used for INDUCTION therapy but not long-term maintenance — too toxic.<br>• Itraconazole has poor CSF penetration.<br>• Voriconazole is indicated specifically for aspergillosis, not cryptococcal meningitis."
+      r: [
+        "Incorrect. Amphotericin B is used for INDUCTION therapy (initial aggressive treatment) but not long-term maintenance — its nephrotoxicity makes chronic use too dangerous. It also has poor CSF penetration.",
+        "Correct! Fluconazole is the ONLY azole that reliably crosses the blood-brain barrier to achieve therapeutic CSF concentrations. It is well-tolerated for long-term maintenance therapy in AIDS patients.",
+        "Incorrect. Itraconazole has poor CSF penetration and is the drug of choice for systemic blastomycosis, not cryptococcal meningitis.",
+        "Incorrect. Voriconazole is indicated specifically for invasive aspergillosis, not cryptococcal meningitis. Fluconazole is the established standard for this indication."
+      ]
     },
     {
       type: "mcq",
       q: "Voriconazole is preferred over other azoles for invasive pulmonary aspergillosis primarily because:",
       o: ["It is the only antifungal with any activity against Aspergillus species", "It is fungicidal against Aspergillus and achieves superior clinical outcomes", "It has no CYP450 interactions, making it safer than other azoles", "It can be administered intrathecally for CNS involvement"],
       c: 1,
-      r: "<b>Superior fungicidal efficacy and clinical outcomes:</b> Voriconazole is the drug of choice for invasive aspergillosis due to superior efficacy compared to Amphotericin B in clinical trials.<br><br>• ALL azoles inhibit CYP450 — Voriconazole is NOT exempt from drug interactions.<br>• Intrathecal use is NOT a standard feature of Voriconazole therapy.<br>• Other antifungals (e.g., Amphotericin B, Caspofungin) also have activity against Aspergillus."
+      r: [
+        "Incorrect. Other antifungals (Amphotericin B, Caspofungin, Itraconazole) also have activity against Aspergillus — Voriconazole is not the only option, just the best.",
+        "Correct! Voriconazole demonstrates superior fungicidal efficacy against Aspergillus with better clinical outcomes than Amphotericin B in clinical trials. It is the established first-line drug of choice.",
+        "Incorrect. ALL azoles inhibit CYP450 — Voriconazole is NOT exempt from drug interactions. It still causes significant CYP450 inhibition and requires drug interaction monitoring.",
+        "Incorrect. Intrathecal administration is NOT a standard feature of Voriconazole therapy. Intrathecal delivery is associated with Amphotericin B (for certain CNS infections)."
+      ]
     },
     {
       type: "mcq",
       q: "A patient with dermatophyte nail infection failed a 6-month Griseofulvin course. Which drug is most appropriate next?",
       o: ["Fluconazole IV — systemic azole for deeper penetration", "Amphotericin B — broadest antifungal spectrum", "Terbinafine oral — drug of choice for dermatophyte onychomycosis", "Nystatin topical — polyene active against dermatophytes"],
       c: 2,
-      r: "<b>Terbinafine oral:</b> The current drug of choice for dermatophyte onychomycosis — more effective, better tolerated, and requiring a shorter course than Griseofulvin or Itraconazole.<br><br>• Nystatin has NO activity against dermatophytes — it is active against Candida only.<br>• Amphotericin B is reserved for severe systemic infections.<br>• IV Fluconazole is not indicated for dermatophyte nail infections."
+      r: [
+        "Incorrect. IV Fluconazole is not indicated for dermatophyte nail infections — it is overkill and primarily used for systemic candidiasis and cryptococcal meningitis.",
+        "Incorrect. Amphotericin B is reserved for severe, life-threatening systemic fungal infections — completely inappropriate for a nail infection due to its extreme nephrotoxicity.",
+        "Correct! Terbinafine oral is the current drug of choice for dermatophyte onychomycosis — more effective, better tolerated, and requiring a shorter course than Griseofulvin or Itraconazole.",
+        "Incorrect. Nystatin has NO activity against dermatophytes — it is active only against Candida species. Additionally, topical agents cannot penetrate deep into nail tissue effectively."
+      ]
     },
     {
       type: "mcq",
       q: "Nystatin is active against Candida but is never used systemically. What is the primary reason?",
       o: ["Nystatin resistance develops within 48 hours of systemic exposure", "Nystatin is too toxic for parenteral administration", "Nystatin is inactivated by gastric acid when given orally", "Nystatin cannot reach therapeutic plasma concentrations at any dose"],
       c: 1,
-      r: "<b>Too toxic for parenteral administration:</b> Nystatin shares Amphotericin B's mechanism (binds ergosterol, forms pores) but has a far too narrow therapeutic window for systemic IV use — it is NOT weaker, simply unsafe parenterally.<br><br>• Used topically for oropharyngeal ('swish and swallow') and vaginal candidiasis where local concentrations are effective and systemic absorption is minimal."
+      r: [
+        "Incorrect. Rapid resistance is a characteristic of Flucytosine (when used alone), not Nystatin. Nystatin resistance is not the reason for topical-only use.",
+        "Correct! Nystatin shares Amphotericin B's mechanism (binds ergosterol, forms pores) but has a far too narrow therapeutic window for systemic IV use — it is NOT weaker, simply unsafe parenterally. Used topically for oral/vaginal candidiasis.",
+        "Incorrect. Nystatin is not significantly inactivated by gastric acid. It is not absorbed from the GI tract, which is actually WHY it works for oral thrush ('swish and swallow').",
+        "Incorrect. The limitation is toxicity, not inability to achieve plasma levels. Nystatin is restricted to topical use because systemic administration would cause unacceptable damage to human cell membranes."
+      ]
     },
     {
       type: "mcq",
       q: "Caspofungin is prescribed as second-line therapy for esophageal candidiasis after Amphotericin B failure. Which statement about Caspofungin is correct?",
       o: ["Caspofungin is effective orally and does not require IV administration", "Caspofungin works by binding ergosterol in the fungal cell membrane", "Caspofungin disrupts the fungal cell wall by inhibiting β-(1,3)-glucan synthase", "Caspofungin is the drug of choice for cryptococcal meningitis due to CSF penetration"],
       c: 2,
-      r: "<b>Inhibits β-(1,3)-glucan synthase → disrupts fungal cell wall:</b> Caspofungin is an echinocandin — the only antifungal class targeting the cell wall. It must be given IV. It targets the cell wall, NOT the membrane.<br><br>• Binding ergosterol = Amphotericin B and Nystatin (polyenes)<br>• CSF penetration for meningitis = Fluconazole<br>• Oral administration is NOT possible with Caspofungin (large cyclic peptide)"
+      r: [
+        "Incorrect. Caspofungin CANNOT be given orally — it is a large cyclic peptide that must be administered IV. Oral absorption is not possible due to its molecular size and structure.",
+        "Incorrect. Binding ergosterol in the cell membrane is the mechanism of polyenes (Amphotericin B and Nystatin). Caspofungin targets the cell WALL, not the membrane.",
+        "Correct! Caspofungin is an echinocandin that inhibits β-(1,3)-glucan synthase, disrupting the fungal cell wall. This is the ONLY antifungal class targeting the cell wall — human cells have no cell wall → highly selective.",
+        "Incorrect. Caspofungin does NOT have adequate CSF penetration for meningitis. Fluconazole is the drug of choice for cryptococcal meningitis (only azole crossing the blood-brain barrier)."
+      ]
     },
     {
       type: "mcq",
       q: "A patient prescribed Itraconazole for systemic blastomycosis is also taking Warfarin. The nurse anticipates which pharmacokinetic interaction?",
       o: ["Itraconazole induces CYP3A4, accelerating Warfarin metabolism and reducing INR", "Itraconazole inhibits hepatic CYP450, increasing Warfarin plasma levels and INR", "Itraconazole displaces Warfarin from plasma proteins, causing renal clearance", "Itraconazole has no clinically significant interaction with Warfarin"],
       c: 1,
-      r: "<b>CYP450 inhibition → ↑ Warfarin levels → ↑ INR → bleeding risk:</b> All azoles, including Itraconazole, are CYP450 INHIBITORS (not inducers). Warfarin is metabolized by CYP2C9/3A4, so co-administration elevates Warfarin concentrations and increases INR and bleeding risk.<br><br>• Monitor INR closely when any azole is added to Warfarin therapy.<br>• Fluconazole = least CYP450 inhibitor; Ketoconazole = most."
+      r: [
+        "Incorrect. Itraconazole is a CYP450 INHIBITOR, not an inducer. It SLOWS down Warfarin metabolism, causing drug accumulation — the opposite of this answer.",
+        "Correct! All azoles, including Itraconazole, are CYP450 INHIBITORS. Warfarin is metabolized by CYP2C9/3A4, so co-administration → elevated Warfarin levels → increased INR → bleeding risk. Monitor INR closely. Fluconazole = least inhibitor; Ketoconazole = most.",
+        "Incorrect. Protein displacement is not the primary interaction mechanism. Azoles' interaction with Warfarin is through hepatic CYP450 enzyme inhibition, slowing metabolism.",
+        "Incorrect. There IS a clinically significant and potentially dangerous interaction — all azoles inhibit CYP450, increasing Warfarin levels and bleeding risk. This requires close INR monitoring."
+      ]
     }
   ]
 
