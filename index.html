@@ -538,6 +538,401 @@
         transform: translateY(-100px) scale(1.5);
       }
     }
+    /* --- FEATURE 1: POMODORO TIMER --- */
+    #pomodoro-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #9333ea);
+      color: #fff;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(219, 39, 119, 0.35);
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    #pomodoro-fab:active { transform: scale(0.92); }
+    #pomodoro-fab.running { animation: fabPulse 2s infinite; }
+    @keyframes fabPulse {
+      0%, 100% { box-shadow: 0 6px 20px rgba(219, 39, 119, 0.35); }
+      50% { box-shadow: 0 6px 30px rgba(219, 39, 119, 0.6); }
+    }
+
+    #pomodoro-panel {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 260px;
+      background: var(--card-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px 20px;
+      z-index: 901;
+      display: none;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      animation: fadeIn 0.25s ease;
+    }
+    .pomo-title { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; text-align: center; }
+    .pomo-time { font-size: 48px; font-weight: 800; text-align: center; color: var(--text-main); font-variant-numeric: tabular-nums; margin-bottom: 4px; }
+    .pomo-label { font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 16px; }
+    .pomo-btns { display: flex; gap: 8px; }
+    .pomo-btns .btn { flex: 1; padding: 10px; font-size: 13px; border-radius: 10px; }
+    .pomo-session-info { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 12px; }
+
+    #break-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(147, 51, 234, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    .break-emoji { font-size: 60px; margin-bottom: 16px; animation: breakBounce 1.5s ease infinite; }
+    @keyframes breakBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .break-title { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+    .break-sub { font-size: 16px; opacity: 0.85; margin-bottom: 24px; }
+    .break-timer { font-size: 40px; font-weight: 700; font-variant-numeric: tabular-nums; margin-bottom: 24px; }
+
+    /* --- FEATURE 2: STUDY STATS --- */
+    #stats-card {
+      background: var(--card-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+      transition: transform 0.1s;
+    }
+    #stats-card:active { transform: scale(0.98); }
+    .stats-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .stats-header h4 { font-size: 14px; color: var(--primary); }
+    .stats-header span { font-size: 11px; color: var(--text-muted); }
+    .stats-row { display: flex; gap: 10px; margin-bottom: 12px; }
+    .stat-box {
+      flex: 1;
+      background: var(--btn-bg);
+      border-radius: 12px;
+      padding: 12px 10px;
+      text-align: center;
+      border: 1px solid var(--card-border);
+    }
+    .stat-box .stat-num { font-size: 24px; font-weight: 800; color: var(--primary); }
+    .stat-box .stat-lbl { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+    .weekly-chart { display: flex; align-items: flex-end; gap: 4px; height: 50px; }
+    .weekly-chart .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; }
+    .weekly-chart .bar {
+      width: 100%;
+      background: linear-gradient(to top, var(--primary), #f472b6);
+      border-radius: 4px 4px 0 0;
+      min-height: 2px;
+      transition: height 0.4s ease;
+    }
+    .weekly-chart .bar-day { font-size: 9px; color: var(--text-muted); margin-top: 4px; }
+
+    #stats-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 998;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .stats-modal-card {
+      background: var(--bg);
+      border-radius: 20px;
+      padding: 24px 20px;
+      width: 100%;
+      max-width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 2px solid var(--primary);
+    }
+    .stats-topic-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 13px;
+    }
+    .stats-topic-row:last-child { border-bottom: none; }
+    .stats-topic-name { font-weight: 600; }
+    .stats-topic-acc { color: var(--primary); font-weight: 700; }
+
+    
+    /* --- FEATURE 4: SCORE CELEBRATIONS --- */
+    #celebration-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 997;
+    }
+    .confetti-piece {
+      position: absolute;
+      top: -20px;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      animation: confettiFall 3s ease-out forwards;
+    }
+    @keyframes confettiFall {
+      0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+      100% { opacity: 0; transform: translateY(100vh) rotate(720deg) scale(0.5); }
+    }
+    .celebration-msg {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--bg);
+      border: 2px solid var(--primary);
+      border-radius: 24px;
+      padding: 30px 24px;
+      text-align: center;
+      z-index: 998;
+      max-width: 300px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      animation: celebPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: auto;
+    }
+    @keyframes celebPop {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    .celeb-emoji { font-size: 50px; margin-bottom: 12px; }
+    .celeb-text { font-size: 18px; font-weight: 700; color: var(--primary); line-height: 1.4; margin-bottom: 16px; }
+
+    /* --- FEATURE 5: QUICK DRUG LOOKUP --- */
+    #lookup-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      display: none;
+      flex-direction: column;
+      padding: 20px;
+      animation: fadeIn 0.2s ease;
+    }
+    .lookup-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .lookup-close {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #lookup-input {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: 24px;
+      border: none;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+    }
+    #lookup-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+    #lookup-results {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 20px;
+    }
+    .lookup-item {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .lookup-drug { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .lookup-fact { font-size: 13px; color: var(--text-main); line-height: 1.5; }
+    .lookup-topic { font-size: 10px; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .lookup-match { background: rgba(219, 39, 119, 0.15); padding: 1px 3px; border-radius: 3px; }
+    .lookup-empty { color: rgba(255,255,255,0.6); text-align: center; margin-top: 60px; font-size: 15px; }
+
+    /* --- FEATURE 6: DAILY STUDY GOAL --- */
+    #goal-bar {
+      background: var(--card-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin-bottom: 14px;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    #goal-bar:active { transform: scale(0.98); }
+    .goal-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .goal-title { font-size: 13px; font-weight: 700; color: var(--primary); }
+    .goal-pct { font-size: 13px; font-weight: 700; color: var(--text-muted); }
+    .goal-track {
+      width: 100%;
+      height: 10px;
+      background: var(--btn-bg);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .goal-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #9333ea);
+      border-radius: 5px;
+      transition: width 0.5s ease;
+      min-width: 0;
+    }
+    .goal-detail { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+    .goal-complete-glow {
+      animation: goalGlow 1.5s ease infinite;
+    }
+    @keyframes goalGlow {
+      0%, 100% { box-shadow: 0 0 10px rgba(219, 39, 119, 0.15); }
+      50% { box-shadow: 0 0 25px rgba(219, 39, 119, 0.35); }
+    }
+
+    #goal-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .goal-modal-card {
+      background: var(--bg);
+      border-radius: 20px;
+      padding: 28px 24px;
+      width: 100%;
+      max-width: 320px;
+      border: 2px solid var(--primary);
+    }
+    .goal-modal-card h3 { color: var(--primary); text-align: center; margin-bottom: 20px; }
+    .goal-field { margin-bottom: 16px; }
+    .goal-field label { font-size: 13px; color: var(--text-muted); display: block; margin-bottom: 6px; }
+    .goal-field input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: var(--btn-bg);
+      color: var(--text-main);
+      font-size: 16px;
+      text-align: center;
+      font-weight: 700;
+      outline: none;
+    }
+
+    /* --- PER-OPTION RATIONALE --- */
+    .opt-wrap { margin-bottom: 8px; }
+    .opt-wrap .opt { margin-bottom: 0; }
+    .opt-rat {
+      font-size: 13px;
+      color: var(--text-main);
+      background: var(--card-bg);
+      border-radius: 0 0 12px 12px;
+      padding: 12px 14px;
+      line-height: 1.6;
+      border-left: 4px solid var(--primary);
+      margin-top: -1px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    /* --- TOPIC NOTES TABLES --- */
+    #notes-content table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 16px 0;
+      font-size: 13px;
+      line-height: 1.5;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    #notes-content thead {
+      background: linear-gradient(135deg, var(--primary), #9333ea);
+      color: #fff;
+    }
+
+    #notes-content th {
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    #notes-content td {
+      padding: 11px 14px;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-main);
+    }
+
+    #notes-content tbody tr {
+      background: var(--bg);
+      transition: background 0.15s ease;
+    }
+
+    #notes-content tbody tr:nth-child(even) {
+      background: var(--btn-bg);
+    }
+
+    #notes-content tbody tr:hover {
+      background: rgba(219, 39, 119, 0.06);
+    }
+
+    /* First column bold for drug names / key terms */
+    #notes-content td:first-child {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Responsive: horizontal scroll on tiny screens */
+    #notes-content .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 14px;
+      margin: 16px 0;
+    }
+
+    #notes-content .table-wrap table {
+      margin: 0;
+      min-width: 400px;
+    }
+
   </style>
 </head>
 
@@ -545,6 +940,7 @@
 
   <header>
     <div class="top-btn" onclick="toggleTheme()" id="theme-btn">🌙</div>
+    <div class="top-btn" onclick="openLookup()" id="lookup-btn">🔍</div>
     <div class="top-btn" onclick="openPrayer()">
       💌
       <div class="unread-badge" id="prayer-badge"></div>
@@ -560,13 +956,37 @@
     <input type="text" class="search-bar" id="search-input" placeholder="Search topics or PDFs..."
       onkeyup="renderTopics()">
 
+    <!-- Feature 6: Daily Study Goal -->
+    <div id="goal-bar" onclick="openGoalModal()">
+      <div class="goal-top">
+        <span class="goal-title">🎯 Daily Goal</span>
+        <span class="goal-pct" id="goal-pct-text">0%</span>
+      </div>
+      <div class="goal-track"><div class="goal-fill" id="goal-fill" style="width: 0%"></div></div>
+      <div class="goal-detail" id="goal-detail">Tap to set your daily study goal</div>
+    </div>
+
+    <!-- Feature 2: Study Stats -->
+    <div id="stats-card" onclick="openStatsModal()">
+      <div class="stats-header">
+        <h4>📊 Today's Progress</h4>
+        <span>tap for details</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-num" id="stat-questions">0</div><div class="stat-lbl">Questions</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-accuracy">—</div><div class="stat-lbl">Accuracy</div></div>
+        <div class="stat-box"><div class="stat-num" id="stat-streak">0</div><div class="stat-lbl">Day Streak</div></div>
+      </div>
+      <div class="weekly-chart" id="weekly-chart"></div>
+    </div>
+
     <div id="topic-list"></div>
   </div>
 
   <div id="view-split" class="view">
     <div class="back-btn" onclick="navTo('view-main')">← Back to Home</div>
     <h2 id="split-title" style="margin-bottom: 20px; text-align:center;"></h2>
-    <div class="big-split-btn" onclick="navTo('view-notes')">📚 Study Notes</div>
+    <div class="big-split-btn" onclick="openNotes()">📚 Study Notes</div>
     <div class="big-split-btn" onclick="navTo('view-questions')">📝 Practice & Quizzes</div>
   </div>
 
@@ -578,6 +998,8 @@
       <div class="nav-pill" onclick="switchNotes('detailed', this)">Detailed Notes</div>
     </div>
     <div id="notes-content"></div>
+
+
   </div>
 
   <div id="view-questions" class="view">
@@ -615,7 +1037,7 @@
       <div class="glass-card">
         <div class="qtext" id="quiz-q"></div>
         <div id="quiz-opts"></div>
-        <div class="rat" id="quiz-rat"></div>
+
         <button class="btn btn-primary" id="quiz-nxt" style="display:none; width:100%; margin-top:10px;"
           onclick="nextQuiz()">Next Question →</button>
       </div>
@@ -645,7 +1067,7 @@
         <div id="prac-opts"></div>
         <button class="btn btn-primary" id="prac-submit" style="display:none; width:100%; margin-top:10px;"
           onclick="submitPrac()">Submit Answer</button>
-        <div class="rat" id="prac-rat"></div>
+
         <button class="btn btn-primary" id="prac-nxt" style="display:none; width:100%; margin-top:10px;"
           onclick="nextPrac()">Next →</button>
       </div>
@@ -666,412 +1088,78 @@
     </div>
   </div>
 
-  <script src="config.js"></script>
-  <script src="antifungals.js"></script>
+  <!-- Feature 1: Pomodoro Timer -->
+  <button id="pomodoro-fab" onclick="togglePomoPanel()">⏱</button>
+  <div id="pomodoro-panel">
+    <div class="pomo-title" id="pomo-phase">STUDY TIME</div>
+    <div class="pomo-time" id="pomo-display">02:00</div>
+    <div class="pomo-label" id="pomo-session-label">Session 1 of 4</div>
+    <div class="pomo-btns">
+      <button class="btn btn-primary" id="pomo-start-btn" onclick="startPomodoro()">Start</button>
+      <button class="btn" onclick="resetPomodoro()">Reset</button>
+    </div>
+    <div class="pomo-session-info" id="pomo-total">Total today: 0 min</div>
+  </div>
+  <div id="break-overlay">
+    <div class="break-emoji">☕</div>
+    <div class="break-title">Break Time!</div>
+    <div class="break-sub">You earned it, princess 💖</div>
+    <div class="break-timer" id="break-display">01:00</div>
+    <button class="btn btn-primary" onclick="skipBreak()" style="background:#fff; color:#9333ea; min-width:140px;">Skip Break</button>
+  </div>
+
+  <!-- Feature 4: Score Celebrations -->
+  <div id="celebration-overlay"></div>
+
+  <!-- Feature 5: Quick Drug Lookup -->
+  <div id="lookup-modal">
+    <div class="lookup-header">
+      <button class="lookup-close" onclick="closeLookup()">✕</button>
+      <input type="text" id="lookup-input" placeholder="Search drugs, effects, mechanisms..." oninput="searchLookup()">
+    </div>
+    <div id="lookup-results">
+      <div class="lookup-empty">Start typing to search across all topics</div>
+    </div>
+  </div>
+
+  <!-- Feature 6: Goal Setup Modal -->
+  <div id="goal-modal">
+    <div class="goal-modal-card">
+      <h3>🎯 Set Daily Goal</h3>
+      <div class="goal-field">
+        <label>Flashcards to review</label>
+        <input type="number" id="goal-fc-input" min="0" max="200" value="20">
+      </div>
+      <div class="goal-field">
+        <label>Quizzes to complete</label>
+        <input type="number" id="goal-quiz-input" min="0" max="50" value="1">
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="closeGoalModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveGoal()">Save Goal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feature 2: Stats Detail Modal -->
+  <div id="stats-modal">
+    <div class="stats-modal-card">
+      <h3 style="color:var(--primary); text-align:center; margin-bottom:16px;">📊 Study Statistics</h3>
+      <div id="stats-modal-content"></div>
+      <button class="btn btn-primary" onclick="closeStatsModal()" style="width:100%; margin-top:16px;">Close</button>
+    </div>
+  </div>
+
+
+  <!-- Load scripts in dependency order -->
+  <script src="storage.js"></script>
   <script src="prayer.js"></script>
-
-  <script>
-    /* =========================================
-       APP LOGIC & STATE
-    ========================================= */
-    let currentTopic = null;
-    let activeEngine = null; // 'fc', 'quiz', 'practice'
-
-    // Engines State
-    const STATE = {
-      fc: { q: [], missed: [], i: 0 },
-      quiz: { q: [], missed: [], i: 0, qs: 0, answered: false },
-      prac: { type: '', q: [], i: 0, qs: 0, answered: false, sata: new Set() }
-    };
-
-    // --- INIT & THEME ---
-    window.onload = () => {
-      if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-      updateThemeIcon();
-      checkPrayer();
-      renderTopics();
-      restoreSession();
-    };
-
-    function toggleTheme() {
-      document.body.classList.toggle('dark');
-      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-      updateThemeIcon();
-    }
-    function updateThemeIcon() { document.getElementById('theme-btn').innerText = document.body.classList.contains('dark') ? '☀️' : '🌙'; }
-
-    // --- PRAYER/MESSAGE SYSTEM ---
-    function checkPrayer() {
-      if (!window.APP_CONFIG) return;
-      if (localStorage.getItem('last_prayer_id') !== APP_CONFIG.prayer.id) {
-        document.getElementById('prayer-badge').style.display = 'block';
-        document.getElementById('prayer-txt').style.display = 'block';
-      }
-    }
-    function openPrayer() {
-      if (!window.APP_CONFIG) return;
-      document.getElementById('prayer-badge').style.display = 'none';
-      document.getElementById('prayer-txt').style.display = 'none';
-      localStorage.setItem('last_prayer_id', APP_CONFIG.prayer.id);
-      document.getElementById('prayer-content').innerHTML = APP_CONFIG.prayer.message;
-      document.getElementById('prayer-modal').style.display = 'flex';
-
-      // Heart Animation
-      for (let i = 0; i < 15; i++) {
-        setTimeout(() => {
-          let h = document.createElement('div');
-          h.className = 'heart-particle';
-          h.innerText = '💖';
-          h.style.left = Math.random() * 80 + 10 + '%';
-          h.style.top = '60%';
-          document.getElementById('prayer-modal').appendChild(h);
-          setTimeout(() => h.remove(), 2000);
-        }, i * 100);
-      }
-    }
-    function closePrayer() { document.getElementById('prayer-modal').style.display = 'none'; }
-
-    // --- NAVIGATION & VIEWS ---
-    function navTo(viewId) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById(viewId).classList.add('active');
-      window.scrollTo(0, 0);
-      saveSession(viewId);
-    }
-
-    // --- MAIN PAGE: RENDER TOPICS ---
-    function renderTopics() {
-      if (!window.PDF_TOPIC_DATA) return;
-      const list = document.getElementById('topic-list');
-      const term = document.getElementById('search-input').value.toLowerCase();
-      let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-
-      const allKeys = Object.keys(PDF_TOPIC_DATA);
-      const favouriteKeys = allKeys.filter(k => bookmarks.includes(k) && PDF_TOPIC_DATA[k].title.toLowerCase().includes(term));
-      const otherKeys = allKeys.filter(k => !bookmarks.includes(k) && PDF_TOPIC_DATA[k].title.toLowerCase().includes(term));
-
-      function buildCard(key, isBookmarked) {
-        return `<div class="topic-card" onclick="openTopic('${key}')">
-          <div class="topic-info">
-            <h3>${PDF_TOPIC_DATA[key].title}</h3>
-            <p>${PDF_TOPIC_DATA[key].desc}</p>
-          </div>
-          <div class="bookmark-btn" onclick="toggleBookmark(event, '${key}')">
-            ${isBookmarked ? '🩷' : '🤍'}
-          </div>
-        </div>`;
-      }
-
-      list.innerHTML = '';
-
-      // Favourites section — only shown if at least one bookmarked topic exists
-      if (favouriteKeys.length > 0) {
-        list.innerHTML += `<div style="font-size:12px; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:0.08em; margin: 8px 4px 10px;">🩷 Favourites</div>`;
-        favouriteKeys.forEach(key => { list.innerHTML += buildCard(key, true); });
-        list.innerHTML += `<div style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin: 16px 4px 10px;">All Topics</div>`;
-      }
-
-      // All topics section
-      otherKeys.forEach(key => { list.innerHTML += buildCard(key, false); });
-
-      // Empty state when search finds nothing
-      if (favouriteKeys.length === 0 && otherKeys.length === 0) {
-        list.innerHTML = `<div style="text-align:center; color:var(--text-muted); margin-top:40px; font-size:14px;">No topics found for "<b>${term}</b>"</div>`;
-      }
-    }
-
-    function toggleBookmark(e, key) {
-      e.stopPropagation();
-      let b = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-      if (b.includes(key)) b = b.filter(i => i !== key);
-      else b.push(key);
-      localStorage.setItem('bookmarks', JSON.stringify(b));
-      renderTopics();
-    }
-
-    // --- OPEN TOPIC ---
-    function openTopic(key) {
-      currentTopic = key;
-      document.getElementById('split-title').innerText = PDF_TOPIC_DATA[key].title;
-      navTo('view-split');
-
-      // Reset Engines
-      STATE.fc.missed = JSON.parse(localStorage.getItem(`fc_missed_${key}`) || '[]');
-      STATE.quiz.missed = JSON.parse(localStorage.getItem(`quiz_missed_${key}`) || '[]');
-      startFC();
-      startQuiz();
-    }
-
-    // --- NOTES SECTION ---
-    function switchNotes(type, el) {
-      document.querySelectorAll('#view-notes .nav-pill').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
-      let data = PDF_TOPIC_DATA[currentTopic];
-      let html = '';
-      if (type === 'summary') html = data.summaryHtml;
-      if (type === 'ref') html = data.refHtml;
-      if (type === 'detailed') html = data.detailedNotesHtml;
-      document.getElementById('notes-content').innerHTML = html;
-    }
-
-    // --- QUESTIONS SECTION (TABS) ---
-    function switchQuestions(tab, el) {
-      document.querySelectorAll('#view-questions .nav-pill').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
-      ['flash', 'quiz', 'practice-menu', 'practice-active', 'score'].forEach(id => {
-        document.getElementById(`qsec-${id}`).style.display = 'none';
-      });
-
-      if (tab === 'practice-menu') document.getElementById('qsec-practice-menu').style.display = 'block';
-      else {
-        document.getElementById(`qsec-${tab}`).style.display = 'block';
-        if (tab === 'flash') renderFC();
-        if (tab === 'quiz') renderQuiz();
-      }
-    }
-
-    // --- UTILITY ---
-    function shuffle(arr) { let a = [...arr]; for (let i = a.length - 1; i > 0; i--) { let j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]]; } return a; }
-
-    /* =========================================
-       FLASHCARD ENGINE
-    ========================================= */
-    function startFC(reviewMissed = false) {
-      let pool = PDF_TOPIC_DATA[currentTopic].flashcards;
-      if (reviewMissed) { STATE.fc.q = [...STATE.fc.missed]; STATE.fc.missed = []; }
-      else { STATE.fc.q = shuffle(pool).slice(0, 30); STATE.fc.missed = []; }
-      STATE.fc.i = 0;
-      saveProgress(); renderFC();
-    }
-    function renderFC() {
-      if (STATE.fc.i >= STATE.fc.q.length) return endFC();
-      document.getElementById('fc-count').innerText = `Card ${STATE.fc.i + 1} of ${STATE.fc.q.length}`;
-      document.getElementById('fcq').innerText = STATE.fc.q[STATE.fc.i].q;
-      document.getElementById('fca').innerText = STATE.fc.q[STATE.fc.i].a;
-      document.getElementById('fccard').classList.remove('flipped');
-      // Reset button visibility for new card
-      document.querySelector('.btn-tap').style.display = '';
-      document.querySelector('.btn-missed').style.display = 'none';
-      document.querySelector('.btn-gotit').style.display = 'none';
-    }
-    function flipFC() {
-      let card = document.getElementById('fccard');
-      if (card.classList.contains('flipped')) return;
-      card.classList.add('flipped');
-      // Show score buttons, hide tap prompt
-      document.querySelector('.btn-tap').style.display = 'none';
-      document.querySelector('.btn-missed').style.display = 'block';
-      document.querySelector('.btn-gotit').style.display = 'block';
-    }
-    function scoreFC(knewIt) {
-      if (!knewIt) STATE.fc.missed.push(STATE.fc.q[STATE.fc.i]);
-      STATE.fc.i++; saveProgress(); renderFC();
-    }
-    function endFC() {
-      document.getElementById('qsec-flash').style.display = 'none';
-      let pct = Math.round(((STATE.fc.q.length - STATE.fc.missed.length) / STATE.fc.q.length) * 100) || 0;
-      showScoreScreen(pct, STATE.fc.missed.length, 'fc');
-    }
-
-    /* =========================================
-       QUIZ ENGINE
-    ========================================= */
-    function startQuiz(reviewMissed = false) {
-      let pool = PDF_TOPIC_DATA[currentTopic].quizQuestions;
-      if (reviewMissed) { STATE.quiz.q = [...STATE.quiz.missed]; STATE.quiz.missed = []; }
-      else { STATE.quiz.q = shuffle(pool).slice(0, 20); STATE.quiz.missed = []; }
-      STATE.quiz.i = 0; STATE.quiz.qs = 0;
-      saveProgress(); renderQuiz();
-    }
-    function renderQuiz() {
-      if (STATE.quiz.i >= STATE.quiz.q.length) return endQuiz();
-      STATE.quiz.answered = false;
-      let q = STATE.quiz.q[STATE.quiz.i];
-
-      document.getElementById('quiz-count').innerText = `Question ${STATE.quiz.i + 1} of ${STATE.quiz.q.length}`;
-      document.getElementById('quiz-q').innerText = q.q;
-      document.getElementById('quiz-rat').style.display = 'none';
-      document.getElementById('quiz-nxt').style.display = 'none';
-
-      let od = document.getElementById('quiz-opts'); od.innerHTML = '';
-      q.o.forEach((opt, idx) => {
-        let b = document.createElement('button'); b.className = 'opt'; b.innerText = opt;
-        b.onclick = () => evalQuiz(idx, q);
-        od.appendChild(b);
-      });
-    }
-    function evalQuiz(sel, q) {
-      if (STATE.quiz.answered) return;
-      STATE.quiz.answered = true;
-      let btns = document.querySelectorAll('#quiz-opts .opt');
-      btns.forEach((b, idx) => {
-        b.style.pointerEvents = 'none';
-        if (idx === q.c) b.classList.add('ok');
-        else if (idx === sel) b.classList.add('no');
-      });
-      if (sel === q.c) STATE.quiz.qs++;
-      else STATE.quiz.missed.push(q);
-
-      let rat = document.getElementById('quiz-rat');
-      rat.innerHTML = q.r; rat.style.display = 'block';
-      document.getElementById('quiz-nxt').style.display = 'block';
-      saveProgress();
-    }
-    function nextQuiz() { STATE.quiz.i++; renderQuiz(); }
-    function endQuiz() {
-      document.getElementById('qsec-quiz').style.display = 'none';
-      let pct = Math.round((STATE.quiz.qs / STATE.quiz.q.length) * 100) || 0;
-      showScoreScreen(pct, STATE.quiz.missed.length, 'quiz');
-    }
-
-    /* =========================================
-       PRACTICE ENGINE (SATA, NCLEX, HARD)
-    ========================================= */
-    function startPractice(type) {
-      STATE.prac.type = type;
-      let pool = type === 'sata' ? PDF_TOPIC_DATA[currentTopic].practiceSata : (type === 'nclex' ? PDF_TOPIC_DATA[currentTopic].practiceNclex : PDF_TOPIC_DATA[currentTopic].practiceHard);
-      STATE.prac.q = shuffle(pool);
-      STATE.prac.i = 0; STATE.prac.qs = 0;
-      document.getElementById('qsec-practice-menu').style.display = 'none';
-      document.getElementById('qsec-practice-active').style.display = 'block';
-      saveProgress(); renderPrac();
-    }
-    function renderPrac() {
-      if (STATE.prac.i >= STATE.prac.q.length) return endPrac();
-      STATE.prac.answered = false; STATE.prac.sata.clear();
-      let q = STATE.prac.q[STATE.prac.i];
-      let isSATA = q.type === 'sata';
-
-      document.getElementById('prac-count').innerText = `${STATE.prac.type.toUpperCase()} - Q${STATE.prac.i + 1}/${STATE.prac.q.length}`;
-      document.getElementById('prac-q').innerHTML = (isSATA ? '<span class="hl">SATA</span> ' : '') + q.q;
-      document.getElementById('prac-rat').style.display = 'none';
-      document.getElementById('prac-nxt').style.display = 'none';
-      document.getElementById('prac-submit').style.display = isSATA ? 'block' : 'none';
-
-      let od = document.getElementById('prac-opts'); od.innerHTML = '';
-      q.o.forEach((opt, idx) => {
-        let b = document.createElement('button'); b.className = 'opt'; b.innerText = opt;
-        b.onclick = () => handlePracOpt(b, idx, isSATA, q);
-        od.appendChild(b);
-      });
-    }
-    function handlePracOpt(btn, idx, isSATA, q) {
-      if (STATE.prac.answered) return;
-      if (isSATA) {
-        if (STATE.prac.sata.has(idx)) { STATE.prac.sata.delete(idx); btn.classList.remove('selected'); }
-        else { STATE.prac.sata.add(idx); btn.classList.add('selected'); }
-      } else {
-        STATE.prac.answered = true; evalPracMCQ(idx, q);
-      }
-    }
-    function evalPracMCQ(sel, q) {
-      let btns = document.querySelectorAll('#prac-opts .opt');
-      btns.forEach((b, i) => {
-        b.style.pointerEvents = 'none';
-        if (i === q.c) b.classList.add('ok'); else if (i === sel) b.classList.add('no');
-      });
-      if (sel === q.c) STATE.prac.qs++;
-      finishPracQ(q.r);
-    }
-    function submitPrac() {
-      if (STATE.prac.answered) return;
-      STATE.prac.answered = true; document.getElementById('prac-submit').style.display = 'none';
-      let q = STATE.prac.q[STATE.prac.i]; let corr = q.c;
-      let btns = document.querySelectorAll('#prac-opts .opt');
-
-      let perf = STATE.prac.sata.size === corr.length && corr.every(v => STATE.prac.sata.has(v));
-      if (perf) STATE.prac.qs++;
-
-      btns.forEach((b, i) => {
-        b.style.pointerEvents = 'none';
-        if (corr.includes(i)) b.classList.add('ok');
-        if (STATE.prac.sata.has(i) && !corr.includes(i)) b.classList.add('no');
-      });
-      finishPracQ(q.r);
-    }
-    function finishPracQ(r) {
-      let rat = document.getElementById('prac-rat');
-      rat.innerHTML = r; rat.style.display = 'block';
-      document.getElementById('prac-nxt').style.display = 'block';
-      saveProgress();
-    }
-    function nextPrac() { STATE.prac.i++; renderPrac(); }
-    function endPrac() {
-      document.getElementById('qsec-practice-active').style.display = 'none';
-      let pct = Math.round((STATE.prac.qs / STATE.prac.q.length) * 100) || 0;
-      showScoreScreen(pct, 0, 'prac');
-    }
-
-    /* =========================================
-       SCORE SCREEN & PERSISTENCE
-    ========================================= */
-    function showScoreScreen(pct, missed, type) {
-      document.getElementById('qsec-score').style.display = 'block';
-      document.getElementById('score-pct').innerText = pct + '%';
-      let txt = document.getElementById('score-txt');
-      let btns = document.getElementById('score-btns'); btns.innerHTML = '';
-
-      if (type === 'prac') {
-        txt.innerText = "Practice Session Complete!";
-        btns.innerHTML += `<button class="btn btn-primary" onclick="switchQuestions('practice-menu', document.querySelectorAll('.nav-pill')[2])">Back to Practice Menu</button>`;
-      } else {
-        txt.innerText = missed > 0 ? `You missed ${missed} questions.` : "Perfect! No mistakes.";
-        if (missed > 0) {
-          btns.innerHTML += `<button class="btn btn-primary" onclick="restartFromScore('${type}', true)">Review Missed (${missed})</button>`;
-        }
-        btns.innerHTML += `<button class="btn" onclick="restartFromScore('${type}', false)">Shuffle & Restart</button>`;
-      }
-    }
-
-    // Fix: re-show the correct section before restarting so the content is visible
-    function restartFromScore(type, reviewMissed) {
-      document.getElementById('qsec-score').style.display = 'none';
-      if (type === 'fc') {
-        document.getElementById('qsec-flash').style.display = 'block';
-        startFC(reviewMissed);
-      } else {
-        document.getElementById('qsec-quiz').style.display = 'block';
-        startQuiz(reviewMissed);
-      }
-    }
-
-    // Session Saving (for refresh)
-    function saveSession(viewId) { sessionStorage.setItem('active_view', viewId); }
-    function saveProgress() {
-      if (!currentTopic) return;
-      localStorage.setItem(`fc_missed_${currentTopic}`, JSON.stringify(STATE.fc.missed));
-      localStorage.setItem(`quiz_missed_${currentTopic}`, JSON.stringify(STATE.quiz.missed));
-      sessionStorage.setItem('state_fc', JSON.stringify(STATE.fc));
-      sessionStorage.setItem('state_quiz', JSON.stringify(STATE.quiz));
-      sessionStorage.setItem('state_prac', JSON.stringify(STATE.prac));
-      sessionStorage.setItem('current_topic', currentTopic);
-    }
-    function restoreSession() {
-      let v = sessionStorage.getItem('active_view');
-      let t = sessionStorage.getItem('current_topic');
-      if (v && v !== 'view-main' && t) {
-        currentTopic = t;
-        document.getElementById('split-title').innerText = PDF_TOPIC_DATA[t].title;
-
-        // Restore states
-        if (sessionStorage.getItem('state_fc')) STATE.fc = JSON.parse(sessionStorage.getItem('state_fc'));
-        if (sessionStorage.getItem('state_quiz')) STATE.quiz = JSON.parse(sessionStorage.getItem('state_quiz'));
-        if (sessionStorage.getItem('state_prac')) {
-          STATE.prac = JSON.parse(sessionStorage.getItem('state_prac'));
-          STATE.prac.sata = new Set(); // Set cannot survive JSON — always re-create fresh
-        }
-
-        navTo(v);
-
-        // Default open tabs if restoring deep
-        if (v === 'view-notes') switchNotes('summary', document.querySelectorAll('#view-notes .nav-pill')[0]);
-        if (v === 'view-questions') {
-          let activeQ = document.querySelector('#view-questions .nav-pill.active');
-          if (activeQ) activeQ.click(); else switchQuestions('flash', document.querySelectorAll('#view-questions .nav-pill')[0]);
-        }
-      }
-    }
-  </script>
+  <script src="antifungals.js"></script>
+  <script src="antiplatelet.js"></script>
+  <script src="peptic-ulcer.js"></script>
+  <script src="app-core.js"></script>
+  <script src="engines.js"></script>
+  <script src="features.js"></script>
 </body>
 
 </html>
