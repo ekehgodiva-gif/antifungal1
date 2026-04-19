@@ -1,6 +1,6 @@
 window.APP_CONFIG = {
   prayer: {
-    id: "msg-003", 
-    message: "Psalm 46:5<br>God is within you, you will not fall.<br>God will help you at break of day.<br><br>I love you so much. You've got this, my favorite nurse in the world. 💛"
+    id: "msg-004", 
+    message: "If you see this, I'm currently thinking about you again.<br><br>I wish I could be there to hold your hand, but I hope this will do for now.<br><br>Go and smash this one 💓💓"
   }
 };
